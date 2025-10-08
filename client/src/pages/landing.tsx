@@ -350,34 +350,6 @@ export default function Landing() {
                 </span>
               </div>
             </div>
-
-            {/* Rating Display */}
-            <div className="flex flex-col items-center gap-3 py-4">
-              <div className="flex items-center gap-2">
-                <span className="text-3xl font-bold text-primary">4.98</span>
-                <span className="text-xl text-muted-foreground">/5</span>
-              </div>
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <div key={star} className="relative w-6 h-6">
-                    {/* Background star (empty) */}
-                    <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
-                    {/* Filled star with partial fill */}
-                    <div 
-                      className="absolute inset-0 overflow-hidden"
-                      style={{ 
-                        width: star <= 4 ? '100%' : star === 5 ? '98%' : '0%' 
-                      }}
-                    >
-                      <Star className="w-6 h-6 text-primary fill-primary" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Rated by <span className="font-semibold text-foreground">144 practitioners</span>
-              </p>
-            </div>
             
             {/* Price and CTA */}
             <div className="bg-card border-2 border-primary/20 rounded-lg p-8 shadow-2xl max-w-2xl mx-auto">
@@ -459,9 +431,38 @@ export default function Landing() {
               <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
                 Transformation Stories
               </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12">
+              <p className="text-xl text-center text-muted-foreground mb-8">
                 See what others are experiencing with #KingJesusMeditation
               </p>
+              
+              {/* Rating Display */}
+              <div className="flex flex-col items-center gap-3 py-4 mb-8">
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl font-bold text-primary">4.98</span>
+                  <span className="text-xl text-muted-foreground">/5</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <div key={star} className="relative w-6 h-6">
+                      {/* Background star (empty) */}
+                      <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
+                      {/* Filled star with partial fill */}
+                      <div 
+                        className="absolute inset-0 overflow-hidden"
+                        style={{ 
+                          width: star <= 4 ? '100%' : star === 5 ? '98%' : '0%' 
+                        }}
+                      >
+                        <Star className="w-6 h-6 text-primary fill-primary" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Rated by <span className="font-semibold text-foreground">144 practitioners</span>
+                </p>
+              </div>
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {testimonials.map((testimonial: any) => (
                   <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
