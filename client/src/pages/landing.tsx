@@ -391,7 +391,7 @@ export default function Landing() {
       </section>
 
       {/* Personal Story Section */}
-      <section id="story" className="py-20 bg-card">
+      <section id="story" className="py-12 bg-card">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-8 md:p-12 border-primary/20 shadow-xl">
             <div className="space-y-6">
