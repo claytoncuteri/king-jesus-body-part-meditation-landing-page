@@ -20,7 +20,11 @@ function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      <path 
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        stroke="black" 
+        strokeWidth="1"
+      />
     </svg>
   );
 }
@@ -163,6 +167,7 @@ export default function Landing() {
             <div className="flex items-center gap-3">
               <Button
                 size="lg"
+                variant="destructive"
                 className="shadow-lg hover:shadow-xl transition-all hidden sm:flex"
                 onClick={handleCheckout}
                 data-testid="button-header-purchase"
@@ -172,6 +177,7 @@ export default function Landing() {
               </Button>
               <Button
                 size="lg"
+                variant="destructive"
                 className="shadow-lg hover:shadow-xl transition-all sm:hidden"
                 onClick={handleCheckout}
                 data-testid="button-header-purchase-mobile"
@@ -280,6 +286,7 @@ export default function Landing() {
                 </p>
                 <Button
                   size="lg"
+                  variant="destructive"
                   className="w-full text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                   onClick={handleCheckout}
                   data-testid="button-get-started"
@@ -377,6 +384,7 @@ export default function Landing() {
                 </p>
                 <Button
                   size="lg"
+                  variant="destructive"
                   className="mt-6 text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                   onClick={handleCheckout}
                   data-testid="button-buy-now"
