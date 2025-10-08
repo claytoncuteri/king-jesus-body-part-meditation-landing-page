@@ -132,17 +132,6 @@ export default function Checkout() {
     createPaymentIntent();
   }, [toast]);
 
-  if (!clientSecret || isCreating) {
-    return (
-      <div className="min-h-screen bg-background py-12 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading secure checkout...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4">
@@ -256,9 +245,29 @@ export default function Checkout() {
           </div>
 
           {/* Payment Element */}
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <CheckoutForm email={email} name={name} />
-          </Elements>
+          {!clientSecret || isCreating ? (
+            <div className="space-y-6">
+              <div className="h-32 bg-muted/20 border border-muted rounded-lg flex items-center justify-center animate-pulse">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                  <p className="text-sm text-muted-foreground">Loading payment form...</p>
+                </div>
+              </div>
+              <Button
+                type="button"
+                size="lg"
+                className="w-full text-lg py-6"
+                disabled
+                data-testid="button-complete-purchase"
+              >
+                Complete Purchase - $4.95
+              </Button>
+            </div>
+          ) : (
+            <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <CheckoutForm email={email} name={name} />
+            </Elements>
+          )}
 
           <p className="text-xs text-center text-muted-foreground mt-6">
             Secure payment processed by Stripe. Your information is encrypted and safe.
