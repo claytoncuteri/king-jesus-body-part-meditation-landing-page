@@ -48,7 +48,7 @@ async function sendToConvertKit(email: string, name?: string) {
         api_key: CONVERTKIT_API_KEY,
         email,
         first_name: name,
-        tags: ["King Jesus Meditation Lead"],
+        tags: ["From King Jesus body part form"],
       }),
     });
 
@@ -56,7 +56,7 @@ async function sendToConvertKit(email: string, name?: string) {
       console.error("ConvertKit API error:", await response.text());
     } else {
       const data = await response.json();
-      console.log("Successfully added to ConvertKit:", data);
+      console.log("Successfully added to ConvertKit with tag 'From King Jesus body part form':", data);
     }
   } catch (error) {
     console.error("Failed to send to ConvertKit:", error);
