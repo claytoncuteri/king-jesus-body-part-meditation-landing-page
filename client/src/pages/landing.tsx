@@ -282,13 +282,13 @@ export default function Landing() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-foreground leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
               Stuck in Financial Struggle? Break Free with the Same Meditation That Took Me from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
-              <span className="text-primary">$1.1M</span>
+              <span className="text-primary">$1.1M</span> Net Worth
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Ancient King Jesus meditation technique + proven prosperity teachings = Your fastest path to abundance and peace
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <span className="font-mono text-foreground bg-primary/10 px-2 py-1 rounded">Ancient King Jesus meditation technique + proven prosperity teachings = Your fastest path to abundance and peace</span>
             </p>
             
             {/* Price and CTA */}
