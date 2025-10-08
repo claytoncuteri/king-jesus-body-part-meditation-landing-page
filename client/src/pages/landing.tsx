@@ -586,10 +586,10 @@ export default function Landing() {
                         {item.description}
                       </p>
                       <div className="flex items-center gap-3">
-                        <p className="text-lg font-bold text-foreground font-chalk line-through decoration-2 decoration-green-600">
+                        <p className="text-xl font-bold text-foreground font-chalk line-through decoration-2 decoration-green-600">
                           ${item.value.toFixed(2)}
                         </p>
-                        <span className="text-green-600 font-chalk text-base font-bold -rotate-2">
+                        <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">
                           FREE
                         </span>
                       </div>
