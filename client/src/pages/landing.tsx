@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Star, Instagram, Check, Sparkles, Menu, X } from "lucide-react";
+import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 
@@ -207,7 +207,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-header-purchase"
               >
-                <Sparkles className="mr-2 h-4 w-4" />
+                <FivePointedStar className="mr-2 h-4 w-4" />
                 Get Now - $4.95
               </Button>
               <Button
@@ -354,7 +354,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-get-started"
                 >
-                  <Sparkles className="mr-2 h-6 w-6" />
+                  <FivePointedStar className="mr-2 h-6 w-6" />
                   Yes! I Want Divine Abundance - $4.95
                 </Button>
                 <p className="text-xs text-muted-foreground">
@@ -431,7 +431,7 @@ export default function Landing() {
               onClick={handleCheckout}
               data-testid="button-story-cta"
             >
-              <Sparkles className="mr-2 h-6 w-6" />
+              <FivePointedStar className="mr-2 h-6 w-6" />
               Begin Your Transformation - $4.95
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
@@ -527,7 +527,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-testimonials-cta"
                 >
-                  <Sparkles className="mr-2 h-6 w-6" />
+                  <FivePointedStar className="mr-2 h-6 w-6" />
                   Join 500+ Students - $4.95
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
@@ -621,7 +621,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-buy-now"
                 >
-                  <Sparkles className="mr-2 h-6 w-6" />
+                  <FivePointedStar className="mr-2 h-6 w-6" />
                   Buy Now - $4.95
                 </Button>
               </div>
@@ -671,7 +671,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-cost-waiting-cta"
               >
-                <Sparkles className="mr-2 h-6 w-6" />
+                <FivePointedStar className="mr-2 h-6 w-6" />
                 Break Free Now - $4.95
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
@@ -862,7 +862,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-faq-cta"
               >
-                <Sparkles className="mr-2 h-6 w-6" />
+                <FivePointedStar className="mr-2 h-6 w-6" />
                 Start Your Transformation Now - $4.95
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
