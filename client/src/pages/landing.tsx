@@ -464,23 +464,40 @@ export default function Landing() {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((testimonial: any) => (
-                  <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-bold text-primary">
-                          {testimonial.name.charAt(0)}
-                        </span>
+                {testimonials.map((testimonial: any, idx: number) => {
+                  const rating = idx === 2 ? 4 : 5;
+                  return (
+                    <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-lg font-bold text-primary">
+                            {testimonial.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold truncate">{testimonial.name}</p>
+                          <p className="text-xs text-muted-foreground">Verified Practitioner</p>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold truncate">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">Verified Practitioner</p>
+                      <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
+                      
+                      {/* Individual Rating */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-0.5">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star 
+                              key={star} 
+                              className={`w-4 h-4 ${star <= rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-xs font-semibold text-foreground">{rating}/5</span>
                       </div>
-                    </div>
-                    <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
-                    <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
-                  </Card>
-                ))}
+                      
+                      <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           </div>
