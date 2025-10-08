@@ -338,8 +338,8 @@ export default function Landing() {
                 <div className="flex-1">
                   <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-card-foreground">
                     I'm <span className="font-bold text-primary">Clayton Cuteri</span>. In just 21 months, this meditation helped me go from{" "}
-                    <span className="font-cinzel font-bold text-destructive">-$10,000</span> in debt to building a{" "}
-                    <span className="font-cinzel font-bold text-primary">$1.1M</span> business.
+                    <span className="font-cinzel font-bold text-destructive">-$10,000</span> in debt to a{" "}
+                    <span className="font-cinzel font-bold text-primary">$1.1M</span> net worth across 4 businesses, a podcast, and 210K+ followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
                     But here's what most don't know: Before I made my first dollar, I had to transform my relationship with money at the cellular level. This meditation rewired my prosperity consciousness, dissolved financial blocks, and aligned me with divine abundance.
@@ -562,7 +562,7 @@ export default function Landing() {
                 <Instagram className="w-12 h-12 text-secondary" />
                 <div className="text-left">
                   <p className="text-xl font-bold">@claytoncuteri</p>
-                  <p className="text-muted-foreground">110,000+ followers</p>
+                  <p className="text-muted-foreground">210,000+ followers</p>
                 </div>
               </div>
               <p className="text-lg mb-6">
