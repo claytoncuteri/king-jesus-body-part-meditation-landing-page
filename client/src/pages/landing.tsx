@@ -364,7 +364,7 @@ export default function Landing() {
                   100% of proceeds support building churches honoring King Jesus for global peace initiatives
                 </p>
                 <p className="text-xs text-muted-foreground/80 mt-2">
-                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee. No refunds are offered; your purchase supports our peace mission if unsatisfied.
+                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
                 </p>
               </div>
             </div>
