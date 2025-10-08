@@ -312,7 +312,7 @@ export default function Landing() {
       </header>
 
       {/* Hero Section - Above the Fold */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-8 pb-12 md:pt-12 md:pb-16">
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-4 pb-8 md:pt-8 md:pb-12">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
@@ -329,30 +329,15 @@ export default function Landing() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
               Stuck in Financial Struggle? Break Free with the Same Meditation That Took Me from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
               <span className="text-primary">$1.1M</span> Net Worth
             </h1>
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl overflow-x-auto">
-              <div className="font-chalk text-2xl md:text-3xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 md:gap-4 flex-wrap min-w-max mx-auto">
-                <span className="text-center leading-tight">
-                  Ancient King Jesus<br />meditation
-                </span>
-                <span className="text-4xl md:text-5xl font-bold">+</span>
-                <span className="text-center leading-tight">
-                  Proven<br />prosperity teachings
-                </span>
-                <span className="text-4xl md:text-5xl font-bold">=</span>
-                <span className="text-center leading-tight">
-                  Your fastest path<br />to abundance
-                </span>
-              </div>
-            </div>
             
             {/* Price and CTA */}
-            <div className="bg-card border-2 border-primary/20 rounded-lg p-8 shadow-2xl max-w-2xl mx-auto">
+            <div className="bg-card border-2 border-primary/20 rounded-lg p-6 shadow-2xl max-w-2xl mx-auto">
               <div className="space-y-4">
                 <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
                 <div className="flex items-baseline justify-center gap-3">
@@ -382,6 +367,23 @@ export default function Landing() {
                 <p className="text-xs text-muted-foreground italic">
                   100% of proceeds support building churches honoring King Jesus for global peace initiatives
                 </p>
+              </div>
+            </div>
+            
+            {/* Formula Section */}
+            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl overflow-x-auto">
+              <div className="font-chalk text-2xl md:text-3xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 md:gap-4 flex-wrap min-w-max mx-auto">
+                <span className="text-center leading-tight">
+                  Ancient King Jesus<br />meditation
+                </span>
+                <span className="text-4xl md:text-5xl font-bold">+</span>
+                <span className="text-center leading-tight">
+                  Proven<br />prosperity teachings
+                </span>
+                <span className="text-4xl md:text-5xl font-bold">=</span>
+                <span className="text-center leading-tight">
+                  Your fastest path<br />to abundance
+                </span>
               </div>
             </div>
           </div>
