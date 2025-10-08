@@ -405,7 +405,7 @@ export default function Landing() {
                     But here's what most don't know: Before I made my first dollar, I had to transform my relationship with money at the cellular level. This meditation rewired my prosperity consciousness, dissolved financial blocks, and aligned me with divine abundance.
                   </p>
                   <p className="text-lg md:text-xl mt-4 text-muted-foreground leading-relaxed">
-                    The same ancient technique that guided me from scarcity to overflow is now available to you - for less than a coffee.
+                    The same ancient technique that guided me from scarcity to overflow is now available to you for less than a coffee.
                   </p>
                 </div>
               </div>
