@@ -320,7 +320,7 @@ export default function Landing() {
                   ⏰ <span className="font-semibold">Join 1,000+ practitioners</span> who've transformed their relationship with money and spirituality
                 </p>
                 <p className="text-xs text-muted-foreground italic">
-                  100% of proceeds support building the Church of King Jesus for global peace initiatives
+                  100% of proceeds support building churches honoring King Jesus for global peace initiatives
                 </p>
               </div>
             </div>
@@ -499,7 +499,7 @@ export default function Landing() {
               <span className="font-bold text-primary border-b-2 border-primary">
                 100% of proceeds
               </span>{" "}
-              support building the Church of King Jesus for global peace initiatives.
+              support building churches honoring King Jesus for global peace initiatives.
             </p>
             <p className="text-lg text-muted-foreground">
               Join us in creating a more peaceful world through spiritual awakening and divine connection.
@@ -623,7 +623,7 @@ export default function Landing() {
                   Q: What if this doesn't work for me?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Your $4.95 investment is protected by our Satisfaction Promise. If you don't experience a shift in your spiritual connection and prosperity mindset, your investment automatically supports our mission to build the Church of King Jesus for global peace. Either way, you contribute to something meaningful.
+                  Your $4.95 investment is protected by our Satisfaction Promise. If you don't experience a shift in your spiritual connection and prosperity mindset, your investment automatically supports our mission to build churches honoring King Jesus for global peace. Either way, you contribute to something meaningful.
                 </p>
               </Card>
 
@@ -650,7 +650,7 @@ export default function Landing() {
                   Q: Why is it only $4.95 instead of $60.27?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today. Plus, 100% of proceeds support building the Church of King Jesus.
+                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today. Plus, 100% of proceeds support building churches honoring King Jesus.
                 </p>
               </Card>
             </div>
@@ -758,7 +758,7 @@ export default function Landing() {
                 <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not financial advice.
               </p>
               <p>
-                © {new Date().getFullYear()} King Jesus Meditation. 100% of proceeds support building the Church of King Jesus for global peace initiatives.
+                © {new Date().getFullYear()} King Jesus Meditation. 100% of proceeds support building churches honoring King Jesus for global peace initiatives.
               </p>
             </div>
           </div>
