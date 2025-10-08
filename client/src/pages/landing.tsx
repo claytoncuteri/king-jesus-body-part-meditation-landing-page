@@ -161,6 +161,13 @@ export default function Landing() {
               >
                 Testimonials
               </button>
+              <button
+                onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-faq"
+              >
+                FAQ
+              </button>
             </nav>
 
             {/* Right: CTA Button and Mobile Menu Toggle */}
@@ -240,6 +247,16 @@ export default function Landing() {
                 >
                   Testimonials
                 </button>
+                <button
+                  onClick={() => {
+                    document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-faq-mobile"
+                >
+                  FAQ
+                </button>
               </nav>
             </div>
           )}
@@ -266,34 +283,42 @@ export default function Landing() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-foreground leading-tight">
-              Unlock Divine Peace and Prosperity with{" "}
-              <span className="text-primary">King Jesus</span> Meditation
+              Stuck in Financial Struggle? Break Free with the Same Meditation That Took Me from{" "}
+              <span className="text-destructive">-$10K</span> to{" "}
+              <span className="text-primary">$1.1M</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Transform your life with ancient meditation secrets. Connect to divine energies and manifest abundance.
+              Ancient King Jesus meditation technique + proven prosperity teachings = Your fastest path to abundance and peace
             </p>
             
             {/* Price and CTA */}
             <div className="bg-card border-2 border-primary/20 rounded-lg p-8 shadow-2xl max-w-2xl mx-auto">
               <div className="space-y-4">
-                <p className="text-lg text-muted-foreground">Complete Meditation Package</p>
+                <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
                 <div className="flex items-baseline justify-center gap-3">
                   <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
                   <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
+                  <span className="font-bold text-primary">92% OFF</span> - Special Introductory Price
                 </p>
+                <div className="bg-primary/10 border border-primary/30 rounded-md p-3 text-sm">
+                  <p className="font-semibold text-primary mb-1">✓ 100% Satisfaction Promise</p>
+                  <p className="text-muted-foreground">Experience divine transformation or your investment supports our peace mission - either way, you win</p>
+                </div>
                 <Button
                   size="lg"
                   variant="destructive"
-                  className="w-full text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                  className="w-full text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse"
                   onClick={handleCheckout}
                   data-testid="button-get-started"
                 >
                   <Sparkles className="mr-2 h-6 w-6" />
-                  Start Your Transformation - $4.95
+                  Yes! I Want Divine Abundance - $4.95
                 </Button>
+                <p className="text-xs text-muted-foreground">
+                  ⏰ <span className="font-semibold">Join 1,000+ practitioners</span> who've transformed their relationship with money and spirituality
+                </p>
                 <p className="text-xs text-muted-foreground italic">
                   100% of proceeds support building the Church of King Jesus for global peace initiatives
                 </p>
@@ -312,12 +337,15 @@ export default function Landing() {
                 <div className="text-6xl text-primary">"</div>
                 <div className="flex-1">
                   <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-card-foreground">
-                    I'm <span className="font-bold text-primary">Clayton Cuteri</span>. From{" "}
-                    <span className="font-cinzel font-bold text-destructive">-$10,000</span> net worth in Jan 2024 to over{" "}
-                    <span className="font-cinzel font-bold text-primary">$1.1M</span> in Oct 2025 – this meditation sparked my millionaire momentum.
+                    I'm <span className="font-bold text-primary">Clayton Cuteri</span>. In just 21 months, this meditation helped me go from{" "}
+                    <span className="font-cinzel font-bold text-destructive">-$10,000</span> in debt to building a{" "}
+                    <span className="font-cinzel font-bold text-primary">$1.1M</span> business.
                   </p>
-                  <p className="text-lg md:text-xl mt-6 text-muted-foreground">
-                    Elites know: Everyone has 24 hours; the difference is knowledge like this. Start your journey today!
+                  <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
+                    But here's what most don't know: Before I made my first dollar, I had to transform my relationship with money at the cellular level. This meditation rewired my prosperity consciousness, dissolved financial blocks, and aligned me with divine abundance.
+                  </p>
+                  <p className="text-lg md:text-xl mt-4 text-muted-foreground leading-relaxed">
+                    The same ancient technique that guided me from scarcity to overflow is now available to you - for less than a coffee.
                   </p>
                 </div>
               </div>
@@ -557,6 +585,92 @@ export default function Landing() {
                 Follow @claytoncuteri
               </Button>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Address Objections */}
+      <section id="faq" className="py-20 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
+              Common Questions
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              Everything you need to know before starting your transformation
+            </p>
+            <div className="space-y-6">
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: How is this different from regular meditation?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to $1.1M in revenue.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: Do I need any prior meditation experience?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  No! This package is designed for complete beginners and experienced practitioners alike. The step-by-step video guides you through every detail, and the journal helps you track your progress from day one.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: What if this doesn't work for me?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Your $4.95 investment is protected by our Satisfaction Promise. If you don't experience a shift in your spiritual connection and prosperity mindset, your investment automatically supports our mission to build the Church of King Jesus for global peace. Either way, you contribute to something meaningful.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: How quickly will I see results?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Many practitioners report feeling a deeper sense of peace within the first session. Financial manifestations vary by individual commitment and practice, but the spiritual connection begins immediately. The included journal helps you track both subtle and significant shifts in your journey.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: Is this compatible with my current faith tradition?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  This meditation honors the universal divine presence. Many practitioners from various spiritual backgrounds find it enriches their existing practice. It's about connecting to the divine energy within you, regardless of your religious path.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover-elevate transition-all">
+                <h3 className="text-xl font-bold mb-3 text-primary">
+                  Q: Why is it only $4.95 instead of $60.27?
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today. Plus, 100% of proceeds support building the Church of King Jesus.
+                </p>
+              </Card>
+            </div>
+
+            {/* CTA after FAQ */}
+            <div className="mt-12 text-center">
+              <Button
+                size="lg"
+                variant="destructive"
+                className="text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-faq-cta"
+              >
+                <Sparkles className="mr-2 h-6 w-6" />
+                Start Your Transformation Now - $4.95
+              </Button>
+              <p className="text-sm text-muted-foreground mt-4">
+                Join the community of practitioners experiencing divine abundance
+              </p>
+            </div>
           </div>
         </div>
       </section>
