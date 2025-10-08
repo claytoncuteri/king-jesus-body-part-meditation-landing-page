@@ -312,7 +312,7 @@ export default function Landing() {
       </header>
 
       {/* Hero Section - Above the Fold */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-4 pb-8 md:pt-8 md:pb-12">
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-2 pb-6 md:pt-6 md:pb-10">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
@@ -329,7 +329,7 @@ export default function Landing() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="max-w-4xl mx-auto text-center space-y-3">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
               Stuck in Financial Struggle? Break Free with the Same Meditation That Took Me from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
@@ -337,8 +337,8 @@ export default function Landing() {
             </h1>
             
             {/* Price and CTA */}
-            <div className="bg-card border-2 border-primary/20 rounded-lg p-6 shadow-2xl max-w-2xl mx-auto">
-              <div className="space-y-4">
+            <div className="bg-card border-2 border-primary/20 rounded-lg p-5 shadow-2xl max-w-2xl mx-auto">
+              <div className="space-y-3">
                 <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
                 <div className="flex items-baseline justify-center gap-3">
                   <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
