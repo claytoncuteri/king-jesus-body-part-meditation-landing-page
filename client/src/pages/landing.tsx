@@ -629,6 +629,58 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Pain/FOMO Section - Cost of Inaction */}
+      <section className="py-20 bg-destructive/10 border-y-2 border-destructive/20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-8 text-foreground">
+              The Cost of Waiting
+            </h2>
+            <div className="space-y-6 mb-10">
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">Every day you wait</span> is another day stuck in the same financial patterns. Another day watching opportunities pass by. Another day wondering why abundance seems to flow to others but not to you.
+                </p>
+              </Card>
+              
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">While you hesitate,</span> 144+ practitioners are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
+                </p>
+              </Card>
+
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">Staying where you are</span> means more financial stress, more sleepless nights, more feeling like you're missing out on the life you deserve. The same struggles, month after month, year after year.
+                </p>
+              </Card>
+
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">This $4.95 investment</span> is less than your morning coffee—but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
+                </p>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <Button
+                size="lg"
+                variant="destructive"
+                className="text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-cost-waiting-cta"
+              >
+                <Sparkles className="mr-2 h-6 w-6" />
+                Break Free Now - $4.95
+              </Button>
+              <p className="text-sm text-muted-foreground mt-4">
+                Don't let another day pass stuck in the same patterns
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Statement */}
       <section className="py-20 bg-gradient-to-br from-secondary/20 to-accent/20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none">
