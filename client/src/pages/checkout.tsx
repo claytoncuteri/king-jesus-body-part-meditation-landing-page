@@ -7,8 +7,27 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Sparkles, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+
+// 5-pointed star SVG component
+function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        fill="none"
+        stroke="white" 
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
@@ -72,7 +91,7 @@ const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
           "Processing..."
         ) : (
           <>
-            <Sparkles className="mr-2 h-5 w-5" />
+            <FivePointedStar className="mr-2 h-5 w-5" />
             Complete Purchase - $4.95
           </>
         )}
