@@ -585,9 +585,14 @@ export default function Landing() {
                       <p className="text-sm text-muted-foreground mb-3">
                         {item.description}
                       </p>
-                      <p className="text-sm text-muted-foreground line-through font-cinzel">
-                        ${item.value.toFixed(2)}
-                      </p>
+                      <div className="flex items-center gap-3">
+                        <p className="text-lg font-bold text-foreground line-through decoration-2 decoration-muted-foreground/50 font-cinzel">
+                          ${item.value.toFixed(2)}
+                        </p>
+                        <span className="bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-xs font-bold">
+                          FREE
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -598,7 +603,7 @@ export default function Landing() {
             <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary shadow-2xl">
               <div className="text-center space-y-4">
                 <p className="text-2xl font-semibold text-foreground">Total Value</p>
-                <p className="text-4xl md:text-5xl font-cinzel font-bold text-muted-foreground line-through">
+                <p className="text-4xl md:text-5xl font-cinzel font-bold text-foreground line-through decoration-4 decoration-muted-foreground/60">
                   $60.27
                 </p>
                 <p className="text-xl text-foreground">Your Price Today:</p>
