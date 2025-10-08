@@ -141,28 +141,56 @@ export default function Landing() {
                 Home
               </button>
               <button
-                onClick={() => document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const el = document.getElementById('story');
+                  if (el) {
+                    const offset = 100;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
+                }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 data-testid="nav-story"
               >
                 Story
               </button>
               <button
-                onClick={() => document.getElementById('value')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                data-testid="nav-value"
-              >
-                What's Included
-              </button>
-              <button
-                onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const el = document.getElementById('testimonials');
+                  if (el) {
+                    const offset = 100;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
+                }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 data-testid="nav-testimonials"
               >
                 Testimonials
               </button>
               <button
-                onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const el = document.getElementById('value');
+                  if (el) {
+                    const offset = 100;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
+                }}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-value"
+              >
+                What's Included
+              </button>
+              <button
+                onClick={() => {
+                  const el = document.getElementById('faq');
+                  if (el) {
+                    const offset = 100;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
+                }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 data-testid="nav-faq"
               >
@@ -219,7 +247,12 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' });
+                    const el = document.getElementById('story');
+                    if (el) {
+                      const offset = 100;
+                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                    }
                     setMobileMenuOpen(false);
                   }}
                   className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
@@ -229,17 +262,12 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById('value')?.scrollIntoView({ behavior: 'smooth' });
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
-                  data-testid="nav-value-mobile"
-                >
-                  What's Included
-                </button>
-                <button
-                  onClick={() => {
-                    document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
+                    const el = document.getElementById('testimonials');
+                    if (el) {
+                      const offset = 100;
+                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                    }
                     setMobileMenuOpen(false);
                   }}
                   className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
@@ -249,7 +277,27 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+                    const el = document.getElementById('value');
+                    if (el) {
+                      const offset = 100;
+                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-value-mobile"
+                >
+                  What's Included
+                </button>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('faq');
+                    if (el) {
+                      const offset = 100;
+                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                    }
                     setMobileMenuOpen(false);
                   }}
                   className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
