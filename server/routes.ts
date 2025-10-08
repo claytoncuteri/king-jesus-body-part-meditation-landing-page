@@ -86,6 +86,7 @@ async function sendProductDeliveryEmail(email: string, name?: string) {
         api_secret: CONVERTKIT_API_SECRET,
         email,
         first_name: name,
+        tags: ["Purchase King Jesus Body Part Meditation"],
       }),
     });
 
@@ -96,7 +97,7 @@ async function sendProductDeliveryEmail(email: string, name?: string) {
     }
 
     const tagData = await tagResponse.json();
-    console.log(`Successfully tagged ${email} for product delivery automation:`, tagData);
+    console.log(`Successfully tagged ${email} with "Purchase King Jesus Body Part Meditation":`, tagData);
     return true;
     
   } catch (error) {
