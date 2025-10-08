@@ -335,8 +335,43 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      {testimonials.length > 0 && (
+        <section id="testimonials" className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
+                Transformation Stories
+              </h2>
+              <p className="text-xl text-center text-muted-foreground mb-12">
+                See what others are experiencing with #KingJesusMeditation
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {testimonials.map((testimonial: any) => (
+                  <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg font-bold text-primary">
+                          {testimonial.name.charAt(0)}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold truncate">{testimonial.name}</p>
+                        <p className="text-xs text-muted-foreground">Verified Practitioner</p>
+                      </div>
+                    </div>
+                    <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
+                    <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Value Breakdown Section */}
-      <section id="value" className="py-20 bg-background">
+      <section id="value" className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
@@ -348,17 +383,40 @@ export default function Landing() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {[
-                { name: "King Jesus Body Part Meditation Video", value: 19.99 },
-                { name: "Money-Related Podcast Episodes", value: 14.99 },
-                { name: "Revealing The Secret Teachings of Jesus: Gospel of Thomas - Volume I, Verses 1-10", value: 9.99 },
-                { name: "Reader's Notebook for Gospel of Thomas - Volume I, Verses 1-10", value: 5.31 },
-                { name: "Meditation Journal Template", value: 9.99 },
+                { 
+                  name: "King Jesus Body Part Meditation Video", 
+                  value: 19.99,
+                  description: "Sacred meditation technique to activate divine energies within your body and manifest abundance."
+                },
+                { 
+                  name: "Money-Related Podcast Episodes", 
+                  value: 14.99,
+                  description: "Cellular-level understanding of wealth consciousness and prosperity mindset transformation."
+                },
+                { 
+                  name: "Revealing The Secret Teachings of Jesus: Gospel of Thomas - Volume I, Verses 1-10", 
+                  value: 9.99,
+                  description: "Ancient wisdom unlocking hidden teachings for spiritual enlightenment and divine connection."
+                },
+                { 
+                  name: "Reader's Notebook for Gospel of Thomas - Volume I, Verses 1-10", 
+                  value: 5.31,
+                  description: "Guided reflection tool to deepen your understanding and integrate sacred teachings into daily life."
+                },
+                { 
+                  name: "Meditation Journal Template", 
+                  value: 9.99,
+                  description: "Track your spiritual journey, manifestations, and divine insights for accelerated growth."
+                },
               ].map((item, idx) => (
                 <Card key={idx} className="p-6 hover-elevate transition-all" data-testid={`card-product-${idx}`}>
                   <div className="flex items-start gap-3">
                     <Check className="text-primary mt-1 flex-shrink-0" />
                     <div className="flex-1">
                       <h3 className="font-semibold mb-2">{item.name}</h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {item.description}
+                      </p>
                       <p className="text-sm text-muted-foreground line-through font-cinzel">
                         ${item.value.toFixed(2)}
                       </p>
@@ -459,41 +517,6 @@ export default function Landing() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
-      {testimonials.length > 0 && (
-        <section id="testimonials" className="py-20 bg-card">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-                Transformation Stories
-              </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12">
-                See what others are experiencing with #KingJesusMeditation
-              </p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((testimonial: any) => (
-                  <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-bold text-primary">
-                          {testimonial.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold truncate">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">Verified Practitioner</p>
-                      </div>
-                    </div>
-                    <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
-                    <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Social Sharing Section */}
       <section className="py-20 bg-gradient-to-br from-secondary/10 to-primary/10">
