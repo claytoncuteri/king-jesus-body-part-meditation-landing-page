@@ -256,6 +256,7 @@ export default function Checkout() {
               <Button
                 type="button"
                 size="lg"
+                variant="destructive"
                 className="w-full text-lg py-6"
                 disabled
                 data-testid="button-complete-purchase"
