@@ -1,0 +1,24 @@
+Build a complete landing page for a digital product called 'King Jesus Body Part Meditation' by Clayton Cuteri, hosted on a subdomain like jesusmeditation.travelingtoconciousness.com. Use HTML, CSS, and JavaScript for the frontend, and Node.js with Express for the backend to handle forms and integrations.
+
+Key elements:
+- At top of page need the two images included, mahaavatarbabaji.jpg and kingjesusthrone.jpg with five pointed stars on it
+- Hero section: Image of Jesus on a throne (use a placeholder URL like https://via.placeholder.com/800x400?text=Throne+of+King+Jesus or describe: golden throne in a luminous palace). Headline: 'Unlock Divine Peace and Prosperity with King Jesus Meditation – Just $4.95!'
+- Personal story: 'I’m Clayton Cuteri. From -$10,000 net worth in Jan 2024 to over $1.1M in Oct 2025 – this meditation sparked my millionaire momentum. Elites know: Everyone has 24 hours; the difference is knowledge like this. Start your journey today!'
+- Value breakdown: List items with values:
+  - King Jesus Body Part Meditation Video ($19.99)
+  - Money-Related Podcast Episodes ($14.99)
+  - Revealing The Secret Teachings of Jesus: The Gospel of Thomas - Volume I, Verses 1-10 ($9.99)
+  - Reader’s Notebook for Gospel of Thomas - Volume I, Verses 1-10 ($5.31)
+  - Meditation Journal Template ($9.99)
+  - Total Value: $60.27 for only $4.95!
+- Mission statement: 'Connect to divine energies upon purchase. 100% of proceeds support building the Church of King Jesus for global peace initiatives.'
+- Instructions: 'Do the meditation in a quiet space (e.g., a comfortable chair or bed), then listen to a money podcast for deeper cellular understanding. Reflect on the Gospel of Thomas materials and journal your insights.'
+- Bonuses: Discounts on future courses (e.g., Fire Ritual course after 30 days). Join to save the world!
+- Call to action: Buy button leading to Stripe checkout ($4.95). Upon payment, send email via ConvertKit with links to the meditation video, podcast episodes, Revealing The Secret Teachings PDF, Reader’s Notebook PDF, and Meditation Journal PDF.
+- Email capture: Form for name/email before/after purchase, integrated with ConvertKit API for lead collection.
+- Social sharing: Encourage sharing with #KingJesusMeditation on Instagram (@claytoncuteri). 'Share your experience, and I’ll repost to my 110,000+ followers!' Bonus points if you're able to show a live feed of how many IG followers I have
+- Footer: Disclaimer: 'Results vary. This is a spiritual practice, not financial advice.' Include social links (Instagram @claytoncuteri).
+- Integrations: Use Stripe for payments (enable Stripe Tax for auto-detected sales tax based on buyer location). Connect to ConvertKit for email delivery of assets. Ensure the page is responsive and mobile-friendly (test for Instagram link clicks).
+- Style: Calming colors (gold, white, blue, red). Clean, trustworthy design with readable fonts (e.g., Open Sans or Lora). Use Tailwind CSS for styling if possible. Add 5 pointed stars too (as see on American Flag
+
+Provide full code: index.html, style.css, app.js, server.js. Include placeholders for API keys (Stripe, ConvertKit). No advanced authentication needed—focus on a minimum viable product (MVP) for launch.
