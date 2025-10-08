@@ -415,7 +415,7 @@ export default function Landing() {
                 </div>
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
-                  <p className="text-muted-foreground">Creator & Meditation Guide</p>
+                  <p className="text-muted-foreground">Influencer, Politician, Entrepreneur, and Spiritual Guide</p>
                 </div>
               </div>
             </div>
