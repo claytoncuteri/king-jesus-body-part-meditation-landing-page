@@ -109,7 +109,7 @@ export default function Landing() {
                 <img
                   src={mahavatarImage}
                   alt="Mahavatar Babaji"
-                  className="h-16 md:h-20 w-16 md:w-20 object-cover rounded-md border-2 border-primary"
+                  className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
                   data-testid="img-mahavatar-header"
                 />
               </div>
@@ -121,7 +121,7 @@ export default function Landing() {
                 <img
                   src={kingJesusImage}
                   alt="King Jesus"
-                  className="h-16 md:h-20 w-16 md:w-20 object-cover rounded-md border-2 border-primary"
+                  className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
                   data-testid="img-king-jesus-header"
                 />
               </div>
