@@ -420,6 +420,23 @@ export default function Landing() {
               </div>
             </div>
           </Card>
+          
+          {/* CTA after Story */}
+          <div className="mt-12 text-center">
+            <Button
+              size="lg"
+              variant="destructive"
+              className="text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+              onClick={handleCheckout}
+              data-testid="button-story-cta"
+            >
+              <Sparkles className="mr-2 h-6 w-6" />
+              Begin Your Transformation - $4.95
+            </Button>
+            <p className="text-sm text-muted-foreground mt-4">
+              The same meditation that changed my life can change yours
+            </p>
+          </div>
         </div>
       </section>
 
