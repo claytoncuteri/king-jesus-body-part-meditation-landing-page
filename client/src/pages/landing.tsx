@@ -476,7 +476,7 @@ export default function Landing() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">500+ students</span>
+                  Rated by <span className="font-semibold text-foreground">180+ students</span>
                 </p>
               </div>
 
@@ -657,7 +657,7 @@ export default function Landing() {
 
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">This $4.95 investment</span> is less than your morning coffee—but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
+                  <span className="font-bold text-destructive">This $4.95 investment</span> is less than your morning coffee, but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
                 </p>
               </Card>
             </div>
