@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Star, Instagram, Check, Sparkles } from "lucide-react";
+import { Star, Instagram, Check, Sparkles, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 
@@ -29,6 +29,7 @@ export default function Landing() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Track page view analytics
   useQuery({
@@ -94,8 +95,153 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10">
+      {/* Header with Images */}
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-primary/20">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between gap-6 max-w-7xl mx-auto">
+            {/* Left: Images */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <FivePointedStar className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" />
+                <FivePointedStar className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" />
+                <FivePointedStar className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" />
+                <FivePointedStar className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" />
+                <img
+                  src={mahavatarImage}
+                  alt="Mahavatar Babaji"
+                  className="h-16 md:h-20 w-16 md:w-20 object-cover rounded-md border-2 border-primary"
+                  data-testid="img-mahavatar-header"
+                />
+              </div>
+              <div className="relative">
+                <FivePointedStar className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <FivePointedStar className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <FivePointedStar className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <FivePointedStar className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <img
+                  src={kingJesusImage}
+                  alt="King Jesus"
+                  className="h-16 md:h-20 w-16 md:w-20 object-cover rounded-md border-2 border-primary"
+                  data-testid="img-king-jesus-header"
+                />
+              </div>
+            </div>
+
+            {/* Center: Navigation */}
+            <nav className="hidden md:flex items-center gap-6">
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-home"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-story"
+              >
+                Story
+              </button>
+              <button
+                onClick={() => document.getElementById('value')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-value"
+              >
+                What's Included
+              </button>
+              <button
+                onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                data-testid="nav-testimonials"
+              >
+                Testimonials
+              </button>
+            </nav>
+
+            {/* Right: CTA Button and Mobile Menu Toggle */}
+            <div className="flex items-center gap-3">
+              <Button
+                size="lg"
+                className="shadow-lg hover:shadow-xl transition-all hidden sm:flex"
+                onClick={handleCheckout}
+                data-testid="button-header-purchase"
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                Get Now - $4.95
+              </Button>
+              <Button
+                size="lg"
+                className="shadow-lg hover:shadow-xl transition-all sm:hidden"
+                onClick={handleCheckout}
+                data-testid="button-header-purchase-mobile"
+              >
+                $4.95
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                data-testid="button-mobile-menu"
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-primary/20 py-4">
+              <nav className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-home-mobile"
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-story-mobile"
+                >
+                  Story
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById('value')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-value-mobile"
+                >
+                  What's Included
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
+                  data-testid="nav-testimonials-mobile"
+                >
+                  Testimonials
+                </button>
+              </nav>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section - Above the Fold */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-8 pb-12 md:pt-12 md:pb-16">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
@@ -111,86 +257,39 @@ export default function Landing() {
           ))}
         </div>
 
-        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            {/* Left: Content */}
-            <div className="space-y-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-foreground leading-tight">
-                Unlock Divine Peace and Prosperity with{" "}
-                <span className="text-primary">King Jesus</span> Meditation
-              </h1>
-              <p className="text-2xl md:text-3xl font-cinzel text-primary font-bold">
-                Just $4.95!
-              </p>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Transform your life with ancient meditation secrets. Connect to divine energies and manifest abundance.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-foreground leading-tight">
+              Unlock Divine Peace and Prosperity with{" "}
+              <span className="text-primary">King Jesus</span> Meditation
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              Transform your life with ancient meditation secrets. Connect to divine energies and manifest abundance.
+            </p>
+            
+            {/* Price and CTA */}
+            <div className="bg-card border-2 border-primary/20 rounded-lg p-8 shadow-2xl max-w-2xl mx-auto">
+              <div className="space-y-4">
+                <p className="text-lg text-muted-foreground">Complete Meditation Package</p>
+                <div className="flex items-baseline justify-center gap-3">
+                  <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
+                  <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
+                </p>
                 <Button
                   size="lg"
-                  className="text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
+                  className="w-full text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                   onClick={handleCheckout}
                   data-testid="button-get-started"
                 >
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Get Started Now
+                  <Sparkles className="mr-2 h-6 w-6" />
+                  Start Your Transformation - $4.95
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 py-6"
-                  onClick={() => document.getElementById('value')?.scrollIntoView({ behavior: 'smooth' })}
-                  data-testid="button-learn-more"
-                >
-                  Learn More
-                </Button>
-              </div>
-            </div>
-
-            {/* Right: Images with stars */}
-            <div className="space-y-6">
-              {/* Mahavatar Babaji */}
-              <div className="relative">
-                <div className="absolute -top-3 -left-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" />
-                </div>
-                <div className="absolute -top-3 -right-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" />
-                </div>
-                <div className="absolute -bottom-3 -left-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" />
-                </div>
-                <div className="absolute -bottom-3 -right-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" />
-                </div>
-                <img
-                  src={mahavatarImage}
-                  alt="Mahavatar Babaji"
-                  className="rounded-lg border-4 border-primary shadow-2xl w-full max-w-md mx-auto"
-                  data-testid="img-mahavatar"
-                />
-              </div>
-
-              {/* King Jesus on Throne */}
-              <div className="relative">
-                <div className="absolute -top-3 -left-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                </div>
-                <div className="absolute -top-3 -right-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                </div>
-                <div className="absolute -bottom-3 -left-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                </div>
-                <div className="absolute -bottom-3 -right-3 z-10">
-                  <FivePointedStar className="text-primary w-8 h-8 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                </div>
-                <img
-                  src={kingJesusImage}
-                  alt="King Jesus on Throne"
-                  className="rounded-lg border-4 border-primary shadow-2xl w-full max-w-md mx-auto"
-                  data-testid="img-king-jesus"
-                />
+                <p className="text-xs text-muted-foreground italic">
+                  100% of proceeds support building the Church of King Jesus for global peace initiatives
+                </p>
               </div>
             </div>
           </div>
@@ -198,7 +297,7 @@ export default function Landing() {
       </section>
 
       {/* Personal Story Section */}
-      <section className="py-20 bg-card">
+      <section id="story" className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-8 md:p-12 border-primary/20 shadow-xl">
             <div className="space-y-6">
@@ -355,7 +454,7 @@ export default function Landing() {
 
       {/* Testimonials Section */}
       {testimonials.length > 0 && (
-        <section className="py-20 bg-card">
+        <section id="testimonials" className="py-20 bg-card">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
