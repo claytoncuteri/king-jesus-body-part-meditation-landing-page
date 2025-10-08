@@ -346,7 +346,7 @@ export default function Landing() {
                   <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
                 </div>
                 <p className="text-xl text-muted-foreground">
-                  <span className="font-bold text-primary">92% OFF</span>
+                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
                 </p>
                 <Button
                   size="lg"
