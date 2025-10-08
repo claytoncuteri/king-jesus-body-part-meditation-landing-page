@@ -174,7 +174,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         status: "pending",
       });
 
-      // Create payment intent with automatic tax
+      // Create payment intent
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
         currency: "usd",
@@ -184,10 +184,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         metadata: {
           purchaseId: purchase.id,
           email,
-        },
-        // Enable automatic tax calculation
-        automatic_tax: {
-          enabled: true,
         },
       });
 
