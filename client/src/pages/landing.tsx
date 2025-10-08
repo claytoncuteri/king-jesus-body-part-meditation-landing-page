@@ -351,12 +351,12 @@ export default function Landing() {
                 <Button
                   size="lg"
                   variant="destructive"
-                  className="w-full text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse"
+                  className="w-full text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse"
                   onClick={handleCheckout}
                   data-testid="button-get-started"
                 >
-                  <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                  Yes! I Want Divine Abundance — $4.95
+                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <span className="whitespace-nowrap">Divine Abundance — $4.95</span>
                 </Button>
                 <p className="text-xs text-muted-foreground">
                   ⏰ <span className="font-semibold">Join 500+ students</span> who've transformed their relationship with money and spirituality
@@ -428,12 +428,12 @@ export default function Landing() {
             <Button
               size="lg"
               variant="destructive"
-              className="text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+              className="text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
               onClick={handleCheckout}
               data-testid="button-story-cta"
             >
-              <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-              Begin Your Transformation — $4.95
+              <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+              <span className="whitespace-nowrap">Begin Transformation — $4.95</span>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
               The same meditation that changed my life can change yours
@@ -524,12 +524,12 @@ export default function Landing() {
                 <Button
                   size="lg"
                   variant="destructive"
-                  className="text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                  className="text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                   onClick={handleCheckout}
                   data-testid="button-testimonials-cta"
                 >
-                  <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                  Join 500+ Students — $4.95
+                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <span className="whitespace-nowrap">Join 500+ Students — $4.95</span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Experience the same transformation as our 4.98/5 rated community
@@ -618,12 +618,12 @@ export default function Landing() {
                 <Button
                   size="lg"
                   variant="destructive"
-                  className="mt-6 text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                  className="mt-6 text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                   onClick={handleCheckout}
                   data-testid="button-buy-now"
                 >
-                  <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                  Buy Now — $4.95
+                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
               </div>
             </Card>
@@ -668,12 +668,12 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                className="text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                 onClick={handleCheckout}
                 data-testid="button-cost-waiting-cta"
               >
-                <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                Break Free Now — $4.95
+                <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                <span className="whitespace-nowrap">Break Free Now — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Don't let another day pass stuck in the same patterns
@@ -859,12 +859,12 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="text-base md:text-xl px-6 md:px-12 py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                className="text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all"
                 onClick={handleCheckout}
                 data-testid="button-faq-cta"
               >
-                <FivePointedStar className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                Start Your Transformation Now — $4.95
+                <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                <span className="whitespace-nowrap">Start Transformation — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Join the community of students experiencing divine abundance
