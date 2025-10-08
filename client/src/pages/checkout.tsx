@@ -124,16 +124,65 @@ export default function Checkout() {
               Complete Your Purchase
             </h1>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8">
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold">King Jesus Meditation Package</span>
-                <span className="text-muted-foreground line-through">$60.27</span>
+              <h3 className="font-bold text-lg mb-4 text-center border-b border-primary/20 pb-2">Order Summary</h3>
+              
+              {/* Itemized List */}
+              <div className="space-y-3 mb-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">King Jesus Body Part Meditation Video</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm line-through text-muted-foreground">$19.99</span>
+                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Money-Related Podcast Episodes</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm line-through text-muted-foreground">$14.99</span>
+                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Gospel of Thomas - Volume I (Verses 1-10)</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm line-through text-muted-foreground">$9.99</span>
+                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Reader's Notebook for Gospel of Thomas</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm line-through text-muted-foreground">$5.31</span>
+                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Meditation Journal Template</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm line-through text-muted-foreground">$9.99</span>
+                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
-                <span>Total:</span>
-                <span>$4.95</span>
+
+              {/* Subtotal */}
+              <div className="border-t border-primary/20 pt-3 mb-2">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="font-semibold">Subtotal (Regular Price):</span>
+                  <span className="line-through text-muted-foreground">$60.27</span>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground mt-2">
-                Sales tax will be calculated automatically based on your location
+
+              {/* Total */}
+              <div className="border-t-2 border-primary/30 pt-3">
+                <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
+                  <span>Total Today:</span>
+                  <span>$4.95</span>
+                </div>
+              </div>
+
+              <p className="text-xs text-muted-foreground mt-3 text-center">
+                Sales tax calculated automatically based on your location
               </p>
             </div>
 
@@ -200,13 +249,61 @@ export default function Checkout() {
           </p>
 
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8">
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-semibold">King Jesus Meditation Package</span>
-              <span className="text-muted-foreground line-through">$60.27</span>
+            <h3 className="font-bold text-lg mb-4 text-center border-b border-primary/20 pb-2">Order Summary</h3>
+            
+            {/* Itemized List */}
+            <div className="space-y-3 mb-4">
+              <div className="flex justify-between items-center">
+                <span className="text-sm">King Jesus Body Part Meditation Video</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm line-through text-muted-foreground">$19.99</span>
+                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">Money-Related Podcast Episodes</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm line-through text-muted-foreground">$14.99</span>
+                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">Gospel of Thomas - Volume I (Verses 1-10)</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm line-through text-muted-foreground">$9.99</span>
+                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">Reader's Notebook for Gospel of Thomas</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm line-through text-muted-foreground">$5.31</span>
+                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">Meditation Journal Template</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm line-through text-muted-foreground">$9.99</span>
+                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
-              <span>Total:</span>
-              <span>$4.95</span>
+
+            {/* Subtotal */}
+            <div className="border-t border-primary/20 pt-3 mb-2">
+              <div className="flex justify-between items-center text-sm">
+                <span className="font-semibold">Subtotal (Regular Price):</span>
+                <span className="line-through text-muted-foreground">$60.27</span>
+              </div>
+            </div>
+
+            {/* Total */}
+            <div className="border-t-2 border-primary/30 pt-3">
+              <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
+                <span>Total Today:</span>
+                <span>$4.95</span>
+              </div>
             </div>
           </div>
 
