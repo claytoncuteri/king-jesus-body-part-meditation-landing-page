@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 
-// 5-pointed star SVG component
-function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
+// 5-pointed star SVG component for buttons (white outline, no fill)
+function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -91,7 +91,7 @@ const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
           "Processing..."
         ) : (
           <>
-            <FivePointedStar className="mr-2 h-5 w-5" />
+            <ButtonStar className="mr-2 h-5 w-5" />
             Complete Purchase - $4.95
           </>
         )}

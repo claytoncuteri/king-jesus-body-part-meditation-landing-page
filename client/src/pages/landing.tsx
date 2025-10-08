@@ -11,7 +11,7 @@ import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 
-// 5-pointed star SVG component
+// 5-pointed star SVG component (gold fill with black border for images)
 function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg
@@ -25,6 +25,25 @@ function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
         fill="currentColor"
         stroke="black" 
         strokeWidth="1.5"
+      />
+    </svg>
+  );
+}
+
+// 5-pointed star SVG component for buttons (white outline, no fill)
+function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        fill="none"
+        stroke="white" 
+        strokeWidth="2"
       />
     </svg>
   );
@@ -208,7 +227,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-header-purchase"
               >
-                <FivePointedStar className="mr-2 h-4 w-4" />
+                <ButtonStar className="mr-2 h-4 w-4" />
                 Get Now - $4.95
               </Button>
               <Button
@@ -355,7 +374,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-get-started"
                 >
-                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
                   <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
                 <p className="text-xs text-muted-foreground">
@@ -432,7 +451,7 @@ export default function Landing() {
               onClick={handleCheckout}
               data-testid="button-story-cta"
             >
-              <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+              <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
               <span className="whitespace-nowrap">Begin Transformation — $4.95</span>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
@@ -528,7 +547,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-testimonials-cta"
                 >
-                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
                   <span className="whitespace-nowrap">Join 500+ Students — $4.95</span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
@@ -622,7 +641,7 @@ export default function Landing() {
                   onClick={handleCheckout}
                   data-testid="button-buy-now"
                 >
-                  <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                  <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
                   <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
               </div>
@@ -672,7 +691,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-cost-waiting-cta"
               >
-                <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
                 <span className="whitespace-nowrap">Break Free Now — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
@@ -863,7 +882,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-faq-cta"
               >
-                <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
                 <span className="whitespace-nowrap">Start Transformation — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
