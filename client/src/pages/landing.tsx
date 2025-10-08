@@ -476,7 +476,7 @@ export default function Landing() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">144 practitioners</span>
+                  Rated by <span className="font-semibold text-foreground">500+ practitioners</span>
                 </p>
               </div>
 
@@ -527,7 +527,7 @@ export default function Landing() {
                   data-testid="button-testimonials-cta"
                 >
                   <Sparkles className="mr-2 h-6 w-6" />
-                  Join 144+ Practitioners - $4.95
+                  Join 500+ Practitioners - $4.95
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Experience the same transformation as our 4.98/5 rated community
@@ -645,7 +645,7 @@ export default function Landing() {
               
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">While you hesitate,</span> 144+ practitioners are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
+                  <span className="font-bold text-destructive">While you hesitate,</span> 500+ practitioners are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
                 </p>
               </Card>
 
