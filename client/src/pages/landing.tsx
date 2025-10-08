@@ -332,9 +332,9 @@ export default function Landing() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-3">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
-              Stuck in Financial Struggle? Break Free with the Same Meditation That Took Me from{" "}
+              Stuck in Financial Struggle? Break Free with the Same Meditation That Took My Net Worth from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
-              <span className="text-primary">$1.1M</span> Net Worth
+              <span className="text-primary">$1.1M</span>
             </h1>
             
             {/* Price and CTA */}
