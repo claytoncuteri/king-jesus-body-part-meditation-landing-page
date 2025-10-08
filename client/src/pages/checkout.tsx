@@ -17,7 +17,7 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
 }
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -25,6 +25,15 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email to continue",
+        variant: "destructive",
+      });
+      return;
+    }
 
     if (!stripe || !elements) {
       return;
@@ -56,7 +65,7 @@ const CheckoutForm = () => {
         type="submit"
         size="lg"
         className="w-full text-lg py-6"
-        disabled={!stripe || isProcessing}
+        disabled={!stripe || isProcessing || !email}
         data-testid="button-complete-purchase"
       >
         {isProcessing ? (
@@ -79,162 +88,47 @@ export default function Checkout() {
   const [isCreating, setIsCreating] = useState(false);
   const { toast } = useToast();
 
-  const createPaymentIntent = async () => {
-    if (!email) {
-      toast({
-        title: "Email required",
-        description: "Please enter your email to continue",
-        variant: "destructive",
-      });
-      return;
-    }
+  // Auto-create payment intent on page load
+  useEffect(() => {
+    const createPaymentIntent = async () => {
+      setIsCreating(true);
+      try {
+        const data = await apiRequest("POST", "/api/create-payment-intent", {
+          amount: 4.95,
+          email: "",
+          name: "",
+        }) as unknown as { clientSecret: string };
+        setClientSecret(data.clientSecret);
+      } catch (error: any) {
+        toast({
+          title: "Error",
+          description: error.message || "Failed to initialize payment",
+          variant: "destructive",
+        });
+      } finally {
+        setIsCreating(false);
+      }
+    };
+    
+    createPaymentIntent();
+  }, [toast]);
 
-    setIsCreating(true);
-    try {
-      const data = await apiRequest("POST", "/api/create-payment-intent", {
-        amount: 4.95,
-        email,
-        name,
-      });
-      setClientSecret(data.clientSecret);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to create payment",
-        variant: "destructive",
-      });
-    } finally {
-      setIsCreating(false);
-    }
-  };
-
-  if (!clientSecret) {
+  if (!clientSecret || isCreating) {
     return (
-      <div className="min-h-screen bg-background py-12">
-        <div className="container mx-auto px-4">
-          <Link href="/">
-            <Button variant="ghost" className="mb-8" data-testid="button-back">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-
-          <Card className="max-w-2xl mx-auto p-8 md:p-12">
-            <h1 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-center">
-              Complete Your Purchase
-            </h1>
-            <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8">
-              <h3 className="font-bold text-lg mb-4 text-center border-b border-primary/20 pb-2">Order Summary</h3>
-              
-              {/* Itemized List */}
-              <div className="space-y-3 mb-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">King Jesus Body Part Meditation Video</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm line-through text-muted-foreground">$19.99</span>
-                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Money-Related Podcast Episodes</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm line-through text-muted-foreground">$14.99</span>
-                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Gospel of Thomas - Volume I (Verses 1-10)</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm line-through text-muted-foreground">$9.99</span>
-                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Reader's Notebook for Gospel of Thomas</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm line-through text-muted-foreground">$5.31</span>
-                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Meditation Journal Template</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm line-through text-muted-foreground">$9.99</span>
-                    <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Subtotal */}
-              <div className="border-t border-primary/20 pt-3 mb-2">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="font-semibold">Subtotal (Regular Price):</span>
-                  <span className="line-through text-muted-foreground">$60.27</span>
-                </div>
-              </div>
-
-              {/* Total */}
-              <div className="border-t-2 border-primary/30 pt-3">
-                <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
-                  <span>Total Today:</span>
-                  <span>$4.95</span>
-                </div>
-              </div>
-
-              <p className="text-xs text-muted-foreground mt-3 text-center">
-                Sales tax calculated automatically based on your location
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Email *</label>
-                <Input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="text-lg p-6"
-                  data-testid="input-checkout-email"
-                />
-                <p className="text-sm text-muted-foreground mt-1">
-                  Digital products will be sent to this email
-                </p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Name (optional)</label>
-                <Input
-                  type="text"
-                  placeholder="Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="text-lg p-6"
-                  data-testid="input-checkout-name"
-                />
-              </div>
-              <Button
-                size="lg"
-                className="w-full text-lg py-6"
-                onClick={createPaymentIntent}
-                disabled={isCreating || !email}
-                data-testid="button-proceed-payment"
-              >
-                {isCreating ? "Loading..." : "Proceed to Payment"}
-              </Button>
-            </div>
-          </Card>
+      <div className="min-h-screen bg-background py-12 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading secure checkout...</p>
         </div>
       </div>
     );
   }
 
-  // Make SURE to wrap the form in <Elements> which provides the stripe context.
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4">
         <Link href="/">
-          <Button variant="ghost" className="mb-8" data-testid="button-back-payment">
+          <Button variant="ghost" className="mb-8" data-testid="button-back">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
@@ -242,12 +136,13 @@ export default function Checkout() {
 
         <Card className="max-w-2xl mx-auto p-8 md:p-12">
           <h1 className="text-3xl md:text-4xl font-bold font-serif mb-2 text-center">
-            Secure Payment
+            Complete Your Purchase
           </h1>
           <p className="text-center text-muted-foreground mb-8">
             You're moments away from divine transformation
           </p>
 
+          {/* Order Summary */}
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8">
             <h3 className="font-bold text-lg mb-4 text-center border-b border-primary/20 pb-2">Order Summary</h3>
             
@@ -305,10 +200,45 @@ export default function Checkout() {
                 <span>$4.95</span>
               </div>
             </div>
+
+            <p className="text-xs text-muted-foreground mt-3 text-center">
+              Sales tax calculated automatically based on your location
+            </p>
           </div>
 
+          {/* Contact Information */}
+          <div className="space-y-4 mb-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">Email *</label>
+              <Input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="text-lg p-6"
+                data-testid="input-checkout-email"
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                Digital products will be sent to this email
+              </p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Name (optional)</label>
+              <Input
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="text-lg p-6"
+                data-testid="input-checkout-name"
+              />
+            </div>
+          </div>
+
+          {/* Payment Element */}
           <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <CheckoutForm />
+            <CheckoutForm email={email} name={name} />
           </Elements>
 
           <p className="text-xs text-center text-muted-foreground mt-6">
