@@ -347,10 +347,6 @@ export default function Landing() {
                 <p className="text-sm text-muted-foreground">
                   <span className="font-bold text-primary">92% OFF</span> - Special Introductory Price
                 </p>
-                <div className="bg-primary/10 border border-primary/30 rounded-md p-3 text-sm">
-                  <p className="font-semibold text-primary mb-1">✓ 100% Satisfaction Promise</p>
-                  <p className="text-muted-foreground">Experience divine transformation or your investment supports our peace mission - either way, you win</p>
-                </div>
                 <Button
                   size="lg"
                   variant="destructive"
@@ -366,6 +362,9 @@ export default function Landing() {
                 </p>
                 <p className="text-xs text-muted-foreground italic">
                   100% of proceeds support building churches honoring King Jesus for global peace initiatives
+                </p>
+                <p className="text-xs text-muted-foreground/80 mt-2">
+                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee. No refunds are offered; your purchase supports our peace mission if unsatisfied.
                 </p>
               </div>
             </div>
