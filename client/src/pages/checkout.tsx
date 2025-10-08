@@ -160,7 +160,7 @@ export default function Checkout() {
                 <span className="text-sm">King Jesus Body Part Meditation Video</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$19.99</span>
-                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
+                  <span className="text-primary font-chalk text-sm font-bold">$4.95</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
