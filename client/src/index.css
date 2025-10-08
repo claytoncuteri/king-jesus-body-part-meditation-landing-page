@@ -16,55 +16,55 @@
 
   --background: 0 0% 100%;
 
-  --foreground: 0 0% 9%;
+  --foreground: 230 35% 12%;
 
-  --border: 0 0% 89%;
+  --border: 45 20% 85%;
 
   --card: 0 0% 98%;
 
-  --card-foreground: 0 0% 9%;
+  --card-foreground: 230 35% 12%;
 
-  --card-border: 0 0% 93%;
+  --card-border: 45 30% 88%;
 
-  --sidebar: 0 0% 96%;
+  --sidebar: 230 30% 15%;
 
-  --sidebar-foreground: 0 0% 9%;
+  --sidebar-foreground: 0 0% 98%;
 
-  --sidebar-border: 0 0% 91%;
+  --sidebar-border: 230 25% 22%;
 
   --sidebar-primary: 45 85% 55%;
 
   --sidebar-primary-foreground: 45 10% 98%;
 
-  --sidebar-accent: 45 12% 88%;
+  --sidebar-accent: 230 20% 24%;
 
-  --sidebar-accent-foreground: 45 15% 25%;
+  --sidebar-accent-foreground: 0 0% 98%;
 
   --sidebar-ring: 45 85% 65%;
 
-  --popover: 0 0% 94%;
+  --popover: 0 0% 98%;
 
-  --popover-foreground: 0 0% 9%;
+  --popover-foreground: 230 35% 12%;
 
-  --popover-border: 0 0% 89%;
+  --popover-border: 45 20% 85%;
 
   --primary: 45 85% 55%;
 
   --primary-foreground: 45 10% 98%;
 
-  --secondary: 0 0% 90%;
+  --secondary: 220 75% 55%;
 
-  --secondary-foreground: 0 0% 9%;
+  --secondary-foreground: 0 0% 98%;
 
-  --muted: 45 8% 92%;
+  --muted: 45 15% 92%;
 
-  --muted-foreground: 45 5% 35%;
+  --muted-foreground: 230 20% 45%;
 
-  --accent: 45 15% 90%;
+  --accent: 220 75% 95%;
 
-  --accent-foreground: 45 15% 25%;
+  --accent-foreground: 220 75% 25%;
 
-  --destructive: 355 75% 48%;
+  --destructive: 355 75% 55%;
 
   --destructive-foreground: 355 10% 98%;
 
@@ -76,8 +76,8 @@
   --chart-4: 170 65% 40%;
   --chart-5: 280 65% 50%;
 
-  --font-sans: Open Sans, sans-serif;
-  --font-serif: Georgia, serif;
+  --font-sans: Inter, sans-serif;
+  --font-serif: Playfair Display, serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem; /* 8px */
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.05);
@@ -136,13 +136,13 @@
 
   --foreground: 0 0% 98%;
 
-  --border: 230 25% 20%;
+  --border: 230 25% 22%;
 
   --card: 230 30% 15%;
 
   --card-foreground: 0 0% 98%;
 
-  --card-border: 230 25% 18%;
+  --card-border: 230 25% 20%;
 
   --sidebar: 230 32% 18%;
 
@@ -170,7 +170,7 @@
 
   --primary-foreground: 45 10% 98%;
 
-  --secondary: 230 22% 26%;
+  --secondary: 220 75% 55%;
 
   --secondary-foreground: 0 0% 98%;
 
@@ -178,11 +178,11 @@
 
   --muted-foreground: 230 8% 75%;
 
-  --accent: 230 15% 24%;
+  --accent: 220 75% 35%;
 
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 355 75% 48%;
+  --destructive: 355 75% 55%;
 
   --destructive-foreground: 355 10% 98%;
 
