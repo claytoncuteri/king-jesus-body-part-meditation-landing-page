@@ -151,36 +151,36 @@ export default function Checkout() {
               <div className="flex justify-between items-center">
                 <span className="text-sm">King Jesus Body Part Meditation Video</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm line-through text-muted-foreground">$19.99</span>
-                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  <span className="text-sm font-chalk line-through decoration-green-600">$19.99</span>
+                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Money-Related Podcast Episodes</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm line-through text-muted-foreground">$14.99</span>
-                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  <span className="text-sm font-chalk line-through decoration-green-600">$14.99</span>
+                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Gospel of Thomas - Volume I (Verses 1-10)</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm line-through text-muted-foreground">$9.99</span>
-                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  <span className="text-sm font-chalk line-through decoration-green-600">$9.99</span>
+                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Reader's Notebook for Gospel of Thomas</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm line-through text-muted-foreground">$5.31</span>
-                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  <span className="text-sm font-chalk line-through decoration-green-600">$5.31</span>
+                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Meditation Journal Template</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm line-through text-muted-foreground">$9.99</span>
-                  <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded text-xs font-bold">FREE</span>
+                  <span className="text-sm font-chalk line-through decoration-green-600">$9.99</span>
+                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
                 </div>
               </div>
             </div>

@@ -377,7 +377,7 @@ export default function Landing() {
                   Yes! I Want Divine Abundance - $4.95
                 </Button>
                 <p className="text-xs text-muted-foreground">
-                  ⏰ <span className="font-semibold">Join 1,000+ practitioners</span> who've transformed their relationship with money and spirituality
+                  ⏰ <span className="font-semibold">Join 500+ students</span> who've transformed their relationship with money and spirituality
                 </p>
                 <p className="text-xs text-muted-foreground italic">
                   100% of proceeds support building churches honoring King Jesus for global peace initiatives
@@ -476,7 +476,7 @@ export default function Landing() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">500+ practitioners</span>
+                  Rated by <span className="font-semibold text-foreground">500+ students</span>
                 </p>
               </div>
 
@@ -493,7 +493,7 @@ export default function Landing() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-semibold truncate">{testimonial.name}</p>
-                          <p className="text-xs text-muted-foreground">Verified Practitioner</p>
+                          <p className="text-xs text-muted-foreground">Verified Student</p>
                         </div>
                       </div>
                       <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
@@ -527,7 +527,7 @@ export default function Landing() {
                   data-testid="button-testimonials-cta"
                 >
                   <Sparkles className="mr-2 h-6 w-6" />
-                  Join 500+ Practitioners - $4.95
+                  Join 500+ Students - $4.95
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Experience the same transformation as our 4.98/5 rated community
@@ -586,10 +586,10 @@ export default function Landing() {
                         {item.description}
                       </p>
                       <div className="flex items-center gap-3">
-                        <p className="text-lg font-bold text-foreground line-through decoration-2 decoration-muted-foreground/50 font-cinzel">
+                        <p className="text-lg font-bold text-foreground font-chalk line-through decoration-2 decoration-green-600">
                           ${item.value.toFixed(2)}
                         </p>
-                        <span className="bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-xs font-bold">
+                        <span className="text-green-600 font-chalk text-base font-bold -rotate-2">
                           FREE
                         </span>
                       </div>
@@ -645,7 +645,7 @@ export default function Landing() {
               
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">While you hesitate,</span> 500+ practitioners are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
+                  <span className="font-bold text-destructive">While you hesitate,</span> 500+ students are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
                 </p>
               </Card>
 
@@ -811,7 +811,7 @@ export default function Landing() {
                   Q: Do I need any prior meditation experience?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  No! This package is designed for complete beginners and experienced practitioners alike. The step-by-step video guides you through every detail, and the journal helps you track your progress from day one.
+                  No! This package is designed for complete beginners and experienced students alike. The step-by-step video guides you through every detail, and the journal helps you track your progress from day one.
                 </p>
               </Card>
 
@@ -829,7 +829,7 @@ export default function Landing() {
                   Q: How quickly will I see results?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Many practitioners report feeling a deeper sense of peace within the first session. Financial manifestations vary by individual commitment and practice, but the spiritual connection begins immediately. The included journal helps you track both subtle and significant shifts in your journey.
+                  Many students report feeling a deeper sense of peace within the first session. Financial manifestations vary by individual commitment and practice, but the spiritual connection begins immediately. The included journal helps you track both subtle and significant shifts in your journey.
                 </p>
               </Card>
 
@@ -838,7 +838,7 @@ export default function Landing() {
                   Q: Is this compatible with my current faith tradition?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  This meditation honors the universal divine presence. Many practitioners from various spiritual backgrounds find it enriches their existing practice. It's about connecting to the divine energy within you, regardless of your religious path.
+                  This meditation honors the universal divine presence. Many students from various spiritual backgrounds find it enriches their existing practice. It's about connecting to the divine energy within you, regardless of your religious path.
                 </p>
               </Card>
 
@@ -865,7 +865,7 @@ export default function Landing() {
                 Start Your Transformation Now - $4.95
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
-                Join the community of practitioners experiencing divine abundance
+                Join the community of students experiencing divine abundance
               </p>
             </div>
           </div>
