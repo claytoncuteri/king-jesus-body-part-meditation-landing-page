@@ -516,6 +516,23 @@ export default function Landing() {
                   );
                 })}
               </div>
+              
+              {/* CTA after Testimonials */}
+              <div className="mt-12 text-center">
+                <Button
+                  size="lg"
+                  variant="destructive"
+                  className="text-xl px-12 py-7 shadow-2xl hover:shadow-primary/50 transition-all"
+                  onClick={handleCheckout}
+                  data-testid="button-testimonials-cta"
+                >
+                  <Sparkles className="mr-2 h-6 w-6" />
+                  Join 144+ Practitioners - $4.95
+                </Button>
+                <p className="text-sm text-muted-foreground mt-4">
+                  Experience the same transformation as our 4.98/5 rated community
+                </p>
+              </div>
             </div>
           </div>
         </section>
