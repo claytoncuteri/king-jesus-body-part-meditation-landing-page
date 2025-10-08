@@ -335,10 +335,20 @@ export default function Landing() {
               <span className="text-destructive">-$10K</span> to{" "}
               <span className="text-primary">$1.1M</span> Net Worth
             </h1>
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl">
-              <p className="font-chalk text-2xl md:text-3xl text-white/90 leading-relaxed text-center transform -rotate-1">
-                Ancient King Jesus meditation technique + proven prosperity teachings = Your fastest path to abundance and peace
-              </p>
+            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl overflow-x-auto">
+              <div className="font-chalk text-2xl md:text-3xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 md:gap-4 flex-wrap min-w-max mx-auto">
+                <span className="text-center leading-tight">
+                  Ancient King Jesus<br />meditation
+                </span>
+                <span className="text-4xl md:text-5xl font-bold">+</span>
+                <span className="text-center leading-tight">
+                  Proven<br />prosperity teachings
+                </span>
+                <span className="text-4xl md:text-5xl font-bold">=</span>
+                <span className="text-center leading-tight">
+                  Your fastest path<br />to abundance
+                </span>
+              </div>
             </div>
 
             {/* Rating Display */}
