@@ -356,7 +356,7 @@ export default function Landing() {
                   data-testid="button-get-started"
                 >
                   <FivePointedStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Divine Abundance — $4.95</span>
+                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
                 <p className="text-xs text-muted-foreground">
                   ⏰ <span className="font-semibold">Join 500+ students</span> who've transformed their relationship with money and spirituality
