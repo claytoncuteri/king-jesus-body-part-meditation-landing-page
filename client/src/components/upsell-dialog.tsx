@@ -41,7 +41,7 @@ export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing =
           {donationAmounts.map((amount) => (
             <Button
               key={amount}
-              variant="outline"
+              variant="destructive"
               className="h-16 text-lg font-semibold"
               onClick={() => onSelectDonation(amount)}
               disabled={isProcessing}
@@ -53,14 +53,15 @@ export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing =
         </div>
 
         <AlertDialogFooter className="flex-col sm:flex-col gap-2">
-          <AlertDialogAction
+          <Button
+            variant="destructive"
             className="w-full"
             onClick={onDecline}
             disabled={isProcessing}
             data-testid="button-no-thanks"
           >
             {isProcessing ? "Processing..." : "Continue with my purchase of $4.95"}
-          </AlertDialogAction>
+          </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
