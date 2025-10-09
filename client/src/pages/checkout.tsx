@@ -186,17 +186,6 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Test Card Instructions */}
-        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-          <h4 className="font-semibold text-sm mb-2">Test Mode - Use Test Card:</h4>
-          <div className="space-y-1 text-sm">
-            <p><strong>Card Number:</strong> 4242 4242 4242 4242</p>
-            <p><strong>Expiry:</strong> Any future date (e.g., 12/34)</p>
-            <p><strong>CVC:</strong> Any 3 digits (e.g., 123)</p>
-            <p><strong>ZIP:</strong> Any 5 digits (e.g., 12345)</p>
-          </div>
-        </div>
-        
         <PaymentElement />
         <Button
           type="submit"
