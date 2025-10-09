@@ -201,6 +201,7 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
         <Button
           type="submit"
           size="lg"
+          variant="destructive"
           className="w-full text-lg py-6"
           disabled={!stripe || isProcessing || !email || !confirmEmail || email.trim() !== confirmEmail.trim()}
           data-testid="button-complete-purchase"
