@@ -204,16 +204,24 @@ export default function Checkout() {
     const createPaymentIntent = async () => {
       setIsCreating(true);
       try {
-        const data = await apiRequest("POST", "/api/create-payment-intent", {
+        const response = await apiRequest("POST", "/api/create-payment-intent", {
           amount: 4.95,
           email: "",
           name: "",
-        }) as unknown as { clientSecret: string };
+        });
+        
+        const data = await response.json() as { clientSecret: string };
+        
+        if (!data || !data.clientSecret) {
+          throw new Error("Failed to create payment intent");
+        }
+        
         setClientSecret(data.clientSecret);
         // Extract payment intent ID from client secret (format: pi_xxx_secret_yyy)
         const piId = data.clientSecret.split('_secret_')[0];
         setPaymentIntentId(piId);
       } catch (error: any) {
+        console.error("Payment initialization error:", error);
         toast({
           title: "Error",
           description: error.message || "Failed to initialize payment",
