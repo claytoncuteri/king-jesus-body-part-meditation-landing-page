@@ -337,7 +337,11 @@ export default function Checkout() {
             <div className="border-t border-primary/20 pt-3 mb-2">
               <div className="flex justify-between items-center text-sm">
                 <span className="font-semibold">Subtotal (Regular Price):</span>
-                <span className="line-through text-muted-foreground">$60.27</span>
+                <span>$60.27</span>
+              </div>
+              <div className="flex justify-between items-center text-sm mt-2">
+                <span className="font-semibold">Discount:</span>
+                <span className="text-green-600 font-bold">-$55.32</span>
               </div>
             </div>
 
