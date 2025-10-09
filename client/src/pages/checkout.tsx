@@ -50,7 +50,11 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email) {
+    // Trim whitespace for validation
+    const trimmedEmail = email.trim();
+    const trimmedConfirmEmail = confirmEmail.trim();
+
+    if (!trimmedEmail) {
       toast({
         title: "Email required",
         description: "Please enter your email to continue",
@@ -59,7 +63,7 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
       return;
     }
 
-    if (email !== confirmEmail) {
+    if (trimmedEmail !== trimmedConfirmEmail) {
       toast({
         title: "Emails do not match",
         description: "Please make sure both email fields match",
@@ -187,7 +191,7 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
           type="submit"
           size="lg"
           className="w-full text-lg py-6"
-          disabled={!stripe || isProcessing || !email || !confirmEmail || email !== confirmEmail}
+          disabled={!stripe || isProcessing || !email || !confirmEmail || email.trim() !== confirmEmail.trim()}
           data-testid="button-complete-purchase"
         >
           {isProcessing ? (
@@ -366,7 +370,7 @@ export default function Checkout() {
                 className="text-lg p-6"
                 data-testid="input-checkout-confirm-email"
               />
-              {confirmEmail && email !== confirmEmail && (
+              {confirmEmail && email.trim() !== confirmEmail.trim() && (
                 <p className="text-sm text-destructive mt-1">
                   Emails do not match
                 </p>
