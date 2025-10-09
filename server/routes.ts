@@ -175,13 +175,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create purchase record
       const purchase = await storage.createPurchase(purchaseData);
 
-      // Create payment intent
+      // Create payment intent (card only)
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(purchaseData.amount * 100), // Convert to cents
         currency: "usd",
-        automatic_payment_methods: {
-          enabled: true,
-        },
+        payment_method_types: ["card"],
         metadata: {
           purchaseId: purchase.id,
           email: purchaseData.email,
