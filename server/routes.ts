@@ -4,7 +4,7 @@ import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
-import { insertTestimonialSchema, insertAnalyticsEventSchema, insertEmailLeadSchema, purchases } from "@shared/schema";
+import { insertTestimonialSchema, insertAnalyticsEventSchema, insertEmailLeadSchema, insertPurchaseSchema, purchases } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { db } from "./db";
 
@@ -163,27 +163,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe payment route for one-time payment
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
-      const { amount, email, name } = req.body;
-      
-      // Create purchase record
-      const purchase = await storage.createPurchase({
-        email,
-        name,
-        amount,
+      // Validate and parse request body
+      const purchaseData = insertPurchaseSchema.parse({
+        email: req.body.email || "",
+        name: req.body.name || "",
+        amount: req.body.amount,
         currency: "usd",
         status: "pending",
       });
+      
+      // Create purchase record
+      const purchase = await storage.createPurchase(purchaseData);
 
       // Create payment intent
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Convert to cents
+        amount: Math.round(purchaseData.amount * 100), // Convert to cents
         currency: "usd",
         automatic_payment_methods: {
           enabled: true,
         },
         metadata: {
           purchaseId: purchase.id,
-          email,
+          email: purchaseData.email,
         },
       });
 

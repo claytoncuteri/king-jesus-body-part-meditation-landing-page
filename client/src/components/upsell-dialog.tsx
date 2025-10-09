@@ -59,7 +59,7 @@ export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing =
             disabled={isProcessing}
             data-testid="button-no-thanks"
           >
-            {isProcessing ? "Processing..." : "No Thanks, Complete Purchase"}
+            {isProcessing ? "Processing..." : "Continue with my purchase of $4.95"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
