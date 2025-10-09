@@ -228,7 +228,7 @@ export default function Landing() {
                 data-testid="button-header-purchase"
               >
                 <ButtonStar className="mr-2 h-4 w-4" />
-                Get FREE Access
+                Get Now - $4.95
               </Button>
               <Button
                 size="lg"
@@ -237,7 +237,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-header-purchase-mobile"
               >
-                FREE
+                $4.95
               </Button>
               <Button
                 size="icon"
@@ -362,10 +362,10 @@ export default function Landing() {
                 <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
                 <div className="flex items-baseline justify-center gap-3">
                   <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
-                  <span className="text-5xl md:text-6xl font-chalk font-bold text-green-600 -rotate-2">FREE</span>
+                  <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
                 </div>
                 <p className="text-xl text-muted-foreground">
-                  <span className="font-bold text-green-600">100% FREE</span> - No Payment Required
+                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
                 </p>
                 <Button
                   size="lg"
@@ -375,7 +375,7 @@ export default function Landing() {
                   data-testid="button-get-started"
                 >
                   <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Get FREE Access</span>
+                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
                 <p className="text-xs text-muted-foreground">
                   ⏰ <span className="font-semibold">Join 500+ students</span> who've transformed their relationship with money and spirituality
@@ -452,7 +452,7 @@ export default function Landing() {
               data-testid="button-story-cta"
             >
               <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-              <span className="whitespace-nowrap">Get FREE Access</span>
+              <span className="whitespace-nowrap">Begin Transformation — $4.95</span>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
               The same meditation that changed my life can change yours
@@ -548,7 +548,7 @@ export default function Landing() {
                   data-testid="button-testimonials-cta"
                 >
                   <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Join 500+ Students — FREE</span>
+                  <span className="whitespace-nowrap">Join 500+ Students — $4.95</span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Experience the same transformation as our 4.98/5 rated community
@@ -628,11 +628,11 @@ export default function Landing() {
                   $60.27
                 </p>
                 <p className="text-xl text-foreground">Your Price Today:</p>
-                <p className="text-6xl md:text-7xl font-chalk font-bold text-green-600 -rotate-2">
-                  FREE
+                <p className="text-6xl md:text-7xl font-cinzel font-bold text-primary">
+                  $4.95
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  That's <span className="font-bold text-green-600">100% FREE</span> - no payment required!
+                  That's <span className="font-bold text-primary">92% OFF</span> the regular price!
                 </p>
                 <Button
                   size="lg"
@@ -642,7 +642,7 @@ export default function Landing() {
                   data-testid="button-buy-now"
                 >
                   <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Get FREE Access</span>
+                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
               </div>
             </Card>
@@ -678,7 +678,7 @@ export default function Landing() {
 
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">This FREE resource</span> costs you nothing, but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
+                  <span className="font-bold text-destructive">This $4.95 investment</span> is less than your morning coffee, but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
                 </p>
               </Card>
             </div>
@@ -692,7 +692,7 @@ export default function Landing() {
                 data-testid="button-cost-waiting-cta"
               >
                 <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Get FREE Access</span>
+                <span className="whitespace-nowrap">Break Free Now — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Don't let another day pass stuck in the same patterns
@@ -883,7 +883,7 @@ export default function Landing() {
                 data-testid="button-faq-cta"
               >
                 <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Get FREE Access</span>
+                <span className="whitespace-nowrap">Start Transformation — $4.95</span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Join the community of students experiencing divine abundance
