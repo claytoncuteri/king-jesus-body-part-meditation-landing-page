@@ -76,7 +76,16 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
       return;
     }
 
-    // Show upsell dialog instead of immediately processing payment
+    // Validate payment element before showing upsell
+    const { error: submitError } = await elements.submit();
+    
+    if (submitError) {
+      // Stripe will automatically show the error in the payment element
+      // No need to show a toast - the error is already displayed inline
+      return;
+    }
+
+    // If validation passes, show upsell dialog
     setShowUpsell(true);
   };
 
