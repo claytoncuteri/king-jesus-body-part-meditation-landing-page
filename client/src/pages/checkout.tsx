@@ -32,10 +32,10 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
-if (!import.meta.env.TESTING_VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: TESTING_VITE_STRIPE_PUBLIC_KEY');
+if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
+  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }
-const stripePromise = loadStripe(import.meta.env.TESTING_VITE_STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: string; confirmEmail: string; name: string; paymentIntentId: string }) => {
   const stripe = useStripe();
