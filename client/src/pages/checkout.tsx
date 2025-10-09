@@ -88,11 +88,11 @@ const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
         data-testid="button-complete-purchase"
       >
         {isProcessing ? (
-          "Processing..."
+          "Sending..."
         ) : (
           <>
             <ButtonStar className="mr-2 h-5 w-5" />
-            Complete Purchase - $4.95
+            Get Your FREE Package
           </>
         )}
       </Button>
@@ -160,35 +160,35 @@ export default function Checkout() {
                 <span className="text-sm">King Jesus Body Part Meditation Video</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$19.99</span>
-                  <span className="text-primary font-chalk text-sm font-bold">$4.95</span>
+                  <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Money-Related Podcast Episodes</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$14.99</span>
-                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
+                  <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Gospel of Thomas - Volume I (Verses 1-10)</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$9.99</span>
-                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
+                  <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Reader's Notebook for Gospel of Thomas</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$5.31</span>
-                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
+                  <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">FREE</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm">Meditation Journal Template</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-chalk line-through decoration-green-600">$9.99</span>
-                  <span className="text-green-600 font-chalk text-sm font-bold -rotate-2">FREE</span>
+                  <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">FREE</span>
                 </div>
               </div>
             </div>
@@ -203,14 +203,14 @@ export default function Checkout() {
 
             {/* Total */}
             <div className="border-t-2 border-primary/30 pt-3">
-              <div className="flex justify-between items-center text-2xl font-cinzel font-bold text-primary">
-                <span>Total Today:</span>
-                <span>$4.95</span>
+              <div className="flex justify-between items-center text-2xl font-cinzel font-bold">
+                <span className="text-primary">Total Today:</span>
+                <span className="text-green-600 font-chalk text-3xl -rotate-2">FREE</span>
               </div>
             </div>
 
             <p className="text-xs text-muted-foreground mt-3 text-center">
-              Sales tax calculated automatically based on your location
+              100% free - no payment required!
             </p>
           </div>
 
@@ -261,7 +261,7 @@ export default function Checkout() {
                 disabled
                 data-testid="button-complete-purchase"
               >
-                Complete Purchase - $4.95
+                Get Your FREE Package
               </Button>
             </div>
           ) : (
