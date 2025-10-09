@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import { UpsellDialog } from "@/components/upsell-dialog";
 
 // 5-pointed star SVG component for buttons (white outline, no fill)
 function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
@@ -36,11 +37,15 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
 }
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
+const CheckoutForm = ({ email, name, paymentIntentId }: { email: string; name: string; paymentIntentId: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [currentTotal, setCurrentTotal] = useState(4.95);
+  const [isDonationProcessing, setIsDonationProcessing] = useState(false);
+  const [hasConfirmedPayment, setHasConfirmedPayment] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,11 +59,86 @@ const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
       return;
     }
 
-    if (!stripe || !elements) {
+    if (!stripe || !elements || isProcessing) {
       return;
     }
 
+    // Show upsell dialog instead of immediately processing payment
+    setShowUpsell(true);
+  };
+
+  const handleDonationSelected = async (donationAmount: number) => {
+    if (isDonationProcessing || hasConfirmedPayment) {
+      return; // Prevent duplicate processing
+    }
+
+    setIsDonationProcessing(true);
+    setShowUpsell(false);
     setIsProcessing(true);
+
+    try {
+      // Update payment intent with donation amount
+      const response = await apiRequest("POST", "/api/update-payment-intent", {
+        paymentIntentId,
+        donationAmount,
+      }) as unknown as { newTotal: number; type?: string };
+
+      setCurrentTotal(response.newTotal);
+
+      toast({
+        title: "Thank you!",
+        description: `$${donationAmount} donation added to King Jesus Church`,
+      });
+
+      // Proceed with payment confirmation
+      await confirmPayment();
+    } catch (error: any) {
+      const errorMessage = error.message || "Failed to add donation";
+      const errorType = error.type;
+
+      // Handle specific error types
+      if (errorType === "duplicate_donation") {
+        toast({
+          title: "Donation Already Added",
+          description: "Your donation has already been added. Proceeding with payment.",
+        });
+        await confirmPayment();
+      } else if (errorType === "stripe_error") {
+        toast({
+          title: "Payment Update Failed",
+          description: "Please refresh the page and try again.",
+          variant: "destructive",
+        });
+        setIsProcessing(false);
+        setIsDonationProcessing(false);
+      } else {
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        setIsProcessing(false);
+        setIsDonationProcessing(false);
+      }
+    }
+  };
+
+  const handleDecline = async () => {
+    if (hasConfirmedPayment) {
+      return; // Prevent duplicate confirmation
+    }
+
+    setShowUpsell(false);
+    setIsProcessing(true);
+    await confirmPayment();
+  };
+
+  const confirmPayment = async () => {
+    if (!stripe || !elements || hasConfirmedPayment) {
+      return;
+    }
+
+    setHasConfirmedPayment(true);
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -70,38 +150,50 @@ const CheckoutForm = ({ email, name }: { email: string; name: string }) => {
     if (error) {
       toast({
         title: "Payment Failed",
-        description: error.message,
+        description: error.message || "An error occurred while processing your payment.",
         variant: "destructive",
       });
       setIsProcessing(false);
+      setIsDonationProcessing(false);
+      setHasConfirmedPayment(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement />
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full text-lg py-6"
-        disabled={!stripe || isProcessing || !email}
-        data-testid="button-complete-purchase"
-      >
-        {isProcessing ? (
-          "Processing..."
-        ) : (
-          <>
-            <ButtonStar className="mr-2 h-5 w-5" />
-            Complete Purchase - $4.95
-          </>
-        )}
-      </Button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <PaymentElement />
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full text-lg py-6"
+          disabled={!stripe || isProcessing || !email}
+          data-testid="button-complete-purchase"
+        >
+          {isProcessing ? (
+            "Processing..."
+          ) : (
+            <>
+              <ButtonStar className="mr-2 h-5 w-5" />
+              Complete Purchase - ${currentTotal.toFixed(2)}
+            </>
+          )}
+        </Button>
+      </form>
+      
+      <UpsellDialog 
+        open={showUpsell}
+        onSelectDonation={handleDonationSelected}
+        onDecline={handleDecline}
+        isProcessing={isDonationProcessing}
+      />
+    </>
   );
 };
 
 export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
+  const [paymentIntentId, setPaymentIntentId] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isCreating, setIsCreating] = useState(false);
@@ -118,6 +210,9 @@ export default function Checkout() {
           name: "",
         }) as unknown as { clientSecret: string };
         setClientSecret(data.clientSecret);
+        // Extract payment intent ID from client secret (format: pi_xxx_secret_yyy)
+        const piId = data.clientSecret.split('_secret_')[0];
+        setPaymentIntentId(piId);
       } catch (error: any) {
         toast({
           title: "Error",
@@ -266,7 +361,7 @@ export default function Checkout() {
             </div>
           ) : (
             <Elements stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm email={email} name={name} />
+              <CheckoutForm email={email} name={name} paymentIntentId={paymentIntentId} />
             </Elements>
           )}
 

@@ -1,7 +1,6 @@
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -15,11 +14,12 @@ interface UpsellDialogProps {
   open: boolean;
   onSelectDonation: (amount: number) => void;
   onDecline: () => void;
+  isProcessing?: boolean;
 }
 
 const donationAmounts = [5, 10, 15, 25, 100, 200];
 
-export function UpsellDialog({ open, onSelectDonation, onDecline }: UpsellDialogProps) {
+export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing = false }: UpsellDialogProps) {
   return (
     <AlertDialog open={open}>
       <AlertDialogContent className="max-w-md">
@@ -44,6 +44,7 @@ export function UpsellDialog({ open, onSelectDonation, onDecline }: UpsellDialog
               variant="outline"
               className="h-16 text-lg font-semibold"
               onClick={() => onSelectDonation(amount)}
+              disabled={isProcessing}
               data-testid={`button-donate-${amount}`}
             >
               ${amount}
@@ -55,9 +56,10 @@ export function UpsellDialog({ open, onSelectDonation, onDecline }: UpsellDialog
           <AlertDialogAction
             className="w-full"
             onClick={onDecline}
+            disabled={isProcessing}
             data-testid="button-no-thanks"
           >
-            No Thanks, Complete Purchase
+            {isProcessing ? "Processing..." : "No Thanks, Complete Purchase"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

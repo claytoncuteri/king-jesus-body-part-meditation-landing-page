@@ -205,41 +205,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { paymentIntentId, donationAmount } = req.body;
       
-      // Get the payment intent from Stripe
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      // Validate donation amount - must be one of the preset values
+      const validDonationAmounts = [5, 10, 15, 25, 100, 200];
+      if (!validDonationAmounts.includes(donationAmount)) {
+        return res.status(400).json({ 
+          message: "Invalid donation amount. Please select a valid option.",
+          type: "validation_error"
+        });
+      }
       
       // Find the purchase record
       const purchase = await storage.getPurchaseByPaymentIntent(paymentIntentId);
       
       if (!purchase) {
-        return res.status(404).json({ message: "Purchase not found" });
+        return res.status(404).json({ 
+          message: "Purchase not found",
+          type: "not_found"
+        });
       }
 
-      // Calculate new total amount
+      // Check if donation already added (prevent duplicate donations)
+      if (purchase.donationAmount && purchase.donationAmount > 0) {
+        return res.status(400).json({ 
+          message: "Donation already added to this purchase",
+          type: "duplicate_donation"
+        });
+      }
+
+      // Calculate new total amount (base price + donation)
       const newTotalAmount = purchase.amount + donationAmount;
 
       // Update the payment intent amount
-      const updatedPaymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
-        amount: Math.round(newTotalAmount * 100), // Convert to cents
-      });
+      try {
+        const updatedPaymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
+          amount: Math.round(newTotalAmount * 100), // Convert to cents
+        });
 
-      // Update purchase record with donation amount and new total
-      await db.update(purchases)
-        .set({ 
-          donationAmount: donationAmount,
-          amount: newTotalAmount 
-        })
-        .where(eq(purchases.id, purchase.id));
+        // Update purchase record with donation amount only (keep original amount)
+        await db.update(purchases)
+          .set({ 
+            donationAmount: donationAmount,
+          })
+          .where(eq(purchases.id, purchase.id));
 
-      res.json({ 
-        success: true, 
-        newTotal: newTotalAmount,
-        clientSecret: updatedPaymentIntent.client_secret 
-      });
+        res.json({ 
+          success: true, 
+          newTotal: newTotalAmount,
+          clientSecret: updatedPaymentIntent.client_secret 
+        });
+      } catch (stripeError: any) {
+        // Handle Stripe-specific errors
+        if (stripeError.type === 'StripeInvalidRequestError') {
+          return res.status(400).json({ 
+            message: "Unable to update payment. Please start checkout again.",
+            type: "stripe_error"
+          });
+        }
+        throw stripeError;
+      }
     } catch (error: any) {
-      res
-        .status(500)
-        .json({ message: "Error updating payment intent: " + error.message });
+      res.status(500).json({ 
+        message: "Error updating payment intent: " + error.message,
+        type: "server_error"
+      });
     }
   });
 
