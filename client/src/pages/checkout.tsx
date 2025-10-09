@@ -37,7 +37,7 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
 }
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-const CheckoutForm = ({ email, name, paymentIntentId }: { email: string; name: string; paymentIntentId: string }) => {
+const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: string; confirmEmail: string; name: string; paymentIntentId: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -54,6 +54,15 @@ const CheckoutForm = ({ email, name, paymentIntentId }: { email: string; name: s
       toast({
         title: "Email required",
         description: "Please enter your email to continue",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (email !== confirmEmail) {
+      toast({
+        title: "Emails do not match",
+        description: "Please make sure both email fields match",
         variant: "destructive",
       });
       return;
@@ -162,12 +171,23 @@ const CheckoutForm = ({ email, name, paymentIntentId }: { email: string; name: s
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Test Card Instructions */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+          <h4 className="font-semibold text-sm mb-2">Test Mode - Use Test Card:</h4>
+          <div className="space-y-1 text-sm">
+            <p><strong>Card Number:</strong> 4242 4242 4242 4242</p>
+            <p><strong>Expiry:</strong> Any future date (e.g., 12/34)</p>
+            <p><strong>CVC:</strong> Any 3 digits (e.g., 123)</p>
+            <p><strong>ZIP:</strong> Any 5 digits (e.g., 12345)</p>
+          </div>
+        </div>
+        
         <PaymentElement />
         <Button
           type="submit"
           size="lg"
           className="w-full text-lg py-6"
-          disabled={!stripe || isProcessing || !email}
+          disabled={!stripe || isProcessing || !email || !confirmEmail || email !== confirmEmail}
           data-testid="button-complete-purchase"
         >
           {isProcessing ? (
@@ -195,6 +215,7 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
   const [paymentIntentId, setPaymentIntentId] = useState("");
   const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [name, setName] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const { toast } = useToast();
@@ -335,6 +356,23 @@ export default function Checkout() {
               </p>
             </div>
             <div>
+              <label className="block text-sm font-medium mb-2">Confirm Email *</label>
+              <Input
+                type="email"
+                placeholder="your@email.com"
+                value={confirmEmail}
+                onChange={(e) => setConfirmEmail(e.target.value)}
+                required
+                className="text-lg p-6"
+                data-testid="input-checkout-confirm-email"
+              />
+              {confirmEmail && email !== confirmEmail && (
+                <p className="text-sm text-destructive mt-1">
+                  Emails do not match
+                </p>
+              )}
+            </div>
+            <div>
               <label className="block text-sm font-medium mb-2">Name (optional)</label>
               <Input
                 type="text"
@@ -369,7 +407,12 @@ export default function Checkout() {
             </div>
           ) : (
             <Elements stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm email={email} name={name} paymentIntentId={paymentIntentId} />
+              <CheckoutForm 
+                email={email} 
+                confirmEmail={confirmEmail}
+                name={name} 
+                paymentIntentId={paymentIntentId} 
+              />
             </Elements>
           )}
 
