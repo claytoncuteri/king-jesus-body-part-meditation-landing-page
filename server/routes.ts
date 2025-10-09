@@ -13,7 +13,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
 }
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-11-20.acacia",
+  apiVersion: "2025-09-30.clover",
 });
 
 // ConvertKit setup
@@ -152,7 +152,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const lead = await storage.createEmailLead(validated);
       
       // Send to ConvertKit
-      await sendToConvertKit(validated.email, validated.name);
+      await sendToConvertKit(validated.email, validated.name || undefined);
       
       res.json(lead);
     } catch (error: any) {
@@ -197,6 +197,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res
         .status(500)
         .json({ message: "Error creating payment intent: " + error.message });
+    }
+  });
+
+  // Update payment intent with donation upsell
+  app.post("/api/update-payment-intent", async (req, res) => {
+    try {
+      const { paymentIntentId, donationAmount } = req.body;
+      
+      // Get the payment intent from Stripe
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      
+      // Find the purchase record
+      const purchase = await storage.getPurchaseByPaymentIntent(paymentIntentId);
+      
+      if (!purchase) {
+        return res.status(404).json({ message: "Purchase not found" });
+      }
+
+      // Calculate new total amount
+      const newTotalAmount = purchase.amount + donationAmount;
+
+      // Update the payment intent amount
+      const updatedPaymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
+        amount: Math.round(newTotalAmount * 100), // Convert to cents
+      });
+
+      // Update purchase record with donation amount and new total
+      await db.update(purchases)
+        .set({ 
+          donationAmount: donationAmount,
+          amount: newTotalAmount 
+        })
+        .where(eq(purchases.id, purchase.id));
+
+      res.json({ 
+        success: true, 
+        newTotal: newTotalAmount,
+        clientSecret: updatedPaymentIntent.client_secret 
+      });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: "Error updating payment intent: " + error.message });
     }
   });
 

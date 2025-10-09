@@ -80,6 +80,7 @@ export const purchases = pgTable("purchases", {
   name: varchar("name"),
   stripePaymentIntentId: varchar("stripe_payment_intent_id").unique(),
   amount: real("amount").notNull(),
+  donationAmount: real("donation_amount").default(0),
   currency: varchar("currency").default("usd"),
   status: varchar("status").default("pending"), // 'pending', 'completed', 'failed'
   createdAt: timestamp("created_at").defaultNow(),
