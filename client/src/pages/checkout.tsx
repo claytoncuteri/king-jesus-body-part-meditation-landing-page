@@ -94,9 +94,11 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
       const response = await apiRequest("POST", "/api/update-payment-intent", {
         paymentIntentId,
         donationAmount,
-      }) as unknown as { newTotal: number; type?: string };
+      });
 
-      setCurrentTotal(response.newTotal);
+      const data = await response.json() as { newTotal: number; type?: string };
+
+      setCurrentTotal(data.newTotal);
 
       toast({
         title: "Thank you!",
