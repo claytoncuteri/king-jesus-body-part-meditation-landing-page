@@ -330,7 +330,7 @@ export default function Checkout() {
               </div>
               <div className="flex justify-between items-center text-sm mt-2">
                 <span className="font-semibold">Discount:</span>
-                <span className="text-green-600 font-bold">-$55.32</span>
+                <span className="text-green-600 font-bold">92% OFF</span>
               </div>
             </div>
 
