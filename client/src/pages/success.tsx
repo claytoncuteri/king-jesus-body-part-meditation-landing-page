@@ -3,7 +3,8 @@ import { Link, useSearch } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, Mail, Home, Receipt, Download } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import type { Purchase } from "@shared/schema";
 
 // 5-pointed star SVG component for buttons (white outline, no fill)
@@ -30,10 +31,28 @@ export default function Success() {
   const urlParams = new URLSearchParams(searchParams);
   const paymentIntentId = urlParams.get('payment_intent');
 
-  const { data: purchase, isLoading } = useQuery<Purchase>({
-    queryKey: ['/api/purchase', paymentIntentId],
-    enabled: !!paymentIntentId,
+  // Confirm payment mutation
+  const confirmPayment = useMutation({
+    mutationFn: async (paymentIntentId: string) => {
+      const response = await apiRequest<{ success: boolean; purchase: Purchase }>('/api/checkout/confirm-payment', {
+        method: 'POST',
+        body: JSON.stringify({ paymentIntentId }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return response;
+    },
   });
+
+  // Confirm payment when component mounts
+  useEffect(() => {
+    if (paymentIntentId && !confirmPayment.data && !confirmPayment.isPending) {
+      confirmPayment.mutate(paymentIntentId);
+    }
+  }, [paymentIntentId]);
+
+  // Get purchase from confirmation response
+  const purchase = confirmPayment.data?.purchase;
+  const isLoading = confirmPayment.isPending;
 
   useEffect(() => {
     // Track successful purchase

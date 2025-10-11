@@ -329,6 +329,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Confirm payment and update purchase status (webhook-less flow for test mode)
+  app.post("/api/checkout/confirm-payment", async (req, res) => {
+    try {
+      const { paymentIntentId } = req.body;
+      
+      if (!paymentIntentId) {
+        return res.status(400).json({ message: "Payment intent ID required" });
+      }
+      
+      const purchase = await storage.getPurchaseByPaymentIntent(paymentIntentId);
+      
+      if (!purchase) {
+        return res.status(404).json({ message: "Purchase not found" });
+      }
+      
+      // If already completed, return success
+      if (purchase.status === "completed") {
+        return res.json({ success: true, purchase });
+      }
+      
+      // Verify payment with Stripe
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      
+      if (paymentIntent.status !== "succeeded") {
+        return res.status(400).json({ 
+          message: "Payment not yet completed",
+          status: paymentIntent.status 
+        });
+      }
+      
+      // Update purchase status to completed
+      await storage.updatePurchaseStatus(purchase.id, "completed");
+      purchase.status = "completed";
+      
+      // Send delivery email via ConvertKit
+      let deliverySuccess = false;
+      if (purchase.email && purchase.downloadToken) {
+        try {
+          await tagSubscriberForDelivery(purchase.email, purchase.downloadToken);
+          deliverySuccess = true;
+          console.log(`✅ Tagged ${purchase.email} for automated delivery`);
+        } catch (error) {
+          console.error("Error tagging subscriber for delivery:", error);
+          // Don't fail the request if tagging fails - purchase is still completed
+        }
+      }
+      
+      // Track purchase analytics
+      await storage.trackEvent({
+        eventType: "purchase",
+        eventData: { 
+          purchaseId: purchase.id, 
+          amount: purchase.amount,
+          deliverySuccess,
+        },
+      });
+      
+      res.json({ success: true, purchase, deliverySuccess });
+    } catch (error: any) {
+      console.error("Error confirming payment:", error);
+      res.status(500).json({ message: "Error confirming payment: " + error.message });
+    }
+  });
+
   // Get purchase details by payment intent ID (for receipt display)
   app.get("/api/purchase/:paymentIntentId", async (req, res) => {
     try {
