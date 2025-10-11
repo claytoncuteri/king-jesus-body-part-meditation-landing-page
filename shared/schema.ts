@@ -44,6 +44,8 @@ export const testimonials = pgTable("testimonials", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   content: text("content").notNull(),
+  gender: varchar("gender"),
+  age: integer("age"),
   isVisible: boolean("is_visible").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });
