@@ -186,7 +186,14 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <PaymentElement />
+        <PaymentElement 
+          options={{
+            wallets: {
+              applePay: 'never',
+              googlePay: 'never'
+            }
+          }}
+        />
         <Button
           type="submit"
           size="lg"
