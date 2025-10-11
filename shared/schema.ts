@@ -113,3 +113,25 @@ export const insertEmailLeadSchema = createInsertSchema(emailLeads).omit({
 
 export type InsertEmailLead = z.infer<typeof insertEmailLeadSchema>;
 export type EmailLead = typeof emailLeads.$inferSelect;
+
+// Package items table
+export const packageItems = pgTable("package_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description"),
+  contentUrl: varchar("content_url"), // URL to uploaded content file
+  value: real("value").default(0), // Item value for display purposes
+  displayOrder: integer("display_order").default(0),
+  isVisible: boolean("is_visible").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertPackageItemSchema = createInsertSchema(packageItems).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertPackageItem = z.infer<typeof insertPackageItemSchema>;
+export type PackageItem = typeof packageItems.$inferSelect;
