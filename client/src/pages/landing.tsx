@@ -229,7 +229,7 @@ export default function Landing() {
                 data-testid="button-header-purchase"
               >
                 <ButtonStar className="mr-2 h-4 w-4" />
-                Get Now - $4.95
+                Buy Now - $4.95
               </Button>
               <Button
                 size="lg"
