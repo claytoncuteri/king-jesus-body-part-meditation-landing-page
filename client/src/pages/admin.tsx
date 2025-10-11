@@ -25,8 +25,10 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, DollarSign, MousePointer, Mail, Plus, Trash2, Eye, EyeOff, LogOut, Pencil } from "lucide-react";
+import { Users, DollarSign, MousePointer, Mail, Plus, Trash2, Eye, EyeOff, LogOut, Pencil, Package, Upload } from "lucide-react";
 import { Link } from "wouter";
+import { ObjectUploader } from "@/components/ObjectUploader";
+import type { UploadResult } from "@uppy/core";
 
 export default function Admin() {
   const { toast } = useToast();
@@ -35,6 +37,13 @@ export default function Admin() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [newTestimonial, setNewTestimonial] = useState({ name: "", content: "", gender: "", age: "" });
   const [editTestimonial, setEditTestimonial] = useState<any>(null);
+  
+  // Package items state
+  const [isAddPackageItemDialogOpen, setIsAddPackageItemDialogOpen] = useState(false);
+  const [isEditPackageItemDialogOpen, setIsEditPackageItemDialogOpen] = useState(false);
+  const [newPackageItem, setNewPackageItem] = useState({ name: "", description: "", contentUrl: "", value: "", displayOrder: "0", isVisible: true });
+  const [editPackageItem, setEditPackageItem] = useState<any>(null);
+  const [uploadedFileUrl, setUploadedFileUrl] = useState<string>("");
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -166,6 +175,123 @@ export default function Admin() {
     },
   });
 
+  // Get package items
+  const { data: packageItems = [] } = useQuery({
+    queryKey: ["/api/admin/package-items"],
+    enabled: isAuthenticated,
+  });
+
+  // Add package item mutation
+  const addPackageItemMutation = useMutation({
+    mutationFn: async () => {
+      const payload = {
+        name: newPackageItem.name,
+        description: newPackageItem.description || undefined,
+        contentUrl: newPackageItem.contentUrl || undefined,
+        value: newPackageItem.value ? parseFloat(newPackageItem.value) : 0,
+        displayOrder: newPackageItem.displayOrder ? parseInt(newPackageItem.displayOrder, 10) : 0,
+        isVisible: newPackageItem.isVisible,
+      };
+      return await apiRequest("POST", "/api/admin/package-items", payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/package-items"] });
+      toast({
+        title: "Success",
+        description: "Package item added successfully",
+      });
+      setNewPackageItem({ name: "", description: "", contentUrl: "", value: "", displayOrder: "0", isVisible: true });
+      setUploadedFileUrl("");
+      setIsAddPackageItemDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Edit package item mutation
+  const editPackageItemMutation = useMutation({
+    mutationFn: async () => {
+      const payload = {
+        name: editPackageItem.name,
+        description: editPackageItem.description || undefined,
+        contentUrl: editPackageItem.contentUrl || undefined,
+        value: editPackageItem.value ? parseFloat(editPackageItem.value) : 0,
+        displayOrder: editPackageItem.displayOrder ? parseInt(editPackageItem.displayOrder, 10) : 0,
+        isVisible: editPackageItem.isVisible,
+      };
+      return await apiRequest("PUT", `/api/admin/package-items/${editPackageItem.id}`, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/package-items"] });
+      toast({
+        title: "Success",
+        description: "Package item updated successfully",
+      });
+      setEditPackageItem(null);
+      setIsEditPackageItemDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Delete package item mutation
+  const deletePackageItemMutation = useMutation({
+    mutationFn: async (id: string) => {
+      return await apiRequest("DELETE", `/api/admin/package-items/${id}`, {});
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/package-items"] });
+      toast({
+        title: "Success",
+        description: "Package item deleted successfully",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Helper functions for file upload
+  const handleGetUploadUrl = async () => {
+    const response = await apiRequest("POST", "/api/admin/package-items/upload-url", {}) as { uploadURL: string };
+    return {
+      method: "PUT" as const,
+      url: response.uploadURL,
+    };
+  };
+
+  const handleUploadComplete = (result: UploadResult<Record<string, unknown>, Record<string, unknown>>) => {
+    if (result.successful && result.successful.length > 0) {
+      const uploadedUrl = result.successful[0].uploadURL;
+      setUploadedFileUrl(uploadedUrl);
+      
+      if (isAddPackageItemDialogOpen) {
+        setNewPackageItem({ ...newPackageItem, contentUrl: uploadedUrl });
+      } else if (isEditPackageItemDialogOpen && editPackageItem) {
+        setEditPackageItem({ ...editPackageItem, contentUrl: uploadedUrl });
+      }
+      
+      toast({
+        title: "Success",
+        description: "File uploaded successfully",
+      });
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -286,8 +412,9 @@ export default function Admin() {
 
         {/* Tabs for different sections */}
         <Tabs defaultValue="testimonials" className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-2" data-testid="tabs-admin">
+          <TabsList className="grid w-full max-w-2xl grid-cols-3" data-testid="tabs-admin">
             <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+            <TabsTrigger value="package-items">Package Items</TabsTrigger>
             <TabsTrigger value="purchases">Recent Purchases</TabsTrigger>
           </TabsList>
 
@@ -517,6 +644,284 @@ export default function Admin() {
                 )}
               </DialogContent>
             </Dialog>
+          </TabsContent>
+
+          {/* Package Items Tab */}
+          <TabsContent value="package-items" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold font-serif">Manage Package Items</h2>
+              <Dialog open={isAddPackageItemDialogOpen} onOpenChange={setIsAddPackageItemDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button data-testid="button-add-package-item">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Package Item
+                  </Button>
+                </DialogTrigger>
+                <DialogContent data-testid="dialog-add-package-item">
+                  <DialogHeader>
+                    <DialogTitle>Add New Package Item</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4 pt-4">
+                    <div>
+                      <Label htmlFor="item-name">Item Name</Label>
+                      <Input
+                        id="item-name"
+                        value={newPackageItem.name}
+                        onChange={(e) =>
+                          setNewPackageItem({ ...newPackageItem, name: e.target.value })
+                        }
+                        placeholder="Video: King Jesus Meditation"
+                        data-testid="input-package-item-name"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="item-description">Description (optional)</Label>
+                      <Textarea
+                        id="item-description"
+                        value={newPackageItem.description}
+                        onChange={(e) =>
+                          setNewPackageItem({ ...newPackageItem, description: e.target.value })
+                        }
+                        placeholder="45-minute guided meditation video"
+                        rows={3}
+                        data-testid="textarea-package-item-description"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="item-value">Value ($)</Label>
+                        <Input
+                          id="item-value"
+                          type="number"
+                          step="0.01"
+                          value={newPackageItem.value}
+                          onChange={(e) =>
+                            setNewPackageItem({ ...newPackageItem, value: e.target.value })
+                          }
+                          placeholder="19.99"
+                          data-testid="input-package-item-value"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="item-order">Display Order</Label>
+                        <Input
+                          id="item-order"
+                          type="number"
+                          value={newPackageItem.displayOrder}
+                          onChange={(e) =>
+                            setNewPackageItem({ ...newPackageItem, displayOrder: e.target.value })
+                          }
+                          placeholder="0"
+                          data-testid="input-package-item-order"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label>Upload File (optional)</Label>
+                      <ObjectUploader
+                        maxNumberOfFiles={1}
+                        maxFileSize={52428800}
+                        onGetUploadParameters={handleGetUploadUrl}
+                        onComplete={handleUploadComplete}
+                        buttonClassName="w-full"
+                      >
+                        <Upload className="mr-2 h-4 w-4" />
+                        {newPackageItem.contentUrl ? "File Uploaded ✓" : "Upload File"}
+                      </ObjectUploader>
+                      {newPackageItem.contentUrl && (
+                        <p className="text-xs text-muted-foreground mt-1">File URL: {newPackageItem.contentUrl.substring(0, 50)}...</p>
+                      )}
+                    </div>
+                    <Button
+                      onClick={() => addPackageItemMutation.mutate()}
+                      disabled={!newPackageItem.name || addPackageItemMutation.isPending}
+                      className="w-full"
+                      data-testid="button-save-package-item"
+                    >
+                      {addPackageItemMutation.isPending ? "Adding..." : "Add Package Item"}
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <Card>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Order</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead>Value</TableHead>
+                    <TableHead>File</TableHead>
+                    <TableHead>Visible</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {packageItems.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={7} className="text-center text-muted-foreground">
+                        No package items yet
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    packageItems.map((item: any) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium">{item.displayOrder}</TableCell>
+                        <TableCell className="font-medium">{item.name}</TableCell>
+                        <TableCell className="max-w-xs truncate">{item.description || "-"}</TableCell>
+                        <TableCell>${item.value?.toFixed(2) || "0.00"}</TableCell>
+                        <TableCell>{item.contentUrl ? "✓" : "-"}</TableCell>
+                        <TableCell>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() =>
+                              editPackageItemMutation.mutate()
+                            }
+                            data-testid={`button-toggle-visibility-${item.id}`}
+                          >
+                            {item.isVisible ? (
+                              <Eye className="h-4 w-4 text-green-500" />
+                            ) : (
+                              <EyeOff className="h-4 w-4 text-gray-400" />
+                            )}
+                          </Button>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <Dialog
+                              open={isEditPackageItemDialogOpen && editPackageItem?.id === item.id}
+                              onOpenChange={(open) => {
+                                setIsEditPackageItemDialogOpen(open);
+                                if (!open) setEditPackageItem(null);
+                              }}
+                            >
+                              <DialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  onClick={() => {
+                                    setEditPackageItem({
+                                      ...item,
+                                      value: item.value?.toString() || "0",
+                                      displayOrder: item.displayOrder?.toString() || "0",
+                                    });
+                                  }}
+                                  data-testid={`button-edit-${item.id}`}
+                                >
+                                  <Pencil className="h-4 w-4" />
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent data-testid="dialog-edit-package-item">
+                                <DialogHeader>
+                                  <DialogTitle>Edit Package Item</DialogTitle>
+                                </DialogHeader>
+                                {editPackageItem && (
+                                  <div className="space-y-4 pt-4">
+                                    <div>
+                                      <Label htmlFor="edit-item-name">Item Name</Label>
+                                      <Input
+                                        id="edit-item-name"
+                                        value={editPackageItem.name}
+                                        onChange={(e) =>
+                                          setEditPackageItem({ ...editPackageItem, name: e.target.value })
+                                        }
+                                        placeholder="Video: King Jesus Meditation"
+                                        data-testid="input-edit-package-item-name"
+                                      />
+                                    </div>
+                                    <div>
+                                      <Label htmlFor="edit-item-description">Description (optional)</Label>
+                                      <Textarea
+                                        id="edit-item-description"
+                                        value={editPackageItem.description || ""}
+                                        onChange={(e) =>
+                                          setEditPackageItem({ ...editPackageItem, description: e.target.value })
+                                        }
+                                        placeholder="45-minute guided meditation video"
+                                        rows={3}
+                                        data-testid="textarea-edit-package-item-description"
+                                      />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <div>
+                                        <Label htmlFor="edit-item-value">Value ($)</Label>
+                                        <Input
+                                          id="edit-item-value"
+                                          type="number"
+                                          step="0.01"
+                                          value={editPackageItem.value}
+                                          onChange={(e) =>
+                                            setEditPackageItem({ ...editPackageItem, value: e.target.value })
+                                          }
+                                          placeholder="19.99"
+                                          data-testid="input-edit-package-item-value"
+                                        />
+                                      </div>
+                                      <div>
+                                        <Label htmlFor="edit-item-order">Display Order</Label>
+                                        <Input
+                                          id="edit-item-order"
+                                          type="number"
+                                          value={editPackageItem.displayOrder}
+                                          onChange={(e) =>
+                                            setEditPackageItem({ ...editPackageItem, displayOrder: e.target.value })
+                                          }
+                                          placeholder="0"
+                                          data-testid="input-edit-package-item-order"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <Label>Upload File (optional)</Label>
+                                      <ObjectUploader
+                                        maxNumberOfFiles={1}
+                                        maxFileSize={52428800}
+                                        onGetUploadParameters={handleGetUploadUrl}
+                                        onComplete={handleUploadComplete}
+                                        buttonClassName="w-full"
+                                      >
+                                        <Upload className="mr-2 h-4 w-4" />
+                                        {editPackageItem.contentUrl ? "Replace File" : "Upload File"}
+                                      </ObjectUploader>
+                                      {editPackageItem.contentUrl && (
+                                        <p className="text-xs text-muted-foreground mt-1">File URL: {editPackageItem.contentUrl.substring(0, 50)}...</p>
+                                      )}
+                                    </div>
+                                    <Button
+                                      onClick={() => editPackageItemMutation.mutate()}
+                                      disabled={!editPackageItem.name || editPackageItemMutation.isPending}
+                                      className="w-full"
+                                      data-testid="button-update-package-item"
+                                    >
+                                      {editPackageItemMutation.isPending ? "Updating..." : "Update Package Item"}
+                                    </Button>
+                                  </div>
+                                )}
+                              </DialogContent>
+                            </Dialog>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => {
+                                if (confirm("Are you sure you want to delete this item?")) {
+                                  deletePackageItemMutation.mutate(item.id);
+                                }
+                              }}
+                              data-testid={`button-delete-${item.id}`}
+                            >
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
           </TabsContent>
 
           {/* Recent Purchases Tab */}
