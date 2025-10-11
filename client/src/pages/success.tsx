@@ -50,9 +50,9 @@ export default function Success() {
   }, [purchase]);
 
   // Calculate totals
-  const baseAmount = 4.95;
+  const baseAmount = purchase?.amount || 4.95;
   const donationAmount = purchase?.donationAmount || 0;
-  const totalAmount = purchase?.amount || baseAmount;
+  const totalAmount = baseAmount + donationAmount;
   const hasDonation = donationAmount > 0;
 
   return (
