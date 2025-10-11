@@ -30,6 +30,7 @@ export interface IStorage {
   getVisibleTestimonials(): Promise<Testimonial[]>;
   getTestimonialById(id: string): Promise<Testimonial | undefined>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  updateTestimonial(id: string, testimonial: Partial<InsertTestimonial>): Promise<Testimonial>;
   updateTestimonialVisibility(id: string, isVisible: boolean): Promise<Testimonial>;
   deleteTestimonial(id: string): Promise<void>;
   
@@ -95,6 +96,15 @@ export class DatabaseStorage implements IStorage {
     const [testimonial] = await db
       .insert(testimonials)
       .values(testimonialData)
+      .returning();
+    return testimonial;
+  }
+
+  async updateTestimonial(id: string, testimonialData: Partial<InsertTestimonial>): Promise<Testimonial> {
+    const [testimonial] = await db
+      .update(testimonials)
+      .set(testimonialData)
+      .where(eq(testimonials.id, id))
       .returning();
     return testimonial;
   }

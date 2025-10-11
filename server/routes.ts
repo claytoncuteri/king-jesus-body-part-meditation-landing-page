@@ -358,6 +358,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update testimonial (admin)
+  app.put("/api/admin/testimonials/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validated = insertTestimonialSchema.partial().parse(req.body);
+      const testimonial = await storage.updateTestimonial(id, validated);
+      res.json(testimonial);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   // Update testimonial visibility (admin)
   app.patch("/api/admin/testimonials/:id", isAuthenticated, isAdmin, async (req, res) => {
     try {
