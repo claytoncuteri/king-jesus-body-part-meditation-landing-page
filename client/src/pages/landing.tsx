@@ -10,6 +10,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
+import claytonProfileImage from "@assets/A3EAA35F-FDED-40A9-A1FD-04AF9F7150D6_1760146685893.jpeg";
 
 // 5-pointed star SVG component (gold fill with black border for images)
 function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
@@ -237,7 +238,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-header-purchase-mobile"
               >
-                $4.95
+                Buy Now
               </Button>
               <Button
                 size="icon"
@@ -431,9 +432,12 @@ export default function Landing() {
                 </div>
               </div>
               <div className="flex items-center gap-4 pt-4 border-t border-primary/20">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
-                  <span className="text-2xl font-bold text-primary">CC</span>
-                </div>
+                <img 
+                  src={claytonProfileImage} 
+                  alt="Clayton Cuteri" 
+                  className="w-16 h-16 rounded-full object-cover border-2 border-primary"
+                  data-testid="img-clayton-profile"
+                />
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
                   <p className="text-muted-foreground">Influencer, Politician, Entrepreneur, and Spiritual Guide</p>
