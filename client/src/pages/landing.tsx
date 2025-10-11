@@ -506,16 +506,9 @@ export default function Landing() {
                   const rating = idx === 2 ? 4 : 5;
                   return (
                     <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-lg font-bold text-primary">
-                            {testimonial.name.charAt(0)}
-                          </span>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold truncate">{testimonial.name}</p>
-                          <p className="text-xs text-muted-foreground">Verified Student</p>
-                        </div>
+                      <div className="mb-3">
+                        <p className="font-semibold">{testimonial.name}</p>
+                        <p className="text-xs text-muted-foreground">Verified Student</p>
                       </div>
                       <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
                       
