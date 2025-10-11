@@ -391,9 +391,9 @@ export default function Landing() {
             </div>
             
             {/* Formula Section */}
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl mt-3">
+            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl mt-3 max-w-2xl mx-auto">
               {/* Mobile version - condensed text */}
-              <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-nowrap whitespace-nowrap">
+              <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-wrap">
                 <span className="leading-tight">King Jesus meditation</span>
                 <span className="text-sm font-bold">+</span>
                 <span className="leading-tight">Prosperity teachings</span>
@@ -401,11 +401,11 @@ export default function Landing() {
                 <span className="leading-tight">Path to abundance</span>
               </div>
               {/* Desktop version - full text */}
-              <div className="hidden sm:flex font-chalk text-lg md:text-2xl lg:text-3xl text-white/90 transform -rotate-1 items-center justify-center gap-3 md:gap-4 flex-nowrap whitespace-nowrap">
+              <div className="hidden sm:flex font-chalk text-base md:text-xl lg:text-2xl text-white/90 transform -rotate-1 items-center justify-center gap-2 md:gap-3 flex-wrap">
                 <span className="leading-tight">Ancient King Jesus meditation</span>
-                <span className="text-2xl md:text-4xl lg:text-5xl font-bold">+</span>
+                <span className="text-xl md:text-3xl lg:text-4xl font-bold">+</span>
                 <span className="leading-tight">Proven prosperity teachings</span>
-                <span className="text-2xl md:text-4xl lg:text-5xl font-bold">=</span>
+                <span className="text-xl md:text-3xl lg:text-4xl font-bold">=</span>
                 <span className="leading-tight">Your fastest path to abundance</span>
               </div>
             </div>
