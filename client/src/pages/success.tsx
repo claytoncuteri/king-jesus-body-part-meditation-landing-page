@@ -1,54 +1,172 @@
-import { useEffect } from "react";
-import { Link } from "wouter";
+import { useEffect, useState } from "react";
+import { Link, useSearch } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Mail, Home } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+import { CheckCircle, Mail, Home, Receipt } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import type { Purchase } from "@shared/schema";
+
+// 5-pointed star SVG component for buttons (white outline, no fill)
+function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        fill="none"
+        stroke="currentColor" 
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
 
 export default function Success() {
+  const searchParams = useSearch();
+  const urlParams = new URLSearchParams(searchParams);
+  const paymentIntentId = urlParams.get('payment_intent');
+
+  const { data: purchase, isLoading } = useQuery<Purchase>({
+    queryKey: ['/api/purchase', paymentIntentId],
+    enabled: !!paymentIntentId,
+  });
+
   useEffect(() => {
     // Track successful purchase
-    apiRequest("POST", "/api/analytics/track", {
-      eventType: "purchase",
-      eventData: { status: "success" },
-    }).catch(console.error);
-  }, []);
+    if (purchase) {
+      fetch("/api/analytics/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventType: "purchase",
+          eventData: { status: "success", purchaseId: purchase.id },
+        }),
+      }).catch(console.error);
+    }
+  }, [purchase]);
+
+  // Calculate totals
+  const baseAmount = 4.95;
+  const donationAmount = purchase?.donationAmount || 0;
+  const totalAmount = purchase?.amount || baseAmount;
+  const hasDonation = donationAmount > 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-4">
-      <Card className="max-w-2xl w-full p-8 md:p-12 text-center">
-        <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-12 h-12 text-primary" />
+      <Card className="max-w-3xl w-full p-8 md:p-12">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-12 h-12 text-primary" data-testid="icon-success" />
+          </div>
+
+          <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 text-primary" data-testid="heading-success">
+            Thank You for Your Purchase!
+          </h1>
+
+          <p className="text-xl text-muted-foreground mb-8">
+            Divine transformation begins now. Your spiritual journey awaits.
+          </p>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 text-primary">
-          Welcome to Your Journey!
-        </h1>
-
-        <p className="text-xl text-muted-foreground mb-8">
-          Your payment was successful. Divine transformation awaits you.
-        </p>
-
-        <div className="bg-accent/50 border border-primary/20 rounded-lg p-6 mb-8 text-left">
-          <div className="flex items-start gap-3 mb-4">
+        {/* Email Confirmation */}
+        <div className="bg-accent/50 border border-primary/20 rounded-lg p-6 mb-6">
+          <div className="flex items-start gap-3">
             <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-            <div>
-              <h2 className="font-bold text-lg mb-2">Check Your Email</h2>
-              <p className="text-muted-foreground">
-                We've sent you an email with access to all your digital products:
+            <div className="flex-1">
+              <h2 className="font-bold text-lg mb-2">Package Sent to Your Email</h2>
+              {isLoading ? (
+                <div className="h-6 bg-muted animate-pulse rounded w-2/3" />
+              ) : purchase?.email ? (
+                <p className="text-muted-foreground mb-3">
+                  Your complete meditation package has been delivered to:
+                  <br />
+                  <span className="font-semibold text-foreground" data-testid="text-delivery-email">
+                    {purchase.email}
+                  </span>
+                </p>
+              ) : (
+                <p className="text-muted-foreground mb-3">
+                  Your meditation package will be delivered shortly.
+                </p>
+              )}
+              <p className="text-sm text-muted-foreground">
+                Check your inbox (and spam folder) for your digital products including:
               </p>
+              <ul className="space-y-1 mt-2 text-sm text-muted-foreground">
+                <li>• King Jesus Body Part Meditation Video</li>
+                <li>• Money-Related Podcast Episodes</li>
+                <li>• Gospel of Thomas - Volume I PDF</li>
+                <li>• Reader's Notebook PDF</li>
+                <li>• Meditation Journal Template</li>
+              </ul>
             </div>
           </div>
-          <ul className="space-y-2 ml-9 text-muted-foreground">
-            <li>• King Jesus Body Part Meditation Video</li>
-            <li>• Money-Related Podcast Episodes</li>
-            <li>• Gospel of Thomas - Volume I PDF</li>
-            <li>• Reader's Notebook PDF</li>
-            <li>• Meditation Journal Template</li>
-          </ul>
         </div>
 
-        <div className="space-y-4">
+        {/* Receipt */}
+        <div className="bg-card border border-border rounded-lg p-6 mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <Receipt className="w-6 h-6 text-primary" />
+            <h2 className="font-bold text-lg">Order Receipt</h2>
+          </div>
+          
+          {isLoading ? (
+            <div className="space-y-3">
+              <div className="h-5 bg-muted animate-pulse rounded" />
+              <div className="h-5 bg-muted animate-pulse rounded" />
+              <div className="h-6 bg-muted animate-pulse rounded mt-4" />
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-border" data-testid="receipt-line-package">
+                <div>
+                  <p className="font-medium">King Jesus Meditation Package</p>
+                  <p className="text-sm text-muted-foreground">Digital product bundle</p>
+                </div>
+                <span className="font-semibold">${baseAmount.toFixed(2)}</span>
+              </div>
+
+              {hasDonation && (
+                <div className="flex justify-between items-center py-2 border-b border-border" data-testid="receipt-line-donation">
+                  <div>
+                    <p className="font-medium flex items-center gap-2">
+                      Church of King Jesus Donation
+                      <ButtonStar className="w-4 h-4 text-primary" />
+                    </p>
+                    <p className="text-sm text-muted-foreground">Supporting our mission</p>
+                  </div>
+                  <span className="font-semibold">${donationAmount.toFixed(2)}</span>
+                </div>
+              )}
+
+              <div className="flex justify-between items-center pt-4 border-t-2 border-primary/30">
+                <span className="text-lg font-bold">Total Paid</span>
+                <span className="text-2xl font-bold text-primary" data-testid="text-total-amount">
+                  ${totalAmount.toFixed(2)}
+                </span>
+              </div>
+
+              {hasDonation && (
+                <div className="mt-4 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                  <p className="text-sm text-center">
+                    <span className="font-semibold">Thank you for your ${donationAmount.toFixed(2)} donation!</span>
+                    <br />
+                    <span className="text-muted-foreground">
+                      100% of proceeds support building the Church of King Jesus
+                    </span>
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Social sharing */}
+        <div className="space-y-4 text-center mb-8">
           <p className="text-lg font-semibold">
             Share your experience with{" "}
             <span className="text-secondary">#KingJesusMeditation</span>
@@ -58,7 +176,8 @@ export default function Success() {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+        {/* Action buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             size="lg"
             variant="secondary"
@@ -75,7 +194,7 @@ export default function Success() {
           </Link>
         </div>
 
-        <p className="text-sm text-muted-foreground mt-8">
+        <p className="text-sm text-muted-foreground mt-8 text-center">
           Didn't receive the email? Check your spam folder or contact us at support@travelingtoconciousness.com
         </p>
       </Card>
