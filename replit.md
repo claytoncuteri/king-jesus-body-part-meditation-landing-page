@@ -10,6 +10,15 @@ The primary goal is to convert visitors into customers through spiritual messagi
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### Testimonials Enhancement (Latest)
+- Added gender and age fields to testimonials schema
+- Admin dashboard now supports full CRUD operations with all testimonial fields
+- Landing page displays gender and age (e.g., "Female, 32") instead of "Verified Student"
+- Age field properly validated as integer with frontend conversion from string input
+- Frontend converts empty age values to undefined before API submission
+
 ## System Architecture
 
 ### Frontend Architecture
@@ -63,7 +72,7 @@ Preferred communication style: Simple, everyday language.
 **Database Schema (PostgreSQL via Drizzle):**
 - `sessions` - Express session storage for Replit Auth
 - `users` - User profiles from Replit Auth (email, name, admin flag)
-- `testimonials` - Customer testimonials with visibility toggle
+- `testimonials` - Customer testimonials with name, content, gender (varchar), age (integer), visibility toggle
 - `purchases` - Purchase records with Stripe payment intent tracking
 - `email_leads` - Email capture tracking with source attribution
 - `analytics_events` - Event tracking (page views, button clicks, purchases)
