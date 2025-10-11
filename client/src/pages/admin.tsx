@@ -25,14 +25,16 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, DollarSign, MousePointer, Mail, Plus, Trash2, Eye, EyeOff, LogOut } from "lucide-react";
+import { Users, DollarSign, MousePointer, Mail, Plus, Trash2, Eye, EyeOff, LogOut, Pencil } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Admin() {
   const { toast } = useToast();
   const { user, isLoading, isAuthenticated } = useAuth();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newTestimonial, setNewTestimonial] = useState({ name: "", content: "" });
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [newTestimonial, setNewTestimonial] = useState({ name: "", content: "", gender: "", age: "" });
+  const [editTestimonial, setEditTestimonial] = useState<any>(null);
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -63,7 +65,13 @@ export default function Admin() {
   // Add testimonial mutation
   const addTestimonialMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("POST", "/api/admin/testimonials", newTestimonial);
+      const payload = {
+        name: newTestimonial.name,
+        content: newTestimonial.content,
+        gender: newTestimonial.gender || undefined,
+        age: newTestimonial.age ? parseInt(newTestimonial.age, 10) : undefined,
+      };
+      return await apiRequest("POST", "/api/admin/testimonials", payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/testimonials"] });
@@ -72,8 +80,38 @@ export default function Admin() {
         title: "Success",
         description: "Testimonial added successfully",
       });
-      setNewTestimonial({ name: "", content: "" });
+      setNewTestimonial({ name: "", content: "", gender: "", age: "" });
       setIsAddDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Edit testimonial mutation
+  const editTestimonialMutation = useMutation({
+    mutationFn: async () => {
+      const payload = {
+        name: editTestimonial.name,
+        content: editTestimonial.content,
+        gender: editTestimonial.gender || undefined,
+        age: editTestimonial.age ? parseInt(editTestimonial.age, 10) : undefined,
+      };
+      return await apiRequest("PUT", `/api/admin/testimonials/${editTestimonial.id}`, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/testimonials"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/testimonials"] });
+      toast({
+        title: "Success",
+        description: "Testimonial updated successfully",
+      });
+      setEditTestimonial(null);
+      setIsEditDialogOpen(false);
     },
     onError: (error: Error) => {
       toast({
@@ -281,6 +319,32 @@ export default function Admin() {
                         data-testid="input-testimonial-name"
                       />
                     </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="gender">Gender</Label>
+                        <Input
+                          id="gender"
+                          value={newTestimonial.gender}
+                          onChange={(e) =>
+                            setNewTestimonial({ ...newTestimonial, gender: e.target.value })
+                          }
+                          placeholder="Male/Female"
+                          data-testid="input-testimonial-gender"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="age">Age</Label>
+                        <Input
+                          id="age"
+                          value={newTestimonial.age}
+                          onChange={(e) =>
+                            setNewTestimonial({ ...newTestimonial, age: e.target.value })
+                          }
+                          placeholder="25"
+                          data-testid="input-testimonial-age"
+                        />
+                      </div>
+                    </div>
                     <div>
                       <Label htmlFor="content">Testimonial</Label>
                       <Textarea
@@ -312,6 +376,8 @@ export default function Admin() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
+                    <TableHead>Gender</TableHead>
+                    <TableHead>Age</TableHead>
                     <TableHead>Content</TableHead>
                     <TableHead>Visible</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
@@ -320,7 +386,7 @@ export default function Admin() {
                 <TableBody>
                   {testimonials.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={4} className="text-center text-muted-foreground">
+                      <TableCell colSpan={6} className="text-center text-muted-foreground">
                         No testimonials yet. Add your first one!
                       </TableCell>
                     </TableRow>
@@ -328,6 +394,8 @@ export default function Admin() {
                     testimonials.map((testimonial: any) => (
                       <TableRow key={testimonial.id} data-testid={`row-testimonial-${testimonial.id}`}>
                         <TableCell className="font-medium">{testimonial.name}</TableCell>
+                        <TableCell>{testimonial.gender || "-"}</TableCell>
+                        <TableCell>{testimonial.age || "-"}</TableCell>
                         <TableCell className="max-w-md truncate">{testimonial.content}</TableCell>
                         <TableCell>
                           <Button
@@ -349,14 +417,27 @@ export default function Admin() {
                           </Button>
                         </TableCell>
                         <TableCell className="text-right">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => deleteTestimonialMutation.mutate(testimonial.id)}
-                            data-testid={`button-delete-${testimonial.id}`}
-                          >
-                            <Trash2 className="h-4 w-4 text-destructive" />
-                          </Button>
+                          <div className="flex items-center justify-end gap-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                setEditTestimonial(testimonial);
+                                setIsEditDialogOpen(true);
+                              }}
+                              data-testid={`button-edit-${testimonial.id}`}
+                            >
+                              <Pencil className="h-4 w-4 text-primary" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => deleteTestimonialMutation.mutate(testimonial.id)}
+                              data-testid={`button-delete-${testimonial.id}`}
+                            >
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))
@@ -364,6 +445,78 @@ export default function Admin() {
                 </TableBody>
               </Table>
             </Card>
+
+            {/* Edit Testimonial Dialog */}
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+              <DialogContent data-testid="dialog-edit-testimonial">
+                <DialogHeader>
+                  <DialogTitle>Edit Testimonial</DialogTitle>
+                </DialogHeader>
+                {editTestimonial && (
+                  <div className="space-y-4 pt-4">
+                    <div>
+                      <Label htmlFor="edit-name">Name</Label>
+                      <Input
+                        id="edit-name"
+                        value={editTestimonial.name}
+                        onChange={(e) =>
+                          setEditTestimonial({ ...editTestimonial, name: e.target.value })
+                        }
+                        placeholder="User name"
+                        data-testid="input-edit-name"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="edit-gender">Gender</Label>
+                        <Input
+                          id="edit-gender"
+                          value={editTestimonial.gender || ""}
+                          onChange={(e) =>
+                            setEditTestimonial({ ...editTestimonial, gender: e.target.value })
+                          }
+                          placeholder="Male/Female"
+                          data-testid="input-edit-gender"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-age">Age</Label>
+                        <Input
+                          id="edit-age"
+                          value={editTestimonial.age || ""}
+                          onChange={(e) =>
+                            setEditTestimonial({ ...editTestimonial, age: e.target.value })
+                          }
+                          placeholder="25"
+                          data-testid="input-edit-age"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-content">Testimonial</Label>
+                      <Textarea
+                        id="edit-content"
+                        value={editTestimonial.content}
+                        onChange={(e) =>
+                          setEditTestimonial({ ...editTestimonial, content: e.target.value })
+                        }
+                        placeholder="This meditation brought me instant peace!"
+                        rows={4}
+                        data-testid="textarea-edit-content"
+                      />
+                    </div>
+                    <Button
+                      onClick={() => editTestimonialMutation.mutate()}
+                      disabled={!editTestimonial.name || !editTestimonial.content || editTestimonialMutation.isPending}
+                      className="w-full"
+                      data-testid="button-update-testimonial"
+                    >
+                      {editTestimonialMutation.isPending ? "Updating..." : "Update Testimonial"}
+                    </Button>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
           </TabsContent>
 
           {/* Recent Purchases Tab */}
