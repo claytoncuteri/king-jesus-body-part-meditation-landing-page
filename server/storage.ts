@@ -5,6 +5,7 @@ import {
   analyticsEvents,
   purchases,
   emailLeads,
+  packageItems,
   type User,
   type UpsertUser,
   type Testimonial,
@@ -15,9 +16,11 @@ import {
   type InsertPurchase,
   type EmailLead,
   type InsertEmailLead,
+  type PackageItem,
+  type InsertPackageItem,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, sql, and } from "drizzle-orm";
+import { eq, desc, sql, and, asc } from "drizzle-orm";
 
 // Interface for storage operations
 export interface IStorage {
@@ -47,6 +50,14 @@ export interface IStorage {
   // Email lead operations
   createEmailLead(lead: InsertEmailLead): Promise<EmailLead>;
   getEmailLeadByEmail(email: string): Promise<EmailLead | undefined>;
+  
+  // Package item operations
+  getAllPackageItems(): Promise<PackageItem[]>;
+  getVisiblePackageItems(): Promise<PackageItem[]>;
+  getPackageItemById(id: string): Promise<PackageItem | undefined>;
+  createPackageItem(item: InsertPackageItem): Promise<PackageItem>;
+  updatePackageItem(id: string, item: Partial<InsertPackageItem>): Promise<PackageItem>;
+  deletePackageItem(id: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -242,6 +253,51 @@ export class DatabaseStorage implements IStorage {
       .from(emailLeads)
       .where(eq(emailLeads.email, email));
     return lead;
+  }
+
+  // Package item operations
+  async getAllPackageItems(): Promise<PackageItem[]> {
+    return await db
+      .select()
+      .from(packageItems)
+      .orderBy(asc(packageItems.displayOrder), desc(packageItems.createdAt));
+  }
+
+  async getVisiblePackageItems(): Promise<PackageItem[]> {
+    return await db
+      .select()
+      .from(packageItems)
+      .where(eq(packageItems.isVisible, true))
+      .orderBy(asc(packageItems.displayOrder), desc(packageItems.createdAt));
+  }
+
+  async getPackageItemById(id: string): Promise<PackageItem | undefined> {
+    const [item] = await db
+      .select()
+      .from(packageItems)
+      .where(eq(packageItems.id, id));
+    return item;
+  }
+
+  async createPackageItem(itemData: InsertPackageItem): Promise<PackageItem> {
+    const [item] = await db
+      .insert(packageItems)
+      .values(itemData)
+      .returning();
+    return item;
+  }
+
+  async updatePackageItem(id: string, itemData: Partial<InsertPackageItem>): Promise<PackageItem> {
+    const [item] = await db
+      .update(packageItems)
+      .set({ ...itemData, updatedAt: new Date() })
+      .where(eq(packageItems.id, id))
+      .returning();
+    return item;
+  }
+
+  async deletePackageItem(id: string): Promise<void> {
+    await db.delete(packageItems).where(eq(packageItems.id, id));
   }
 }
 
