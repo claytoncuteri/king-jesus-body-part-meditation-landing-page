@@ -12,7 +12,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### Testimonials Enhancement (Latest)
+### Download Page & Email Setup (Latest)
+- Added secure download page system with unique token-based access per purchase
+- Each purchase generates a unique downloadToken (UUID) for secure access
+- POST /api/checkout/confirm-payment endpoint confirms payment and updates purchase status to "completed"
+- Success page calls confirmation endpoint and displays download link immediately
+- Download page shows all visible package items with secure access (requires status="completed")
+- Admin panel includes "Email Setup" tab with ConvertKit integration instructions
+- ConvertKit automation emails can include download link format: /download/{{DOWNLOAD_TOKEN}}
+- Webhook-less payment confirmation for test mode (production uses Stripe webhooks)
+
+### Testimonials Enhancement
 - Added gender and age fields to testimonials schema
 - Admin dashboard now supports full CRUD operations with all testimonial fields
 - Landing page displays gender and age (e.g., "Female, 32") instead of "Verified Student"
