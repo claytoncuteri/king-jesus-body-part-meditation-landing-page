@@ -345,6 +345,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get purchase and package items by download token (for download page)
+  app.get("/api/download/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      const purchase = await storage.getPurchaseByDownloadToken(token);
+      
+      if (!purchase) {
+        return res.status(404).json({ message: "Invalid download link" });
+      }
+
+      // Only allow access to completed purchases
+      if (purchase.status !== "completed") {
+        return res.status(403).json({ message: "Download not available yet" });
+      }
+      
+      // Get all visible package items
+      const packageItems = await storage.getVisiblePackageItems();
+      
+      res.json({
+        purchase,
+        packageItems,
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching download details" });
+    }
+  });
+
   // Admin API routes (protected)
 
   // Get analytics summary

@@ -46,6 +46,7 @@ export interface IStorage {
   updatePurchaseStatus(id: string, status: string): Promise<Purchase>;
   getRecentPurchases(limit?: number): Promise<Purchase[]>;
   getPurchaseByPaymentIntent(paymentIntentId: string): Promise<Purchase | undefined>;
+  getPurchaseByDownloadToken(token: string): Promise<Purchase | undefined>;
   
   // Email lead operations
   createEmailLead(lead: InsertEmailLead): Promise<EmailLead>;
@@ -228,6 +229,14 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(purchases)
       .where(eq(purchases.stripePaymentIntentId, paymentIntentId));
+    return purchase;
+  }
+
+  async getPurchaseByDownloadToken(token: string): Promise<Purchase | undefined> {
+    const [purchase] = await db
+      .select()
+      .from(purchases)
+      .where(eq(purchases.downloadToken, token));
     return purchase;
   }
 
