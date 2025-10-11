@@ -329,6 +329,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get purchase details by payment intent ID (for receipt display)
+  app.get("/api/purchase/:paymentIntentId", async (req, res) => {
+    try {
+      const { paymentIntentId } = req.params;
+      const purchase = await storage.getPurchaseByPaymentIntent(paymentIntentId);
+      
+      if (!purchase) {
+        return res.status(404).json({ message: "Purchase not found" });
+      }
+      
+      res.json(purchase);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching purchase details" });
+    }
+  });
+
   // Admin API routes (protected)
 
   // Get analytics summary
