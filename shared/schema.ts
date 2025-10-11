@@ -85,6 +85,7 @@ export const purchases = pgTable("purchases", {
   donationAmount: real("donation_amount").default(0),
   currency: varchar("currency").default("usd"),
   status: varchar("status").default("pending"), // 'pending', 'completed', 'failed'
+  downloadToken: varchar("download_token").unique().default(sql`gen_random_uuid()`),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
