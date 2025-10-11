@@ -412,9 +412,10 @@ export default function Admin() {
 
         {/* Tabs for different sections */}
         <Tabs defaultValue="testimonials" className="space-y-6">
-          <TabsList className="grid w-full max-w-2xl grid-cols-3" data-testid="tabs-admin">
+          <TabsList className="grid w-full max-w-2xl grid-cols-4" data-testid="tabs-admin">
             <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
             <TabsTrigger value="package-items">Package Items</TabsTrigger>
+            <TabsTrigger value="email-setup">Email Setup</TabsTrigger>
             <TabsTrigger value="purchases">Recent Purchases</TabsTrigger>
           </TabsList>
 
@@ -921,6 +922,79 @@ export default function Admin() {
                   )}
                 </TableBody>
               </Table>
+            </Card>
+          </TabsContent>
+
+          {/* Email Setup Tab */}
+          <TabsContent value="email-setup" className="space-y-4">
+            <h2 className="text-2xl font-bold font-serif">ConvertKit Email Setup</h2>
+            <Card className="p-6">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">📧 Download Link for ConvertKit</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Copy this link format and add it to your ConvertKit automation email. 
+                    Replace <code className="bg-muted px-1 rounded">{"{{DOWNLOAD_TOKEN}}"}</code> with the customer's unique download token.
+                  </p>
+                  <div className="bg-muted p-4 rounded-lg font-mono text-sm break-all">
+                    {window.location.origin}/download/{"{{DOWNLOAD_TOKEN}}"}
+                  </div>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h3 className="text-lg font-semibold mb-3">How to Set Up ConvertKit Automation:</h3>
+                  <ol className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex gap-2">
+                      <span className="font-semibold text-foreground">1.</span>
+                      <span>In ConvertKit, go to your purchase automation sequence</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-semibold text-foreground">2.</span>
+                      <span>Add a new email with your welcome message</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-semibold text-foreground">3.</span>
+                      <span>Include the download link above in the email body</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-semibold text-foreground">4.</span>
+                      <span>
+                        <strong>Important:</strong> The system automatically sends the download token when a purchase is completed.
+                        Make sure your ConvertKit automation is triggered by the purchase tag.
+                      </span>
+                    </li>
+                  </ol>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h3 className="text-lg font-semibold mb-3">📦 What's Included in Downloads:</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    The download page automatically shows all visible package items from the Package Items tab.
+                    Make sure to:
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex gap-2">
+                      <span>•</span>
+                      <span>Upload all meditation content files in the Package Items tab</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span>•</span>
+                      <span>Mark items as "Visible" to include them in customer downloads</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span>•</span>
+                      <span>Add descriptions to help customers understand each item</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>✨ Tip:</strong> Customers also see the download link immediately on the success page after purchase, 
+                    so they don't have to wait for email!
+                  </p>
+                </div>
+              </div>
             </Card>
           </TabsContent>
 
