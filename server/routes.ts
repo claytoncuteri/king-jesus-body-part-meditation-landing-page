@@ -10,10 +10,13 @@ import { db } from "./db";
 import { ObjectStorageService } from "./objectStorage";
 
 // Stripe setup with automatic tax
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+// 🚨 DEPLOYMENT REMINDER: Switch to STRIPE_SECRET_KEY for production!
+// Currently using TESTING keys for safe development
+const stripeKey = process.env.TESTING_STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
+if (!stripeKey) {
+  throw new Error('Missing required Stripe secret: TESTING_STRIPE_SECRET_KEY or STRIPE_SECRET_KEY');
 }
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(stripeKey, {
   apiVersion: "2025-09-30.clover",
 });
 

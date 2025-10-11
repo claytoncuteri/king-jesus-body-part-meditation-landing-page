@@ -111,8 +111,10 @@ Preferred communication style: Simple, everyday language.
 **Environment Configuration:**
 Required secrets:
 - `DATABASE_URL` - PostgreSQL connection string
-- `STRIPE_SECRET_KEY` - Stripe API secret
-- `VITE_STRIPE_PUBLIC_KEY` - Stripe publishable key (client-side)
+- `TESTING_STRIPE_SECRET_KEY` - Stripe test API secret (DEVELOPMENT - currently in use)
+- `TESTING_VITE_STRIPE_PUBLIC_KEY` - Stripe test publishable key (DEVELOPMENT - currently in use)
+- `STRIPE_SECRET_KEY` - Stripe LIVE API secret (PRODUCTION ONLY - switch before deploying!)
+- `VITE_STRIPE_PUBLIC_KEY` - Stripe LIVE publishable key (PRODUCTION ONLY - switch before deploying!)
 - `CONVERTKIT_API_KEY` - ConvertKit API key
 - `CONVERTKIT_API_SECRET` - ConvertKit API secret  
 - `CONVERTKIT_FORM_ID` - ConvertKit form for lead capture
@@ -120,3 +122,8 @@ Required secrets:
 - `SESSION_SECRET` - Express session encryption key
 - `REPL_ID` - Replit deployment identifier
 - `ISSUER_URL` - OAuth issuer (defaults to Replit OIDC)
+
+**🚨 DEPLOYMENT CHECKLIST:**
+1. **BEFORE DEPLOYING TO PRODUCTION:** Update `server/routes.ts` and `client/src/pages/checkout.tsx` to use LIVE Stripe keys (`STRIPE_SECRET_KEY` and `VITE_STRIPE_PUBLIC_KEY`) instead of TESTING keys
+2. Currently using TESTING keys for safe development with test cards like 4242424242424242
+3. Live keys will process real charges on real credit cards - use with caution!
