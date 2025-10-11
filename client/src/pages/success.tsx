@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Mail, Home, Receipt } from "lucide-react";
+import { CheckCircle, Mail, Home, Receipt, Download } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { Purchase } from "@shared/schema";
 
@@ -72,17 +72,45 @@ export default function Success() {
           </p>
         </div>
 
+        {/* Download Link - Primary CTA */}
+        {!isLoading && purchase?.downloadToken && (
+          <div className="bg-primary/10 border-2 border-primary rounded-lg p-6 mb-6">
+            <div className="text-center">
+              <h2 className="font-bold text-2xl mb-3 text-primary">
+                Access Your Meditation Package
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Click below to download all your digital content now
+              </p>
+              <Link href={`/download/${purchase.downloadToken}`}>
+                <Button
+                  size="lg"
+                  variant="default"
+                  className="text-lg py-6 px-8"
+                  data-testid="button-download-access"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download All Content
+                </Button>
+              </Link>
+              <p className="text-sm text-muted-foreground mt-4">
+                Save this link - you can download anytime!
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Email Confirmation */}
         <div className="bg-accent/50 border border-primary/20 rounded-lg p-6 mb-6">
           <div className="flex items-start gap-3">
             <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
             <div className="flex-1">
-              <h2 className="font-bold text-lg mb-2">Package Sent to Your Email</h2>
+              <h2 className="font-bold text-lg mb-2">Check Your Email</h2>
               {isLoading ? (
                 <div className="h-6 bg-muted animate-pulse rounded w-2/3" />
               ) : purchase?.email ? (
                 <p className="text-muted-foreground mb-3">
-                  Your complete meditation package has been delivered to:
+                  Download link also sent to:
                   <br />
                   <span className="font-semibold text-foreground" data-testid="text-delivery-email">
                     {purchase.email}
@@ -90,11 +118,11 @@ export default function Success() {
                 </p>
               ) : (
                 <p className="text-muted-foreground mb-3">
-                  Your meditation package will be delivered shortly.
+                  Download link will be emailed to you shortly.
                 </p>
               )}
               <p className="text-sm text-muted-foreground">
-                Check your inbox (and spam folder) for your digital products including:
+                Your package includes:
               </p>
               <ul className="space-y-1 mt-2 text-sm text-muted-foreground">
                 <li>• King Jesus Body Part Meditation Video</li>
