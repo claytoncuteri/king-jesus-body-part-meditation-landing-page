@@ -512,7 +512,11 @@ export default function Landing() {
                     <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
                       <div className="mb-3">
                         <p className="font-semibold">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">Verified Student</p>
+                        <p className="text-xs text-muted-foreground">
+                          {testimonial.gender && testimonial.age ? `${testimonial.gender}, ${testimonial.age}` : 
+                           testimonial.gender ? testimonial.gender : 
+                           testimonial.age ? `Age ${testimonial.age}` : ''}
+                        </p>
                       </div>
                       <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
                       
