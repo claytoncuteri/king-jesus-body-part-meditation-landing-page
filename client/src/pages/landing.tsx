@@ -353,7 +353,7 @@ export default function Landing() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
               Stuck in Financial Struggle? Break Free with the Same Meditation That Took My Net Worth from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
-              <span className="text-primary">$1.1M</span>
+              <span className="text-green-600">$1.1M</span>
             </h1>
             
             {/* Price and CTA */}
@@ -418,9 +418,9 @@ export default function Landing() {
                 <div className="text-6xl text-primary">"</div>
                 <div className="flex-1">
                   <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-card-foreground">
-                    I'm <span className="font-bold text-primary">Clayton Cuteri</span>. In just 21 months, this meditation helped me go from{" "}
+                    I'm <span className="font-bold text-primary">Clayton Cuteri</span>. In just 22 months, this meditation helped me go from{" "}
                     <span className="font-cinzel font-bold text-destructive">-$10,000</span> in debt to a{" "}
-                    <span className="font-cinzel font-bold text-primary">$1.1M</span> net worth across 4 businesses, a podcast, and 210K+ followers.
+                    <span className="font-cinzel font-bold text-green-600">$1.1M</span> net worth across 4 businesses, a podcast, and 210K+ followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
                     But here's what most don't know: Before I made my first dollar, I had to transform my relationship with money at the cellular level. This meditation rewired my prosperity consciousness, dissolved financial blocks, and aligned me with divine abundance.
@@ -823,7 +823,7 @@ export default function Landing() {
                   Q: How is this different from regular meditation?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to $1.1M in revenue.
+                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to <span className="text-green-600 font-bold">$1.1M</span> in revenue.
                 </p>
               </Card>
 
