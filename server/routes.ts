@@ -4,9 +4,10 @@ import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
-import { insertTestimonialSchema, insertAnalyticsEventSchema, insertEmailLeadSchema, insertPurchaseSchema, purchases } from "@shared/schema";
+import { insertTestimonialSchema, insertAnalyticsEventSchema, insertEmailLeadSchema, insertPurchaseSchema, insertPackageItemSchema, purchases } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { db } from "./db";
+import { ObjectStorageService } from "./objectStorage";
 
 // Stripe setup with automatic tax
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -390,6 +391,79 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Package items routes (admin)
+  
+  // Get all package items (admin)
+  app.get("/api/admin/package-items", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const items = await storage.getAllPackageItems();
+      res.json(items);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching package items" });
+    }
+  });
+
+  // Get package items upload URL (admin)
+  app.post("/api/admin/package-items/upload-url", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const objectStorageService = new ObjectStorageService();
+      const uploadURL = await objectStorageService.getPackageContentUploadURL();
+      res.json({ uploadURL });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error generating upload URL: " + error.message });
+    }
+  });
+
+  // Create package item (admin)
+  app.post("/api/admin/package-items", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const validated = insertPackageItemSchema.parse(req.body);
+      const item = await storage.createPackageItem(validated);
+      res.json(item);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Update package item (admin)
+  app.put("/api/admin/package-items/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validated = insertPackageItemSchema.partial().parse(req.body);
+      const item = await storage.updatePackageItem(id, validated);
+      res.json(item);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Delete package item (admin)
+  app.delete("/api/admin/package-items/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deletePackageItem(id);
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Public route to serve package content files
+  app.get("/public-objects/:filePath(*)", async (req, res) => {
+    const filePath = req.params.filePath;
+    const objectStorageService = new ObjectStorageService();
+    try {
+      const file = await objectStorageService.searchPublicObject(filePath);
+      if (!file) {
+        return res.status(404).json({ error: "File not found" });
+      }
+      objectStorageService.downloadObject(file, res);
+    } catch (error) {
+      console.error("Error searching for public object:", error);
+      return res.status(500).json({ error: "Internal server error" });
     }
   });
 
