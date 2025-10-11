@@ -391,16 +391,16 @@ export default function Landing() {
             </div>
             
             {/* Formula Section */}
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl overflow-x-auto mt-3">
-              <div className="font-chalk text-2xl md:text-3xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 md:gap-4 flex-wrap min-w-max mx-auto">
+            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-3 sm:p-4 md:p-6 shadow-xl mt-3">
+              <div className="font-chalk text-sm sm:text-lg md:text-2xl lg:text-3xl text-white/90 transform -rotate-1 flex items-center justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
                 <span className="text-center leading-tight">
                   Ancient King Jesus<br />meditation
                 </span>
-                <span className="text-4xl md:text-5xl font-bold">+</span>
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">+</span>
                 <span className="text-center leading-tight">
                   Proven<br />prosperity teachings
                 </span>
-                <span className="text-4xl md:text-5xl font-bold">=</span>
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">=</span>
                 <span className="text-center leading-tight">
                   Your fastest path<br />to abundance
                 </span>
