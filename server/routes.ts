@@ -206,7 +206,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { paymentIntentId, donationAmount } = req.body;
       
       // Validate donation amount - must be one of the preset values
-      const validDonationAmounts = [5, 10, 15, 25, 100, 200];
+      const validDonationAmounts = [5, 9, 10, 15, 25, 100, 200];
       if (!validDonationAmounts.includes(donationAmount)) {
         return res.status(400).json({ 
           message: "Invalid donation amount. Please select a valid option.",

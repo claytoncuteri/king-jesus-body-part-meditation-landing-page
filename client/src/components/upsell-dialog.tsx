@@ -6,7 +6,26 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Heart, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
+
+// 5-pointed star SVG component for buttons (white outline, no fill)
+function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        fill="none"
+        stroke="white" 
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
 
 interface UpsellDialogProps {
   open: boolean;
@@ -22,7 +41,7 @@ export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing =
         <AlertDialogHeader>
           <div className="flex justify-center mb-2">
             <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center animate-pulse">
-              <Heart className="w-8 h-8 text-primary fill-primary" />
+              <ButtonStar className="w-8 h-8 text-primary" />
             </div>
           </div>
           <AlertDialogTitle className="text-center text-xl sm:text-2xl">
@@ -53,7 +72,7 @@ export function UpsellDialog({ open, onSelectDonation, onDecline, isProcessing =
             disabled={isProcessing}
             data-testid="button-add-donation"
           >
-            <Heart className="w-5 h-5 mr-2 fill-current" />
+            <ButtonStar className="w-5 h-5 mr-2" />
             Yes! Add $9 Donation ($13.95 total)
           </Button>
 
