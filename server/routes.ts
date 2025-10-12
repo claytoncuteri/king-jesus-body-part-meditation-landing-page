@@ -3,7 +3,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
+import { setupSimpleAuth, isAdminAuthenticated } from "./simpleAuth";
 import { insertTestimonialSchema, insertAnalyticsEventSchema, insertEmailLeadSchema, insertPurchaseSchema, insertPackageItemSchema, purchases } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { db } from "./db";
@@ -111,20 +111,8 @@ async function sendProductDeliveryEmail(email: string, name?: string) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Auth middleware
-  await setupAuth(app);
-
-  // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
-    try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
-      res.json(user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
-    }
-  });
+  // Setup simple password-based admin auth
+  setupSimpleAuth(app);
 
   // Public API routes
 
@@ -439,7 +427,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin API routes (protected)
 
   // Get analytics summary
-  app.get("/api/admin/analytics", isAuthenticated, isAdmin, async (req, res) => {
+  app.get("/api/admin/analytics", isAdminAuthenticated, async (req, res) => {
     try {
       const summary = await storage.getAnalyticsSummary();
       res.json(summary);
@@ -449,7 +437,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all testimonials (admin)
-  app.get("/api/admin/testimonials", isAuthenticated, isAdmin, async (req, res) => {
+  app.get("/api/admin/testimonials", isAdminAuthenticated, async (req, res) => {
     try {
       const testimonials = await storage.getAllTestimonials();
       res.json(testimonials);
@@ -459,7 +447,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create testimonial (admin)
-  app.post("/api/admin/testimonials", isAuthenticated, isAdmin, async (req, res) => {
+  app.post("/api/admin/testimonials", isAdminAuthenticated, async (req, res) => {
     try {
       const validated = insertTestimonialSchema.parse(req.body);
       const testimonial = await storage.createTestimonial(validated);
@@ -470,7 +458,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update testimonial (admin)
-  app.put("/api/admin/testimonials/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.put("/api/admin/testimonials/:id", isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const validated = insertTestimonialSchema.partial().parse(req.body);
@@ -482,7 +470,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update testimonial visibility (admin)
-  app.patch("/api/admin/testimonials/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.patch("/api/admin/testimonials/:id", isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const { isVisible } = req.body;
@@ -494,7 +482,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Delete testimonial (admin)
-  app.delete("/api/admin/testimonials/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.delete("/api/admin/testimonials/:id", isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deleteTestimonial(id);
@@ -507,7 +495,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Package items routes (admin)
   
   // Get all package items (admin)
-  app.get("/api/admin/package-items", isAuthenticated, isAdmin, async (req, res) => {
+  app.get("/api/admin/package-items", isAdminAuthenticated, async (req, res) => {
     try {
       const items = await storage.getAllPackageItems();
       res.json(items);
@@ -517,7 +505,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get package items upload URL (admin)
-  app.post("/api/admin/package-items/upload-url", isAuthenticated, isAdmin, async (req, res) => {
+  app.post("/api/admin/package-items/upload-url", isAdminAuthenticated, async (req, res) => {
     try {
       const objectStorageService = new ObjectStorageService();
       const uploadURL = await objectStorageService.getPackageContentUploadURL();
@@ -528,7 +516,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create package item (admin)
-  app.post("/api/admin/package-items", isAuthenticated, isAdmin, async (req, res) => {
+  app.post("/api/admin/package-items", isAdminAuthenticated, async (req, res) => {
     try {
       const validated = insertPackageItemSchema.parse(req.body);
       const item = await storage.createPackageItem(validated);
@@ -539,7 +527,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update package item (admin)
-  app.put("/api/admin/package-items/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.put("/api/admin/package-items/:id", isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const validated = insertPackageItemSchema.partial().parse(req.body);
@@ -551,7 +539,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Delete package item (admin)
-  app.delete("/api/admin/package-items/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.delete("/api/admin/package-items/:id", isAdminAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deletePackageItem(id);
