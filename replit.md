@@ -12,7 +12,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### Download Page & Email Setup (Latest)
+### Admin Password Authentication (Latest)
+- Replaced Replit Auth with simple password-based authentication
+- Admin login now requires ADMIN_PASSWORD environment variable (no default fallback)
+- Secure session management with PostgreSQL session store
+- Login/logout activity logged with timestamps for security monitoring
+- Session cookies: HTTP-only, secure in production, 7-day expiration
+
+### Download Page & Email Setup
 - Added secure download page system with unique token-based access per purchase
 - Each purchase generates a unique downloadToken (UUID) for secure access
 - POST /api/checkout/confirm-payment endpoint confirms payment and updates purchase status to "completed"
@@ -50,7 +57,8 @@ Preferred communication style: Simple, everyday language.
 - Landing page with hero, value proposition, testimonials, FAQ
 - Stripe checkout page with payment element integration
 - Success page with product delivery confirmation
-- Admin dashboard for testimonial/analytics management (Replit Auth protected)
+- Admin dashboard for testimonial/analytics management (password protected)
+- Download page with secure token-based access to purchased content
 - Privacy and Terms pages
 
 ### Backend Architecture
@@ -108,10 +116,10 @@ Preferred communication style: Simple, everyday language.
 - Supports first name personalization
 
 **Authentication:**
-- **Replit Auth:** OAuth-based authentication for admin access
-- Uses OpenID Connect with Passport.js strategy
-- Admin dashboard protected by `isAdmin` flag in user records
+- **Simple Password Auth:** Password-based authentication for admin access
+- Admin dashboard protected by ADMIN_PASSWORD environment variable
 - Session-based authentication with PostgreSQL session store
+- Secure cookies in production, login/logout tracking with timestamps
 
 **Development Tools:**
 - Vite for frontend build and HMR
@@ -121,6 +129,7 @@ Preferred communication style: Simple, everyday language.
 **Environment Configuration:**
 Required secrets:
 - `DATABASE_URL` - PostgreSQL connection string
+- `ADMIN_PASSWORD` - Admin dashboard password (required - no default)
 - `TESTING_STRIPE_SECRET_KEY` - Stripe test API secret (DEVELOPMENT - currently in use)
 - `TESTING_VITE_STRIPE_PUBLIC_KEY` - Stripe test publishable key (DEVELOPMENT - currently in use)
 - `STRIPE_SECRET_KEY` - Stripe LIVE API secret (PRODUCTION ONLY - switch before deploying!)
@@ -130,8 +139,6 @@ Required secrets:
 - `CONVERTKIT_FORM_ID` - ConvertKit form for lead capture
 - `CONVERTKIT_PURCHASE_TAG_ID` - ConvertKit tag for purchase automation
 - `SESSION_SECRET` - Express session encryption key
-- `REPL_ID` - Replit deployment identifier
-- `ISSUER_URL` - OAuth issuer (defaults to Replit OIDC)
 
 **🚨 DEPLOYMENT CHECKLIST:**
 1. **BEFORE DEPLOYING TO PRODUCTION:** Update `server/routes.ts` and `client/src/pages/checkout.tsx` to use LIVE Stripe keys (`STRIPE_SECRET_KEY` and `VITE_STRIPE_PUBLIC_KEY`) instead of TESTING keys
