@@ -355,8 +355,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let deliverySuccess = false;
       if (purchase.email && purchase.downloadToken) {
         try {
-          await tagSubscriberForDelivery(purchase.email, purchase.downloadToken);
-          deliverySuccess = true;
+          deliverySuccess = await sendProductDeliveryEmail(purchase.email, purchase.name || undefined);
           console.log(`✅ Tagged ${purchase.email} for automated delivery`);
         } catch (error) {
           console.error("Error tagging subscriber for delivery:", error);

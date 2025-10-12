@@ -1,6 +1,5 @@
-// Admin dashboard page with Replit Auth protection
-import { useEffect, useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+// Admin dashboard page with password protection
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -32,7 +31,7 @@ import type { UploadResult } from "@uppy/core";
 
 export default function Admin() {
   const { toast } = useToast();
-  const { user, isLoading, isAuthenticated } = useAuth();
+  const [password, setPassword] = useState("");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [newTestimonial, setNewTestimonial] = useState({ name: "", content: "", gender: "", age: "" });
@@ -45,19 +44,13 @@ export default function Admin() {
   const [editPackageItem, setEditPackageItem] = useState<any>(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState<string>("");
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      toast({
-        title: "Unauthorized",
-        description: "Please log in to access the admin dashboard",
-        variant: "destructive",
-      });
-      setTimeout(() => {
-        window.location.href = "/api/login";
-      }, 500);
-    }
-  }, [isAuthenticated, isLoading, toast]);
+  // Check authentication status
+  const { data: authStatus, isLoading } = useQuery<{ isAuthenticated: boolean }>({
+    queryKey: ["/api/admin/check"],
+    retry: false,
+  });
+
+  const isAuthenticated = authStatus?.isAuthenticated ?? false;
 
   // Get analytics data
   const { data: analytics } = useQuery({
@@ -292,6 +285,49 @@ export default function Admin() {
     }
   };
 
+  // Login mutation
+  const loginMutation = useMutation({
+    mutationFn: async (password: string) => {
+      return await apiRequest("POST", "/api/admin/login", { password });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/check"] });
+      toast({
+        title: "Success",
+        description: "Logged in successfully",
+      });
+      setPassword("");
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Invalid password",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Logout mutation
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/admin/logout", {});
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/check"] });
+      toast({
+        title: "Success",
+        description: "Logged out successfully",
+      });
+    },
+  });
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.trim()) {
+      loginMutation.mutate(password);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -301,7 +337,46 @@ export default function Admin() {
   }
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="w-full max-w-md p-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold font-serif text-primary mb-2">Admin Login</h1>
+            <p className="text-muted-foreground">King Jesus Meditation</p>
+          </div>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <Label htmlFor="password" data-testid="label-password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter admin password"
+                className="mt-1"
+                data-testid="input-password"
+                disabled={loginMutation.isPending}
+              />
+            </div>
+            <Button 
+              type="submit" 
+              className="w-full" 
+              data-testid="button-login"
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? "Logging in..." : "Login"}
+            </Button>
+          </form>
+          <div className="mt-4 text-center">
+            <Link href="/">
+              <Button variant="ghost" size="sm" data-testid="link-back-to-site">
+                ← Back to Site
+              </Button>
+            </Link>
+          </div>
+        </Card>
+      </div>
+    );
   }
 
   return (
@@ -322,11 +397,12 @@ export default function Admin() {
               </Link>
               <Button
                 variant="ghost"
-                onClick={() => window.location.href = "/api/logout"}
+                onClick={() => logoutMutation.mutate()}
                 data-testid="button-logout"
+                disabled={logoutMutation.isPending}
               >
                 <LogOut className="mr-2 h-4 w-4" />
-                Logout
+                {logoutMutation.isPending ? "Logging out..." : "Logout"}
               </Button>
             </div>
           </div>
