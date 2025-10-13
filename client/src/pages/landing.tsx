@@ -644,6 +644,9 @@ export default function Landing() {
                 <p className="text-lg text-muted-foreground">
                   That's <span className="font-bold text-primary">92% OFF</span> the regular price!
                 </p>
+                <p className="text-sm text-secondary italic mt-4">
+                  + Secret bonus gift included with your purchase 🎁
+                </p>
                 <Button
                   size="lg"
                   variant="destructive"
