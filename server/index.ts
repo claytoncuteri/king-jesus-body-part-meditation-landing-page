@@ -17,6 +17,13 @@ app.use((req, res, next) => {
     "frame-src 'self' https://js.stripe.com https://hooks.stripe.com; " +
     "connect-src 'self' https://api.stripe.com wss: ws:;"
   );
+  
+  if (app.get("env") === "development") {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+  
   next();
 });
 
