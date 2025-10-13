@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -816,66 +822,66 @@ export default function Landing() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-              Common Questions
+              Frequently Asked Questions
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
               Everything you need to know before starting your transformation
             </p>
-            <div className="space-y-6">
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: How is this different from regular meditation?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-1">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  How is this different from regular meditation?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to <span className="text-green-600 font-bold">$1.1M</span> in net worth.
-                </p>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: Do I need any prior meditation experience?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <AccordionItem value="item-2" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-2">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  Do I need any prior meditation experience?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   No! This package is designed for complete beginners and experienced students alike. The step-by-step video guides you through every detail, and the journal helps you track your progress from day one.
-                </p>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: What if this doesn't work for me?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <AccordionItem value="item-3" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-3">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  What if this doesn't work for me?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   Your $4.95 investment is protected by our Satisfaction Promise. If you don't experience a shift in your spiritual connection and prosperity mindset, your investment automatically supports our mission to build churches honoring King Jesus for global peace. Either way, you contribute to something meaningful.
-                </p>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: How quickly will I see results?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <AccordionItem value="item-4" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-4">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  How quickly will I see results?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   Many students report feeling a deeper sense of peace within the first session. Financial manifestations vary by individual commitment and practice, but the spiritual connection begins immediately. The included journal helps you track both subtle and significant shifts in your journey.
-                </p>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: Is this compatible with my current faith tradition?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <AccordionItem value="item-5" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-5">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  Is this compatible with my current faith tradition?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   This meditation honors the universal divine presence. Many students from various spiritual backgrounds find it enriches their existing practice. It's about connecting to the divine energy within you, regardless of your religious path.
-                </p>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-              <Card className="p-6 hover-elevate transition-all">
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Q: Why is it only $4.95 instead of $60.27?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <AccordionItem value="item-6" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-6">
+                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
+                  Why is it only $4.95 instead of $60.27?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
                   My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today. Plus, 100% of proceeds support building churches honoring King Jesus.
-                </p>
-              </Card>
-            </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
 
             {/* CTA after FAQ */}
             <div className="mt-12 text-center">
