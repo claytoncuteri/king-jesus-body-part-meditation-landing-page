@@ -19,10 +19,11 @@ import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 import claytonProfileImage from "@assets/A3EAA35F-FDED-40A9-A1FD-04AF9F7150D6_1760146685893.jpeg";
 
 // 5-pointed star SVG component (gold fill with black border for images)
-function FivePointedStar({ className = "w-6 h-6" }: { className?: string }) {
+function FivePointedStar({ className = "w-6 h-6", style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg
       className={className}
+      style={style}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +76,7 @@ export default function Landing() {
   });
 
   // Get testimonials
-  const { data: testimonials = [] } = useQuery({
+  const { data: testimonials = [] } = useQuery<any[]>({
     queryKey: ["/api/testimonials"],
   });
 
