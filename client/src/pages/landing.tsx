@@ -976,7 +976,7 @@ export default function Landing() {
       <footer className="bg-sidebar text-sidebar-foreground py-12 border-t border-primary/20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div>
                 <h3 className="font-bold text-lg mb-4 text-primary">Legal</h3>
                 <div className="space-y-2">
@@ -1000,12 +1000,6 @@ export default function Landing() {
                   <Instagram className="h-4 w-4" />
                   @claytoncuteri
                 </a>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-4 text-primary">Admin</h3>
-                <Link href="/admin" className="block text-sm hover:text-primary transition-colors" data-testid="link-admin">
-                  Dashboard Login
-                </Link>
               </div>
             </div>
             <div className="border-t border-primary/20 pt-8 text-center text-sm text-muted-foreground">
