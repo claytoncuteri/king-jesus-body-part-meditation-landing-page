@@ -385,7 +385,7 @@ export default function Landing() {
                   <span className="whitespace-nowrap">Buy Now — $4.95</span>
                 </Button>
                 <p className="text-xs text-muted-foreground">
-                  ⏰ <span className="font-semibold">Join 500+ students</span> who've transformed their relationship with money and spirituality
+                  ⏰ <span className="font-semibold">Join 45+ students</span> who've transformed their relationship with money and spirituality
                 </p>
                 <p className="text-xs text-muted-foreground italic">
                   100% of proceeds support building churches honoring King Jesus for global peace initiatives
@@ -558,7 +558,7 @@ export default function Landing() {
                   data-testid="button-testimonials-cta"
                 >
                   <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Join 500+ Students — $4.95</span>
+                  <span className="whitespace-nowrap">Join 45+ Students — $4.95</span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Experience the same transformation as our 4.98/5 rated community
@@ -676,7 +676,7 @@ export default function Landing() {
               
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">While you hesitate,</span> 500+ students are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
+                  <span className="font-bold text-destructive">While you hesitate,</span> 45+ students are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
                 </p>
               </Card>
 
