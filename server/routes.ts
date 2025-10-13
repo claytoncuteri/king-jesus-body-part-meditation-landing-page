@@ -563,7 +563,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Public route to serve package content files from attached_assets
-  app.get("/assets/:filename", (req, res) => {
+  // Note: Changed from /assets/ to /attached-assets/ to avoid conflict with Vite build assets
+  app.get("/attached-assets/:filename", (req, res) => {
     const filename = req.params.filename;
     const filePath = `${import.meta.dirname}/../attached_assets/${filename}`;
     res.sendFile(filePath, (err) => {
