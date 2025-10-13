@@ -615,7 +615,7 @@ export default function Landing() {
                           ${item.value.toFixed(2)}
                         </p>
                         <span className="text-green-600 font-chalk text-lg font-bold -rotate-2">
-                          FREE
+                          {idx === 0 ? "$4.95" : "FREE"}
                         </span>
                       </div>
                     </div>

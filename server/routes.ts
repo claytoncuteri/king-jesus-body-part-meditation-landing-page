@@ -548,7 +548,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Public route to serve package content files
+  // Public route to serve package content files from attached_assets
+  app.get("/assets/:filename", (req, res) => {
+    const filename = req.params.filename;
+    const filePath = `${import.meta.dirname}/../attached_assets/${filename}`;
+    res.sendFile(filePath, (err) => {
+      if (err) {
+        console.error("Error serving file:", err);
+        res.status(404).json({ error: "File not found" });
+      }
+    });
+  });
+
+  // Public route to serve package content files from object storage
   app.get("/public-objects/:filePath(*)", async (req, res) => {
     const filePath = req.params.filePath;
     const objectStorageService = new ObjectStorageService();
