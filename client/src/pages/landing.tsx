@@ -628,6 +628,30 @@ export default function Landing() {
                   </div>
                 </Card>
               ))}
+              
+              {/* Secret Bonus Gift Card */}
+              <Card className="p-6 hover-elevate transition-all border-2 border-secondary/50 bg-gradient-to-br from-secondary/5 to-primary/5" data-testid="card-bonus-gift">
+                <div className="flex items-start gap-3">
+                  <Check className="text-secondary mt-1 flex-shrink-0" />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-semibold">Secret Bonus Gift</h3>
+                      <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">🎁 SURPRISE</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      A special sacred gift will be revealed after your purchase. This exclusive bonus enhances your spiritual journey.
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <p className="text-xl font-bold text-foreground font-chalk">
+                        ???
+                      </p>
+                      <span className="text-secondary font-chalk text-lg font-bold -rotate-2">
+                        BONUS
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
 
             {/* Total Value Card */}
