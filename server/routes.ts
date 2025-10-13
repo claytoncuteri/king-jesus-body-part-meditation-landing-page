@@ -266,12 +266,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/stripe-webhook", async (req, res) => {
     try {
       const sig = req.headers['stripe-signature'];
+      const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
       
       if (!sig) {
         return res.status(400).send('Missing stripe-signature header');
       }
 
-      const event = req.body;
+      // CRITICAL SECURITY: Verify webhook signature to prevent fake payment events
+      let event;
+      if (webhookSecret) {
+        try {
+          event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+        } catch (err: any) {
+          console.error(`⚠️ Webhook signature verification failed: ${err.message}`);
+          return res.status(400).send(`Webhook Error: ${err.message}`);
+        }
+      } else {
+        // Fallback for development (not recommended for production)
+        console.warn('⚠️ WARNING: STRIPE_WEBHOOK_SECRET not set - webhook signature not verified!');
+        event = req.body;
+      }
 
       // Handle the event
       if (event.type === 'payment_intent.succeeded') {
