@@ -15,9 +15,9 @@ app.use((req, res, next) => {
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://maps.googleapis.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' data: https://fonts.gstatic.com; " +
-    "img-src 'self' data: https: blob:; " +
+    "img-src 'self' data: https: blob: https://q.stripe.com; " +
     "frame-src 'self' https://js.stripe.com https://hooks.stripe.com; " +
-    "connect-src 'self' https://api.stripe.com wss: ws:;"
+    "connect-src 'self' https://api.stripe.com https://m.stripe.network https://r.stripe.com wss: ws:;"
   );
   
   if (app.get("env") === "development") {
