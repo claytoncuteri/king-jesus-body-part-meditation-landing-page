@@ -851,7 +851,7 @@ export default function Landing() {
                   What if this doesn't work for me?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  While we cannot promise specific outcomes, your success with this practice is proportionate to your effort. With any level of sincere effort, you will experience spiritual growth and success. The way this manifests on the physical layer is different for everyone - some experience immediate peace, others see gradual prosperity shifts, and many notice both.
+                  Yes! While we cannot promise specific outcomes, your success with this practice is proportionate to your effort. With any level of sincere effort, you will experience spiritual growth and success. The way this manifests on the physical layer is different for everyone - some experience immediate peace, others see gradual prosperity shifts, and many notice both.
                 </AccordionContent>
               </AccordionItem>
 
