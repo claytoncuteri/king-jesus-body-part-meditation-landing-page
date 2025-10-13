@@ -32,11 +32,11 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
-// 🚨 DEPLOYMENT REMINDER: Switch to VITE_STRIPE_PUBLIC_KEY for production!
-// Currently using TESTING keys for safe development
-const stripePublicKey = import.meta.env.TESTING_VITE_STRIPE_PUBLIC_KEY || import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+// ✅ PRODUCTION MODE: Using LIVE Stripe keys
+// To test with test cards, switch back to TESTING_VITE_STRIPE_PUBLIC_KEY
+const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY || import.meta.env.TESTING_VITE_STRIPE_PUBLIC_KEY;
 if (!stripePublicKey) {
-  throw new Error('Missing required Stripe key: TESTING_VITE_STRIPE_PUBLIC_KEY or VITE_STRIPE_PUBLIC_KEY');
+  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY or TESTING_VITE_STRIPE_PUBLIC_KEY');
 }
 const stripePromise = loadStripe(stripePublicKey);
 
