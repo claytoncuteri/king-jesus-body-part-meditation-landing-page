@@ -510,7 +510,7 @@ export default function Landing() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">180+ students</span>
+                  Rated by <span className="font-semibold text-foreground">45+ students</span>
                 </p>
               </div>
 
