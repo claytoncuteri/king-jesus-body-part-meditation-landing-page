@@ -12,7 +12,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### Admin Password Authentication (Latest)
+### Package Items Setup (Latest)
+- Added 5 package items to database with placeholder content URLs
+- Items can be updated with real URLs later via admin panel or direct database update
+- Package includes: meditation video, podcast episodes, 2 PDFs, meditation journal template
+- Admin file upload available but can be bypassed by updating contentUrl field directly
+
+### Admin Password Authentication
 - Replaced Replit Auth with simple password-based authentication
 - Admin login now requires ADMIN_PASSWORD environment variable (no default fallback)
 - Secure session management with PostgreSQL session store
