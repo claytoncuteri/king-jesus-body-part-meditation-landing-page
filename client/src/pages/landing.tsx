@@ -851,7 +851,7 @@ export default function Landing() {
                   What if this doesn't work for me?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  Your $4.95 investment is protected by our Satisfaction Promise. If you don't experience a shift in your spiritual connection and prosperity mindset, your investment automatically supports our mission to build churches honoring King Jesus for global peace. Either way, you contribute to something meaningful.
+                  While we cannot promise specific outcomes, your success with this practice is proportionate to your effort. With any level of sincere effort, you will experience spiritual growth and success. The way this manifests on the physical layer is different for everyone - some experience immediate peace, others see gradual prosperity shifts, and many notice both. Your $4.95 investment supports our mission to build churches honoring King Jesus for global peace.
                 </AccordionContent>
               </AccordionItem>
 
