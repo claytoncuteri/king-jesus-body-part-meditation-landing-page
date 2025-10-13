@@ -489,7 +489,7 @@ export default function Landing() {
               {/* Rating Display */}
               <div className="flex flex-col items-center gap-3 py-4 mb-8">
                 <div className="flex items-center gap-2">
-                  <span className="text-3xl font-bold text-primary">4.98</span>
+                  <span className="text-3xl font-bold text-primary">4.91</span>
                   <span className="text-xl text-muted-foreground">/5</span>
                 </div>
                 <div className="flex items-center gap-1">
@@ -561,7 +561,7 @@ export default function Landing() {
                   <span className="whitespace-nowrap">Join 45+ Students — $4.95</span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  Experience the same transformation as our 4.98/5 rated community
+                  Experience the same transformation as our 4.91/5 rated community
                 </p>
               </div>
             </div>
