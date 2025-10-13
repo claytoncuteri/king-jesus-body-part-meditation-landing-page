@@ -55,7 +55,7 @@ export default function Terms() {
           <section className="mt-8">
             <h2 className="text-2xl font-bold font-serif text-foreground">Refund Policy</h2>
             <p className="text-foreground">
-              Due to the digital nature of our products, all sales are final. We do not offer refunds once the digital products have been delivered to your email. If you experience technical issues accessing your products, please contact us at support@travelingtoconciousness.com and we will assist you.
+              Due to the digital nature of our products, all sales are final. We do not offer refunds once the digital products have been delivered to your email. If you experience technical issues accessing your products, please contact us at support@travelingtoconsciousness.com and we will assist you.
             </p>
           </section>
 
@@ -145,7 +145,7 @@ export default function Terms() {
               For questions about these Terms and Conditions, please contact us at:
             </p>
             <p className="text-foreground">
-              Email: legal@travelingtoconciousness.com
+              Email: support@travelingtoconsciousness.com
             </p>
           </section>
         </article>

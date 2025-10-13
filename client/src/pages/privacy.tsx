@@ -129,7 +129,7 @@ export default function Privacy() {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <p className="text-foreground">
-              Email: privacy@travelingtoconciousness.com
+              Email: support@travelingtoconsciousness.com
             </p>
           </section>
         </article>
