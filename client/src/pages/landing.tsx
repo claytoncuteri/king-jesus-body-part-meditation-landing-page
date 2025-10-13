@@ -878,7 +878,7 @@ export default function Landing() {
                   Why is it only $4.95 instead of $60.27?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today. Plus, 100% of proceeds support building churches honoring King Jesus.
+                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
