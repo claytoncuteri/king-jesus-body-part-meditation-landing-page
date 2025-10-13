@@ -827,7 +827,7 @@ export default function Landing() {
                   Q: How is this different from regular meditation?
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to <span className="text-green-600 font-bold">$1.1M</span> in revenue.
+                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from -$10K in debt to <span className="text-green-600 font-bold">$1.1M</span> in net worth.
                 </p>
               </Card>
 
