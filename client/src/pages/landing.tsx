@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Accordion,
   AccordionContent,
@@ -12,16 +11,13 @@ import {
 } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Star, Instagram, Check, Menu, X, TrendingUp, Users, Award, Sparkles } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { Star, Instagram, Check, Menu, X, TrendingUp, Users, Award, Sparkles, Music, Heart, ArrowRight, Download, BookOpen, Play } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 import claytonRedCarpet from "@assets/clayton-photos/clayton-red-carpet.png";
 import claytonAward from "@assets/clayton-photos/clayton-award-ceremony.png";
 import claytonProfile from "@assets/clayton-photos/clayton-profile.jpeg";
-import goldenSacredBg from "@assets/stock_images/abstract_golden_sacr_148906f0.jpg";
-import divineBlueBg from "@assets/stock_images/divine_blue_mystical_0fc3d49a.jpg";
-import navyBlueBg from "@assets/stock_images/navy_blue_sacred_geo_335d6ad2.jpg";
 
 // 5-pointed star SVG component (gold fill with black border for images)
 function FivePointedStar({ className = "w-6 h-6", style }: { className?: string; style?: React.CSSProperties }) {
@@ -130,116 +126,48 @@ export default function Landing() {
     window.location.href = "/checkout";
   };
 
-  // Split testimonials into 3 groups
-  const firstTestimonials = testimonials.slice(0, 3);
-  const secondTestimonials = testimonials.slice(3, 6);
-  const thirdTestimonials = testimonials.slice(6);
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Images */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-primary/20">
+      {/* Simple Header - Copy Posse Style */}
+      <header className="sticky top-0 z-50 bg-background border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-6 max-w-7xl mx-auto">
-            {/* Left: Images */}
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <FivePointedStar className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" />
-                <FivePointedStar className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" />
-                <FivePointedStar className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" />
-                <FivePointedStar className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" />
-                <img
-                  src={mahavatarImage}
-                  alt="Mahavatar Babaji"
-                  className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
-                  data-testid="img-mahavatar-header"
-                />
-              </div>
-              <div className="relative">
-                <FivePointedStar className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <img
-                  src={kingJesusImage}
-                  alt="King Jesus"
-                  className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
-                  data-testid="img-king-jesus-header"
-                />
-              </div>
+          <div className="flex items-center justify-between max-w-7xl mx-auto">
+            {/* Logo/Brand */}
+            <div className="flex items-center gap-3">
+              <img
+                src={kingJesusImage}
+                alt="King Jesus Meditation"
+                className="h-10 w-10 object-cover rounded-md"
+                data-testid="img-logo"
+              />
+              <span className="font-bold text-lg hidden sm:inline">King Jesus Meditation</span>
             </div>
 
-            {/* Center: Navigation */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                data-testid="nav-home"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('about');
-                  if (el) {
-                    const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                  }
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                data-testid="nav-about"
-              >
-                About Clayton
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('testimonials');
-                  if (el) {
-                    const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                  }
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                data-testid="nav-testimonials"
-              >
-                Testimonials
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('faq');
-                  if (el) {
-                    const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                  }
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                data-testid="nav-faq"
-              >
-                FAQ
-              </button>
+              <a href="#mission" className="text-sm font-medium hover:text-primary transition-colors" data-testid="nav-mission">Mission</a>
+              <a href="#about" className="text-sm font-medium hover:text-primary transition-colors" data-testid="nav-about">About</a>
+              <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors" data-testid="nav-testimonials">Testimonials</a>
+              <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors" data-testid="nav-faq">FAQ</a>
             </nav>
 
-            {/* Right: CTA Button and Mobile Menu Toggle */}
+            {/* CTA Button */}
             <div className="flex items-center gap-3">
               <Button
-                size="lg"
                 variant="destructive"
-                className="shadow-lg hover:shadow-xl transition-all hidden sm:flex"
+                size="lg"
+                className="hidden sm:flex"
                 onClick={handleCheckout}
-                data-testid="button-header-purchase"
+                data-testid="button-header-cta"
               >
-                <ButtonStar className="mr-2 h-4 w-4" />
-                Buy Now - $4.95
+                Get Started - $4.95
               </Button>
               <Button
-                size="lg"
                 variant="destructive"
-                className="shadow-lg hover:shadow-xl transition-all sm:hidden"
+                size="default"
+                className="sm:hidden"
                 onClick={handleCheckout}
-                data-testid="button-header-purchase-mobile"
+                data-testid="button-header-cta-mobile"
               >
                 Buy Now
               </Button>
@@ -257,236 +185,272 @@ export default function Landing() {
 
           {/* Mobile Navigation Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden border-t border-primary/20 py-4">
+            <div className="md:hidden border-t mt-4 pt-4">
               <nav className="flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
-                  data-testid="nav-home-mobile"
-                >
-                  Home
-                </button>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('about');
-                    if (el) {
-                      const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
-                  data-testid="nav-about-mobile"
-                >
-                  About Clayton
-                </button>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('testimonials');
-                    if (el) {
-                      const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
-                  data-testid="nav-testimonials-mobile"
-                >
-                  Testimonials
-                </button>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('faq');
-                    if (el) {
-                      const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
-                  data-testid="nav-faq-mobile"
-                >
-                  FAQ
-                </button>
+                <a href="#mission" className="px-4 py-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)} data-testid="nav-mission-mobile">Mission</a>
+                <a href="#about" className="px-4 py-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)} data-testid="nav-about-mobile">About</a>
+                <a href="#testimonials" className="px-4 py-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)} data-testid="nav-testimonials-mobile">Testimonials</a>
+                <a href="#faq" className="px-4 py-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(false)} data-testid="nav-faq-mobile">FAQ</a>
               </nav>
             </div>
           )}
         </div>
       </header>
 
-      {/* Hero Section - Bold Emphasized Headline */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-8 pb-12 md:pt-12 md:pb-16">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-          {[...Array(20)].map((_, i) => (
-            <FivePointedStar
-              key={i}
-              className={`absolute text-primary w-4 h-4`}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                transform: `rotate(${Math.random() * 360}deg)`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-foreground leading-tight">
-              From <span className="text-destructive font-extrabold">-$10K Debt</span> to{" "}
-              <span className="text-green-600 font-extrabold">$1.1M Net Worth</span> in{" "}
-              <span className="text-primary font-extrabold">22 Months</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-              The Ancient <span className="text-primary font-bold">King Jesus Meditation</span> That{" "}
-              <span className="font-bold text-foreground">Rewired My Prosperity Consciousness</span> — Now Yours for Just{" "}
-              <span className="text-destructive font-extrabold text-3xl">$4.95</span>
+      {/* 1. HERO SECTION - Copy Posse Style */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            {/* Pre-headline hook - 14pt */}
+            <p className="text-sm md:text-base text-primary font-semibold tracking-wide uppercase" data-testid="text-pre-headline">
+              The Ancient Secret That Changed Everything
             </p>
-            
-            {/* Price and CTA */}
-            <div className="bg-card border-2 border-primary/30 rounded-lg p-6 md:p-8 shadow-2xl max-w-2xl mx-auto mt-8">
-              <div className="space-y-4">
-                <p className="text-xl md:text-2xl font-bold text-foreground">Complete Spiritual Prosperity Package</p>
-                <div className="flex items-baseline justify-center gap-4">
-                  <span className="text-3xl md:text-4xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
-                  <span className="text-6xl md:text-7xl font-cinzel font-extrabold text-primary">$4.95</span>
-                </div>
-                <p className="text-2xl md:text-3xl text-destructive font-bold">
-                  92% OFF — Limited Time
-                </p>
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="w-full text-lg md:text-2xl px-8 py-8 md:py-10 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse font-bold"
-                  onClick={handleCheckout}
-                  data-testid="button-hero-cta"
-                >
-                  <ButtonStar className="mr-2 h-6 w-6 md:h-8 md:w-8 flex-shrink-0" />
-                  <span className="whitespace-nowrap">YES! Give Me Access for $4.95</span>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  ⏰ <span className="font-semibold">Join 45+ students</span> transforming their relationship with money and spirituality
-                </p>
+
+            {/* Main headline - Short, punchy - 24-32pt */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight" data-testid="text-main-headline">
+              Spiritual Abundance<br />For Conscious Leaders
+            </h1>
+
+            {/* Bold descriptive words - 16pt */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-base md:text-lg font-semibold text-muted-foreground">
+              <span data-testid="text-descriptor-ancient">Ancient</span>
+              <span>•</span>
+              <span data-testid="text-descriptor-powerful">Powerful</span>
+              <span>•</span>
+              <span data-testid="text-descriptor-transformative">Transformative</span>
+              <span>•</span>
+              <span data-testid="text-descriptor-proven">Proven</span>
+            </div>
+
+            {/* Authority indicators */}
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 pt-6">
+              <div className="flex items-center gap-2" data-testid="stat-instagram">
+                <Instagram className="w-6 h-6 text-primary" />
+                <span className="text-sm md:text-base font-semibold">210K+ Followers</span>
+              </div>
+              <div className="flex items-center gap-2" data-testid="stat-podcast">
+                <Music className="w-6 h-6 text-primary" />
+                <span className="text-sm md:text-base font-semibold">4 Podcast Episodes</span>
+              </div>
+              <div className="flex items-center gap-2" data-testid="stat-students">
+                <Users className="w-6 h-6 text-primary" />
+                <span className="text-sm md:text-base font-semibold">45+ Students</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Proof/Stats Section - Gold Background */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: 'hsl(var(--section-gold))' }}>
+      {/* 2. START HERE SECTION */}
+      <section className="py-16 md:py-20 bg-accent/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-start-here">
+              Ready To Start Your Transformation?
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Join 45+ students who've activated divine prosperity and transformed their financial reality through the King Jesus Meditation.
+            </p>
+            <Button
+              size="lg"
+              variant="destructive"
+              className="text-lg px-8 py-6"
+              onClick={handleCheckout}
+              data-testid="button-start-transformation"
+            >
+              Get Instant Access - $4.95
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. MISSION SECTION - "Who We Are" equivalent */}
+      <section id="mission" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold font-serif text-center mb-12 text-foreground">
-              The Numbers Don't Lie
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4" data-testid="heading-mission">
+              Transform Your Relationship With Abundance
             </h2>
-            
+            <p className="text-xl text-center text-muted-foreground mb-16 max-w-3xl mx-auto">
+              The King Jesus Meditation isn't just about money — it's about aligning your entire being with divine prosperity.
+            </p>
+
+            {/* Three value propositions */}
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-8 text-center hover-elevate transition-all" data-testid="stat-net-worth">
-                <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
-                <div className="text-5xl font-bold text-green-600 mb-2">$1.1M</div>
-                <p className="text-lg font-semibold text-foreground mb-2">Net Worth Achieved</p>
-                <p className="text-sm text-muted-foreground">In just 22 months from -$10K debt</p>
+              <Card className="p-8" data-testid="card-value-prop-1">
+                <CardHeader className="p-0 mb-4">
+                  <Sparkles className="w-12 h-12 text-primary mb-4" />
+                  <h3 className="text-2xl font-bold">Activate Divine Prosperity</h3>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-muted-foreground">
+                    Dissolve financial blocks at the cellular level and open yourself to unlimited abundance flowing through King Jesus energy.
+                  </p>
+                </CardContent>
               </Card>
 
-              <Card className="p-8 text-center hover-elevate transition-all" data-testid="stat-followers">
-                <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-                <div className="text-5xl font-bold text-primary mb-2">210K+</div>
-                <p className="text-lg font-semibold text-foreground mb-2">Followers</p>
-                <p className="text-sm text-muted-foreground">Building a spiritual community</p>
+              <Card className="p-8" data-testid="card-value-prop-2">
+                <CardHeader className="p-0 mb-4">
+                  <Heart className="w-12 h-12 text-primary mb-4" />
+                  <h3 className="text-2xl font-bold">Connect With King Jesus Energy</h3>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-muted-foreground">
+                    Experience the ancient meditation practice that rewires your consciousness for wealth, health, and spiritual alignment.
+                  </p>
+                </CardContent>
               </Card>
 
-              <Card className="p-8 text-center hover-elevate transition-all" data-testid="stat-businesses">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <div className="text-5xl font-bold text-primary mb-2">4</div>
-                <p className="text-lg font-semibold text-foreground mb-2">Businesses Built</p>
-                <p className="text-sm text-muted-foreground">From spiritual alignment to abundance</p>
+              <Card className="p-8" data-testid="card-value-prop-3">
+                <CardHeader className="p-0 mb-4">
+                  <Award className="w-12 h-12 text-primary mb-4" />
+                  <h3 className="text-2xl font-bold">Transform Your Financial Reality</h3>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-muted-foreground">
+                    Build sustainable wealth while staying aligned with your spiritual path and highest values.
+                  </p>
+                </CardContent>
               </Card>
-            </div>
-
-            <div className="text-center mt-12">
-              <p className="text-xl md:text-2xl font-serif italic text-foreground">
-                "This meditation didn't just change my bank account — it transformed my <span className="font-bold text-primary">soul's relationship</span> with prosperity."
-              </p>
-              <p className="text-lg text-muted-foreground mt-4">— Clayton Cuteri</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Clayton Section - Divine Blue Background with Photos */}
-      <section id="about" className="py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: 'hsl(var(--section-divine-blue))' }}>
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url(${divineBlueBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* 4. STATS BANNER SECTION - Copy Posse Grid Format */}
+      <section className="py-16 md:py-20 bg-primary/5">
+        <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-6 text-foreground">
-              About Clayton Cuteri
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" data-testid="heading-stats">
+              Real Results, Real Numbers
             </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Entrepreneur, Influencer, Politician, and Spiritual Guide
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-net-worth">
+                <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">$1.1M</div>
+                <p className="font-semibold mb-1">Net Worth Achieved</p>
+                <p className="text-sm text-muted-foreground">From -$10K debt</p>
+              </Card>
+
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-followers">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">210K+</div>
+                <p className="font-semibold mb-1">Followers</p>
+                <p className="text-sm text-muted-foreground">Spiritual community</p>
+              </Card>
+
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-businesses">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">4</div>
+                <p className="font-semibold mb-1">Businesses Built</p>
+                <p className="text-sm text-muted-foreground">From alignment</p>
+              </Card>
+
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-transformation">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">22</div>
+                <p className="font-semibold mb-1">Months</p>
+                <p className="text-sm text-muted-foreground">Total transformation</p>
+              </Card>
+
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-students">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">45+</div>
+                <p className="font-semibold mb-1">Students Transformed</p>
+                <p className="text-sm text-muted-foreground">Lives changed</p>
+              </Card>
+
+              <Card className="p-6 text-center hover-elevate" data-testid="stat-card-satisfaction">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">99.4%</div>
+                <p className="font-semibold mb-1">Satisfaction Rate</p>
+                <p className="text-sm text-muted-foreground">Happy students</p>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. MEET CLAYTON SECTION - Alex Cattoni Style */}
+      <section id="about" className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4" data-testid="heading-meet-clayton">
+              Meet Clayton Cuteri
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              Your Guide To Spiritual Abundance
             </p>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+              {/* Bio List - Alex Cattoni style */}
               <div className="space-y-6">
-                <p className="text-lg leading-relaxed text-foreground">
-                  Clayton Cuteri went from <span className="font-bold text-destructive">-$10,000 in debt</span> to a{" "}
-                  <span className="font-bold text-green-600">$1.1 million net worth</span> in just{" "}
-                  <span className="font-bold text-primary">22 months</span>.
-                </p>
-                <p className="text-lg leading-relaxed text-foreground">
-                  But this wasn't achieved through hustle culture or traditional business tactics alone. The secret? An ancient{" "}
-                  <span className="font-bold text-primary">King Jesus meditation</span> that rewired his cellular relationship with money, dissolved financial blocks, and aligned him with divine abundance.
-                </p>
-                <p className="text-lg leading-relaxed text-foreground">
-                  Today, Clayton runs <span className="font-bold">4 successful businesses</span>, has grown a following of{" "}
-                  <span className="font-bold">210K+ people</span>, and hosts <span className="font-bold">4 podcast episodes delivered via Spotify playlist</span> sharing spiritual wisdom with seekers worldwide.
-                </p>
-                <p className="text-lg leading-relaxed text-primary font-semibold">
-                  Now, he's making the same meditation that transformed his life available to you for less than a coffee.
-                </p>
+                <div className="flex items-start gap-3" data-testid="bio-item-1">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">Instagram Influencer</p>
+                    <p className="text-muted-foreground">Building a conscious community of 210K+ followers</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3" data-testid="bio-item-2">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">Former -$10K Debt → $1.1M Net Worth</p>
+                    <p className="text-muted-foreground">Total financial transformation in 22 months</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3" data-testid="bio-item-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">Spiritual Teacher</p>
+                    <p className="text-muted-foreground">Sharing ancient wisdom for modern abundance</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3" data-testid="bio-item-4">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">Meditation Guide</p>
+                    <p className="text-muted-foreground">Teaching transformative King Jesus meditation</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3" data-testid="bio-item-5">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">4x Business Builder</p>
+                    <p className="text-muted-foreground">Creating aligned, profitable ventures</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3" data-testid="bio-item-6">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-bold text-lg">Adventure Seeker & Conscious Creator</p>
+                    <p className="text-muted-foreground">Living life fully aligned with purpose</p>
+                  </div>
+                </div>
               </div>
 
+              {/* Photo Grid */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="relative group">
-                  <img
-                    src={claytonRedCarpet}
-                    alt="Clayton on Red Carpet"
-                    className="w-full h-64 object-cover rounded-lg border-4 border-primary shadow-xl hover:scale-105 transition-transform"
-                    data-testid="img-clayton-red-carpet"
-                  />
-                  <div className="absolute -top-2 -right-2">
-                    <FivePointedStar className="text-primary w-8 h-8 animate-pulse" />
-                  </div>
-                </div>
-                <div className="relative group">
-                  <img
-                    src={claytonAward}
-                    alt="Clayton Award Ceremony"
-                    className="w-full h-64 object-cover rounded-lg border-4 border-primary shadow-xl hover:scale-105 transition-transform"
-                    data-testid="img-clayton-award"
-                  />
-                  <div className="absolute -top-2 -right-2">
-                    <FivePointedStar className="text-primary w-8 h-8 animate-pulse" style={{ animationDelay: '0.3s' }} />
-                  </div>
-                </div>
-                <div className="col-span-2 relative group">
+                <img
+                  src={claytonRedCarpet}
+                  alt="Clayton on Red Carpet"
+                  className="w-full h-64 object-cover rounded-lg"
+                  data-testid="img-clayton-red-carpet"
+                />
+                <img
+                  src={claytonAward}
+                  alt="Clayton at Award Ceremony"
+                  className="w-full h-64 object-cover rounded-lg"
+                  data-testid="img-clayton-award"
+                />
+                <div className="col-span-2">
                   <img
                     src={claytonProfile}
-                    alt="Clayton Cuteri Profile"
-                    className="w-full h-80 object-cover rounded-lg border-4 border-primary shadow-xl hover:scale-105 transition-transform"
-                    data-testid="img-clayton-profile-large"
+                    alt="Clayton Cuteri"
+                    className="w-full h-80 object-cover rounded-lg"
+                    data-testid="img-clayton-profile"
                   />
-                  <div className="absolute -top-2 -left-2">
-                    <FivePointedStar className="text-primary w-10 h-10 animate-pulse" style={{ animationDelay: '0.6s' }} />
-                  </div>
                 </div>
               </div>
             </div>
@@ -495,634 +459,445 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-2xl hover:shadow-primary/50 transition-all font-bold"
+                className="text-lg px-8 py-6"
                 onClick={handleCheckout}
                 data-testid="button-about-cta"
               >
-                <ButtonStar className="mr-2 h-5 w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Start Your Transformation — $4.95</span>
+                Learn Clayton's Method - $4.95
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* First Testimonials Section */}
-      {firstTestimonials.length > 0 && (
-        <section id="testimonials" className="py-16 md:py-20 bg-background">
+      {/* 6. TESTIMONIALS SECTION - "Posse Love" style */}
+      {testimonials.length > 0 && (
+        <section id="testimonials" className="py-16 md:py-24 bg-accent/10">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-                Real Transformations
+              <h2 className="text-3xl md:text-5xl font-bold text-center mb-4" data-testid="heading-testimonials">
+                Student Transformations
               </h2>
               <p className="text-xl text-center text-muted-foreground mb-12">
-                See what others are experiencing with #KingJesusMeditation
+                Real people, real results, real abundance
               </p>
               
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {firstTestimonials.map((testimonial: any, idx: number) => {
-                  const rating = idx === 2 ? 4 : 5;
-                  return (
-                    <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                      <div className="mb-3">
-                        <p className="font-semibold text-lg">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {testimonial.gender && testimonial.age ? `${testimonial.gender}, ${testimonial.age}` : 
-                           testimonial.gender ? testimonial.gender : 
-                           testimonial.age ? `Age ${testimonial.age}` : ''}
-                        </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                {testimonials.map((testimonial: any) => (
+                  <Card key={testimonial.id} className="p-6 hover-elevate" data-testid={`testimonial-${testimonial.id}`}>
+                    <CardContent className="p-0 space-y-4">
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                        ))}
                       </div>
-                      <p className="text-sm leading-relaxed mb-4">{testimonial.content}</p>
-                      
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star 
-                              key={star} 
-                              className={`w-4 h-4 ${star <= rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-xs font-semibold text-foreground">{rating}/5</span>
+                      <p className="text-lg font-medium leading-relaxed">
+                        "{testimonial.testimonial}"
+                      </p>
+                      <div>
+                        <p className="font-semibold">{testimonial.name}</p>
+                        {testimonial.result && (
+                          <p className="text-sm text-primary font-medium">{testimonial.result}</p>
+                        )}
                       </div>
-                      
-                      <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
-                    </Card>
-                  );
-                })}
-              </div>
-
-              <div className="text-center">
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-xl font-bold"
-                  onClick={handleCheckout}
-                  data-testid="button-testimonials-1-cta"
-                >
-                  <ButtonStar className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Join Them for $4.95
-                </Button>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* What You'll Get Section */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: 'hsl(var(--section-gold))' }}>
+      {/* 7. PRODUCT/OFFER SECTION */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-              What You'll Get for <span className="text-destructive">$4.95</span>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4" data-testid="heading-package">
+              The King Jesus Meditation Package
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
-              Everything you need to transform your prosperity consciousness
+              Everything you need to activate divine prosperity
             </p>
+
+            <Card className="p-8 md:p-12">
+              <div className="space-y-8">
+                {/* What's Included */}
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold mb-6">What's Included:</h3>
+                  
+                  <div className="flex items-start gap-3" data-testid="package-item-1">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Complete King Jesus Meditation audio guide</p>
+                  </div>
+
+                  <div className="flex items-start gap-3" data-testid="package-item-2">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Sacred prosperity activation journal</p>
+                  </div>
+
+                  <div className="flex items-start gap-3" data-testid="package-item-3">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Gospel of Thomas Volume I sacred text</p>
+                  </div>
+
+                  <div className="flex items-start gap-3" data-testid="package-item-4">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Reader's notebook for spiritual insights</p>
+                  </div>
+
+                  <div className="flex items-start gap-3" data-testid="package-item-5">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Jesus Body Part Meditation journal</p>
+                  </div>
+
+                  <div className="flex items-start gap-3" data-testid="package-item-6">
+                    <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <p className="text-lg">Instant digital access to all materials</p>
+                  </div>
+                </div>
+
+                {/* Pricing */}
+                <div className="border-t pt-8">
+                  <div className="flex items-center justify-center gap-4 mb-6">
+                    <span className="text-3xl text-muted-foreground line-through" data-testid="text-old-price">$60.27</span>
+                    <span className="text-6xl font-bold text-primary" data-testid="text-new-price">$4.95</span>
+                  </div>
+                  <p className="text-2xl text-destructive font-bold text-center mb-8" data-testid="text-discount">
+                    92% OFF — Limited Time Only
+                  </p>
+
+                  <Button
+                    size="lg"
+                    variant="destructive"
+                    className="w-full text-xl py-8"
+                    onClick={handleCheckout}
+                    data-testid="button-package-cta"
+                  >
+                    Yes! Give Me Access For $4.95
+                  </Button>
+
+                  <p className="text-center text-sm text-muted-foreground mt-4">
+                    ⏰ Join 45+ students transforming their relationship with money and spirituality
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. FREEBIES SECTION - 3-item grid */}
+      <section className="py-16 md:py-20 bg-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" data-testid="heading-freebies">
+              Free Resources To Get Started
+            </h2>
             
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-meditation">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">Guided King Jesus Meditation</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      The exact ancient practice that helped Clayton dissolve financial blocks and align with divine abundance at the cellular level
-                    </p>
-                  </div>
-                </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="p-8 text-center" data-testid="freebie-meditation">
+                <Play className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-3">Free Meditation Preview</h3>
+                <p className="text-muted-foreground mb-6">
+                  Experience a 5-minute sample of the King Jesus Meditation
+                </p>
+                <Button variant="outline" className="w-full" data-testid="button-freebie-meditation">
+                  <Download className="mr-2 h-4 w-4" />
+                  Get It Now
+                </Button>
               </Card>
 
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-journal">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">Prosperity Journal</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Track your spiritual journey and witness the transformation as you shift from scarcity to abundance consciousness
-                    </p>
-                  </div>
-                </div>
+              <Card className="p-8 text-center" data-testid="freebie-guide">
+                <BookOpen className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-3">Free Prosperity Guide</h3>
+                <p className="text-muted-foreground mb-6">
+                  7 simple steps to activate divine abundance in your life
+                </p>
+                <Button variant="outline" className="w-full" data-testid="button-freebie-guide">
+                  <Download className="mr-2 h-4 w-4" />
+                  Get It Now
+                </Button>
               </Card>
 
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-teachings">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">Gospel of Thomas Teachings</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Sacred wisdom and esoteric knowledge to deepen your understanding of prosperity from a spiritual perspective
-                    </p>
-                  </div>
-                </div>
+              <Card className="p-8 text-center" data-testid="freebie-teachings">
+                <Sparkles className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-3">Sacred Teachings Excerpt</h3>
+                <p className="text-muted-foreground mb-6">
+                  First chapter of the Gospel of Thomas Volume I
+                </p>
+                <Button variant="outline" className="w-full" data-testid="button-freebie-teachings">
+                  <Download className="mr-2 h-4 w-4" />
+                  Get It Now
+                </Button>
               </Card>
-
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-podcast">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">4 Podcast Episodes via Spotify</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Deep-dive audio teachings on spiritual prosperity, abundance mindset, and King Jesus consciousness delivered through Spotify playlist
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-bonus">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">Bonus: King Jesus on His Throne Image</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Sacred artwork to support your meditation practice and anchor the divine presence in your space
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-8 hover-elevate transition-all" data-testid="package-reader">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-3 flex-shrink-0">
-                    <Check className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-foreground">Reader's Notebook</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Comprehensive workbook to integrate the teachings and track your spiritual and financial transformation
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            <div className="bg-destructive/10 border-2 border-destructive rounded-lg p-8 text-center">
-              <p className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Total Value: <span className="line-through text-muted-foreground">$60.27</span>
-              </p>
-              <p className="text-4xl md:text-5xl font-extrabold text-destructive mb-6">
-                Your Price Today: $4.95
-              </p>
-              <Button
-                size="lg"
-                variant="destructive"
-                className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-2xl hover:shadow-primary/50 transition-all font-bold"
-                onClick={handleCheckout}
-                data-testid="button-package-cta"
-              >
-                <ButtonStar className="mr-2 h-5 w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Claim Your Package — $4.95</span>
-              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works - 3-Step Process */}
-      <section className="py-16 md:py-20 bg-background">
+      {/* 9. CONTENT SHOWCASE SECTION */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-              How It Works
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" data-testid="heading-follow">
+              Follow The Journey
             </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
-              Your path to prosperity consciousness in 3 simple steps
+            <p className="text-xl text-muted-foreground mb-12">
+              Join 210K+ followers on Instagram and tune into spiritual wisdom via 4 podcast episodes on Spotify
             </p>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-8 text-center hover-elevate transition-all relative" data-testid="step-1">
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold border-4 border-background">
-                    1
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <Sparkles className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Get Instant Access</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Purchase for <span className="font-bold text-destructive">$4.95</span> and receive immediate access to all materials, meditations, and teachings
-                  </p>
-                </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Instagram */}
+              <Card className="p-8 hover-elevate" data-testid="card-instagram">
+                <Instagram className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">@claytoncuteri</h3>
+                <p className="text-muted-foreground mb-6">
+                  Daily spiritual insights, abundance tips, and meditation practices
+                </p>
+                <Button
+                  variant="default"
+                  className="w-full"
+                  onClick={async () => {
+                    await apiRequest("POST", "/api/analytics/track", {
+                      eventType: "link_click",
+                      eventData: { button: "instagram" },
+                    });
+                    window.open("https://instagram.com/claytoncuteri", "_blank");
+                  }}
+                  data-testid="button-instagram"
+                >
+                  Follow on Instagram
+                </Button>
               </Card>
 
-              <Card className="p-8 text-center hover-elevate transition-all relative" data-testid="step-2">
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold border-4 border-background">
-                    2
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <FivePointedStar className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Practice Daily</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Dedicate just 15-20 minutes per day to the King Jesus meditation and prosperity teachings
-                  </p>
-                </div>
-              </Card>
-
-              <Card className="p-8 text-center hover-elevate transition-all relative" data-testid="step-3">
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold border-4 border-background">
-                    3
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <TrendingUp className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Transform & Prosper</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Watch as your relationship with money shifts, blocks dissolve, and divine abundance flows into your life
-                  </p>
-                </div>
+              {/* Podcast */}
+              <Card className="p-8 hover-elevate" data-testid="card-podcast">
+                <Music className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">Spiritual Podcast</h3>
+                <p className="text-muted-foreground mb-6">
+                  4 powerful episodes via Spotify playlist sharing ancient wisdom
+                </p>
+                <Button
+                  variant="default"
+                  className="w-full"
+                  onClick={async () => {
+                    await apiRequest("POST", "/api/analytics/track", {
+                      eventType: "link_click",
+                      eventData: { button: "spotify" },
+                    });
+                  }}
+                  data-testid="button-podcast"
+                >
+                  Listen on Spotify
+                </Button>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. EMAIL OPT-IN - Copy Posse Style */}
+      <section className="py-16 md:py-20 bg-accent/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-newsletter">
+              Get My Spiritual Abundance Tips Every Week
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Join thousands receiving weekly insights on meditation, prosperity consciousness, and divine alignment.
+            </p>
+
+            <form onSubmit={handleEmailCapture} className="flex flex-col sm:flex-row gap-4">
+              <Input
+                type="text"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="flex-1"
+                data-testid="input-name"
+              />
+              <Input
+                type="email"
+                placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1"
+                required
+                data-testid="input-email"
+              />
+              <Button
+                type="submit"
+                size="lg"
+                variant="destructive"
+                disabled={emailCaptureMutation.isPending}
+                data-testid="button-subscribe"
+              >
+                {emailCaptureMutation.isPending ? "Subscribing..." : "Subscribe"}
+              </Button>
+            </form>
+
+            <p className="text-sm text-muted-foreground mt-4">
+              No spam, ever. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 11. FAQ SECTION - Clean Copy Posse Accordion */}
+      <section id="faq" className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-4" data-testid="heading-faq">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              Everything you need to know
+            </p>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="border rounded-lg px-6" data-testid="faq-item-1">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  What is the King Jesus Meditation?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  The King Jesus Meditation is an ancient spiritual practice that helps you connect with divine energy to transform your relationship with abundance. It works at the cellular level to dissolve financial blocks and align you with prosperity consciousness.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="border rounded-lg px-6" data-testid="faq-item-2">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  How quickly will I see results?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Results vary by individual, but many students report shifts in their prosperity consciousness within the first week. Clayton himself went from -$10K debt to $1.1M net worth in 22 months using this practice combined with aligned action.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="border rounded-lg px-6" data-testid="faq-item-3">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  What's included in the $4.95 package?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  You get instant digital access to: the complete King Jesus Meditation audio guide, sacred prosperity activation journal, Gospel of Thomas Volume I, reader's notebook, Jesus Body Part Meditation journal, and all supporting materials. Everything you need to begin your transformation.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="border rounded-lg px-6" data-testid="faq-item-4">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  Is this religious or spiritual?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  This is a spiritual practice rooted in ancient wisdom. While it references King Jesus energy, it's about connecting with divine consciousness and abundance. Students from various faith backgrounds have found value in this practice.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="border rounded-lg px-6" data-testid="faq-item-5">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  How long is the meditation?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  The complete meditation is designed to fit into your daily routine. You can practice it in as little as 10-15 minutes per day, though deeper sessions are encouraged as you deepen your practice.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6" className="border rounded-lg px-6" data-testid="faq-item-6">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  Is there a money-back guarantee?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  At only $4.95, this is less than a coffee. We're confident you'll find immense value in these teachings. If you have any concerns, please reach out to our support team.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
 
             <div className="text-center mt-12">
               <Button
                 size="lg"
                 variant="destructive"
-                className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-xl font-bold"
+                className="text-lg px-8 py-6"
                 onClick={handleCheckout}
-                data-testid="button-how-it-works-cta"
+                data-testid="button-faq-cta"
               >
-                <ButtonStar className="mr-2 h-5 w-5 flex-shrink-0" />
-                Begin Your Journey — $4.95
+                Start Your Journey - $4.95
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Second Testimonials Section */}
-      {secondTestimonials.length > 0 && (
-        <section className="py-16 md:py-20" style={{ backgroundColor: 'hsl(var(--section-divine-blue))' }}>
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-12">
-                More Success Stories
-              </h2>
-              
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {secondTestimonials.map((testimonial: any, idx: number) => {
-                  const rating = 5;
-                  return (
-                    <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                      <div className="mb-3">
-                        <p className="font-semibold text-lg">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {testimonial.gender && testimonial.age ? `${testimonial.gender}, ${testimonial.age}` : 
-                           testimonial.gender ? testimonial.gender : 
-                           testimonial.age ? `Age ${testimonial.age}` : ''}
-                        </p>
-                      </div>
-                      <p className="text-sm leading-relaxed mb-4">{testimonial.content}</p>
-                      
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star 
-                              key={star} 
-                              className={`w-4 h-4 ${star <= rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-xs font-semibold text-foreground">{rating}/5</span>
-                      </div>
-                      
-                      <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
-                    </Card>
-                  );
-                })}
-              </div>
-
-              <div className="text-center">
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-xl font-bold"
-                  onClick={handleCheckout}
-                  data-testid="button-testimonials-2-cta"
-                >
-                  <ButtonStar className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Start Your Story — $4.95
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Mission Statement */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-8">
-              A Sacred Mission
-            </h2>
-            <Card className="p-8 md:p-12 border-primary/30">
-              <p className="text-xl md:text-2xl font-serif leading-relaxed text-foreground mb-6">
-                Every purchase directly supports building churches honoring King Jesus for global peace initiatives.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                When you invest in your spiritual prosperity, you're also contributing to a larger movement of divine consciousness and peace on Earth. Together, we're creating sacred spaces where humanity can reconnect with the divine presence of King Jesus.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Third Testimonials Section */}
-      {thirdTestimonials.length > 0 && (
-        <section className="py-16 md:py-20" style={{ backgroundColor: 'hsl(var(--section-gold))' }}>
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-                Join The Movement
-              </h2>
-              
-              <div className="flex flex-col items-center gap-3 py-4 mb-8">
-                <div className="flex items-center gap-2">
-                  <span className="text-3xl font-bold text-primary">4.91</span>
-                  <span className="text-xl text-muted-foreground">/5</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <div key={star} className="relative w-6 h-6">
-                      <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
-                      <div 
-                        className="absolute inset-0 overflow-hidden"
-                        style={{ 
-                          width: star <= 4 ? '100%' : star === 5 ? '98%' : '0%' 
-                        }}
-                      >
-                        <Star className="w-6 h-6 text-primary fill-primary" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">45+ students</span>
-                </p>
-              </div>
-              
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {thirdTestimonials.map((testimonial: any) => {
-                  const rating = 5;
-                  return (
-                    <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
-                      <div className="mb-3">
-                        <p className="font-semibold text-lg">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {testimonial.gender && testimonial.age ? `${testimonial.gender}, ${testimonial.age}` : 
-                           testimonial.gender ? testimonial.gender : 
-                           testimonial.age ? `Age ${testimonial.age}` : ''}
-                        </p>
-                      </div>
-                      <p className="text-sm leading-relaxed mb-4">{testimonial.content}</p>
-                      
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star 
-                              key={star} 
-                              className={`w-4 h-4 ${star <= rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-xs font-semibold text-foreground">{rating}/5</span>
-                      </div>
-                      
-                      <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
-                    </Card>
-                  );
-                })}
-              </div>
-
-              <div className="text-center">
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="text-lg md:text-xl px-8 md:px-12 py-6 md:py-8 shadow-xl font-bold"
-                  onClick={handleCheckout}
-                  data-testid="button-testimonials-3-cta"
-                >
-                  <ButtonStar className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Transform for $4.95
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* FAQ Section */}
-      <section id="faq" className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
-              Everything you need to know about your <span className="text-destructive font-bold">$4.95</span> investment
-            </p>
-            
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="border border-primary/20 rounded-lg px-6" data-testid="faq-what-is-this">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  What exactly is this meditation package?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  This is a complete spiritual prosperity transformation package featuring the ancient King Jesus meditation that helped Clayton go from -$10K debt to $1.1M net worth in 22 months. You'll receive guided meditations, prosperity teachings, a meditation journal, Gospel of Thomas wisdom, 4 podcast episodes via Spotify playlist, and sacred artwork — everything you need to rewire your consciousness for abundance.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2" className="border border-primary/20 rounded-lg px-6" data-testid="faq-guarantee">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  Is this really just $4.95? Are there hidden costs?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  Yes, it's genuinely $4.95 with no hidden fees or recurring charges. This is a one-time payment for lifetime access to all materials. Clayton believes in making spiritual wisdom accessible to everyone, regardless of financial status. The regular value is $60.27, but this limited-time offer gives you 92% off.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="border border-primary/20 rounded-lg px-6" data-testid="faq-results">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  Will this meditation really help me with money?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  This meditation works at the level of consciousness and energy. Results vary by individual. While Clayton experienced profound financial transformation, this is a spiritual practice, not a financial guarantee. The meditation helps dissolve limiting beliefs, align with abundance consciousness, and open channels for prosperity — but it requires consistent practice and inner work.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="border border-primary/20 rounded-lg px-6" data-testid="faq-time">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  How much time do I need to commit?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  The meditation practice takes just 15-20 minutes per day. Consistency matters more than duration. Many students report shifts in consciousness within the first week, though deeper transformation unfolds over weeks and months of regular practice.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5" className="border border-primary/20 rounded-lg px-6" data-testid="faq-beginner">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  Do I need meditation experience?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  Not at all! The guided meditation is designed for complete beginners while remaining powerful for experienced practitioners. Clayton provides clear, step-by-step guidance that makes the practice accessible to anyone, regardless of prior experience with meditation or spirituality.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-6" className="border border-primary/20 rounded-lg px-6" data-testid="faq-religious">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  Is this compatible with my religious beliefs?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  This meditation honors King Jesus and draws from esoteric Christian mysticism. While rooted in the teachings of Jesus, it's a spiritual practice focused on consciousness and divine connection. Many students from various backgrounds find it complements their existing spiritual path. Trust your intuition about whether this resonates with you.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-7" className="border border-primary/20 rounded-lg px-6" data-testid="faq-access">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  How do I access the materials after purchase?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  Immediately after your $4.95 purchase, you'll receive a download link via email with instant access to all meditation audios, PDFs, journals, teachings, and the Spotify playlist link for the 4 podcast episodes. Everything is digital, so you can start your transformation right away.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-8" className="border border-primary/20 rounded-lg px-6" data-testid="faq-mission">
-                <AccordionTrigger className="text-left text-lg font-semibold">
-                  Where do proceeds go?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  100% of proceeds support building churches honoring King Jesus for global peace initiatives. Your investment in spiritual prosperity contributes to creating sacred spaces where humanity can reconnect with divine consciousness and work toward planetary peace.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: 'hsl(var(--section-divine-blue))' }}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-6 text-foreground">
-              Ready to Transform Your Relationship with Prosperity?
-            </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Join 45+ students who are experiencing spiritual and financial breakthroughs with the King Jesus meditation
-            </p>
-            
-            <Card className="p-8 md:p-12 border-primary/30 mb-8">
-              <div className="space-y-6">
-                <div className="flex items-baseline justify-center gap-4">
-                  <span className="text-3xl md:text-4xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
-                  <span className="text-6xl md:text-7xl font-cinzel font-extrabold text-primary">$4.95</span>
-                </div>
-                <p className="text-2xl md:text-3xl text-destructive font-bold">
-                  92% OFF — Don't Miss This
-                </p>
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="w-full text-lg md:text-2xl px-8 py-8 md:py-10 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse font-bold"
-                  onClick={handleCheckout}
-                  data-testid="button-final-cta"
-                >
-                  <ButtonStar className="mr-2 h-6 w-6 md:h-8 md:w-8 flex-shrink-0" />
-                  <span className="whitespace-nowrap">YES! Transform My Life for $4.95</span>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  Instant access • Lifetime materials • Support global peace
-                </p>
-                <p className="text-xs text-muted-foreground/80 italic">
-                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
-                </p>
-              </div>
-            </Card>
-
-            <div className="space-y-4 text-sm text-muted-foreground">
-              <p>✓ Instant digital delivery</p>
-              <p>✓ Complete meditation system</p>
-              <p>✓ 4 podcast episodes via Spotify</p>
-              <p>✓ Supporting global peace initiatives</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-card py-12 border-t border-primary/20">
+      {/* 12. FOOTER */}
+      <footer className="bg-card border-t py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
+              {/* Brand */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <img
+                    src={kingJesusImage}
+                    alt="King Jesus Meditation"
+                    className="h-10 w-10 object-cover rounded-md"
+                    data-testid="img-footer-logo"
+                  />
+                  <span className="font-bold text-lg">King Jesus Meditation</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Ancient wisdom for modern abundance. Transform your relationship with prosperity through divine alignment.
+                </p>
+              </div>
+
+              {/* Links */}
+              <div>
+                <h3 className="font-bold mb-4">Legal</h3>
                 <div className="space-y-2">
-                  <Link href="/terms" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="link-terms">
+                  <Link href="/terms" className="block text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-terms">
                     Terms of Service
                   </Link>
-                  <Link href="/privacy" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="link-privacy">
+                  <Link href="/privacy" className="block text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-privacy">
                     Privacy Policy
                   </Link>
                 </div>
               </div>
-              
+
+              {/* Social */}
               <div>
-                <h3 className="font-bold text-lg mb-4">Connect</h3>
-                <a
-                  href="https://instagram.com/claytoncuteri"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="link-instagram"
-                >
-                  <Instagram className="w-5 h-5" />
-                  @claytoncuteri
-                </a>
-              </div>
-              
-              <div>
-                <h3 className="font-bold text-lg mb-4">Stay Updated</h3>
-                <form onSubmit={handleEmailCapture} className="space-y-3">
-                  <Input
-                    type="email"
-                    placeholder="Your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full"
-                    data-testid="input-footer-email"
-                  />
+                <h3 className="font-bold mb-4">Connect</h3>
+                <div className="flex gap-4">
                   <Button
-                    type="submit"
-                    variant="default"
-                    className="w-full"
-                    disabled={emailCaptureMutation.isPending}
-                    data-testid="button-footer-subscribe"
+                    size="icon"
+                    variant="outline"
+                    onClick={async () => {
+                      await apiRequest("POST", "/api/analytics/track", {
+                        eventType: "link_click",
+                        eventData: { button: "footer-instagram" },
+                      });
+                      window.open("https://instagram.com/claytoncuteri", "_blank");
+                    }}
+                    data-testid="button-footer-instagram"
                   >
-                    {emailCaptureMutation.isPending ? "Subscribing..." : "Subscribe"}
+                    <Instagram className="h-5 w-5" />
                   </Button>
-                </form>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    onClick={async () => {
+                      await apiRequest("POST", "/api/analytics/track", {
+                        eventType: "link_click",
+                        eventData: { button: "footer-spotify" },
+                      });
+                    }}
+                    data-testid="button-footer-spotify"
+                  >
+                    <Music className="h-5 w-5" />
+                  </Button>
+                </div>
               </div>
             </div>
-            
-            <div className="text-center pt-8 border-t border-primary/20">
-              <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Clayton Cuteri. All rights reserved.
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">
-                100% of proceeds support building churches honoring King Jesus for global peace initiatives
-              </p>
+
+            <div className="border-t pt-8 text-center text-sm text-muted-foreground">
+              <p>© {new Date().getFullYear()} King Jesus Meditation. All rights reserved.</p>
+              <p className="mt-2">Built with love for conscious leaders seeking divine prosperity</p>
             </div>
           </div>
         </div>
