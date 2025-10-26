@@ -120,6 +120,12 @@
   /* Fallback for older browsers */
   --destructive-border: hsl(var(--destructive));
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  /* CopyPosse-style alternating section backgrounds */
+  --section-dark-navy: 230 25% 95%;
+  --section-gold: 45 85% 92%;
+  --section-divine-blue: 220 70% 96%;
+  --section-dark-gold: 45 75% 88%;
 }
 
 .dark {
@@ -202,6 +208,12 @@
   --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0.20), 0px 4px 6px -1px hsl(0 0% 0% / 0.40);
   --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.25), 0px 8px 10px -1px hsl(0 0% 0% / 0.45);
   --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.30);
+
+  /* CopyPosse-style alternating section backgrounds */
+  --section-dark-navy: 230 35% 12%;
+  --section-gold: 45 80% 25%;
+  --section-divine-blue: 220 60% 30%;
+  --section-dark-gold: 45 75% 18%;
 
 }
 
