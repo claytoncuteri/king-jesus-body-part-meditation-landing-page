@@ -124,7 +124,7 @@ export default function Landing() {
 
             <div className="flex items-center gap-3">
               <Button
-                variant="destructive"
+                variant="default"
                 size="lg"
                 className="hidden sm:flex"
                 onClick={handleCheckout}
@@ -133,7 +133,7 @@ export default function Landing() {
                 Get Started - $4.95
               </Button>
               <Button
-                variant="destructive"
+                variant="default"
                 size="default"
                 className="sm:hidden"
                 onClick={handleCheckout}
@@ -221,7 +221,7 @@ export default function Landing() {
             </p>
             <Button
               size="lg"
-              variant="destructive"
+              variant="default"
               className="text-lg px-12 py-6"
               onClick={handleCheckout}
               data-testid="button-start-transformation"
@@ -441,7 +441,7 @@ export default function Landing() {
             <div className="text-center">
               <Button
                 size="lg"
-                variant="destructive"
+                variant="default"
                 className="text-lg px-12 py-6"
                 onClick={handleCheckout}
                 data-testid="button-about-cta"
@@ -460,7 +460,7 @@ export default function Landing() {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="heading-testimonials">
-                  Student Love ❤️
+                  Student Transformations
                 </h2>
                 <p className="text-xl text-muted-foreground">
                   Real people, real results, real abundance
@@ -554,7 +554,7 @@ export default function Landing() {
 
                   <Button
                     size="lg"
-                    variant="destructive"
+                    variant="default"
                     className="w-full text-2xl py-8"
                     onClick={handleCheckout}
                     data-testid="button-package-cta"
@@ -728,7 +728,7 @@ export default function Landing() {
               <Button
                 type="submit"
                 size="lg"
-                variant="destructive"
+                variant="default"
                 className="w-full text-xl py-6"
                 disabled={emailCaptureMutation.isPending}
                 data-testid="button-subscribe"
