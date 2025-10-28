@@ -12,7 +12,18 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### Production Deployment Fix (Latest - Oct 13, 2025)
+### King Jesus Throne Showcase Section (Latest - Oct 28, 2025)
+- Added luxurious showcase section featuring King Jesus on throne image from attached_assets
+- Positioned immediately after main hero section with rich gradient background (purple-950 → blue-950 → purple-900)
+- Desktop layout: 12-column grid with Jesus image positioned elegantly on right side (col-span-5)
+- Mobile layout: Fully responsive with Jesus image large and prominent at top, content stacked below
+- Visual effects: Radial gradient glow/halo around Jesus image for divine aesthetic, sacred geometry SVG overlay at low opacity
+- Moved pricing card ($60.27 → $4.95) and formula section into showcase for better visual hierarchy
+- Removed duplicate pricing content from original hero section for cleaner page structure
+- All CTA buttons follow Shadcn sizing guidelines (size="lg" variant without custom padding)
+- Fully tested on desktop and mobile - all checkout functionality preserved and working
+
+### Production Deployment Fix (Oct 13, 2025)
 - **FIXED 404 ERRORS** - Renamed conflicting route from `/assets/:filename` to `/attached-assets/:filename`
 - Route conflict was intercepting Vite build assets and causing ForbiddenError
 - Production server tested locally - all assets now serve correctly with HTTP 200
