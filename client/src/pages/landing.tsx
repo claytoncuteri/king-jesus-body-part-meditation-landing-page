@@ -15,6 +15,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
+import kingJesusThroneImage from "@assets/kingjesusthrone_1760321098394.JPG";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 import claytonProfileImage from "@assets/A3EAA35F-FDED-40A9-A1FD-04AF9F7150D6_1760146685893.jpeg";
 
