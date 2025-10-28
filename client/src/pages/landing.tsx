@@ -15,7 +15,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
-import kingJesusThroneImage from "@assets/kingjesusthrone_1760321098394.JPG";
+import kingJesusThroneImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 import claytonProfileImage from "@assets/A3EAA35F-FDED-40A9-A1FD-04AF9F7150D6_1760146685893.jpeg";
 
@@ -358,63 +358,210 @@ export default function Landing() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-3">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
               Stuck in Financial Struggle? Break Free with the Same Meditation That Took My Net Worth from{" "}
               <span className="text-destructive">-$10K</span> to{" "}
               <span className="text-green-600">$1.1M</span>
             </h1>
-            
-            {/* Price and CTA */}
-            <div className="bg-card border-2 border-primary/20 rounded-lg p-5 shadow-2xl max-w-2xl mx-auto">
-              <div className="space-y-3">
-                <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
-                <div className="flex items-baseline justify-center gap-3">
-                  <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
-                  <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              In just 22 months, the King Jesus Body Part Meditation helped me transform scarcity into abundance. Now it's your turn.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* King Jesus Throne Showcase - Luxurious Display Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-950 via-blue-950 to-purple-900 py-16 md:py-24">
+        {/* Layered gradient overlays for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-purple-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/30 to-amber-900/20" />
+        
+        {/* Sacred geometry pattern overlay */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L2c+PC9zdmc+')] bg-repeat" />
+          {[...Array(15)].map((_, i) => (
+            <FivePointedStar
+              key={i}
+              className="absolute text-amber-400/30 w-3 h-3"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                transform: `rotate(${Math.random() * 360}deg)`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Desktop Layout: Image on right, content in center */}
+            <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-center">
+              {/* Left spacer */}
+              <div className="lg:col-span-1"></div>
+              
+              {/* Center content */}
+              <div className="lg:col-span-6 space-y-6">
+                {/* Price and CTA */}
+                <div className="bg-gradient-to-br from-card/95 to-card/90 backdrop-blur-sm border-2 border-amber-500/30 rounded-lg p-6 shadow-2xl">
+                  <div className="space-y-4">
+                    <p className="text-xl font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
+                    <div className="flex items-baseline justify-center gap-3">
+                      <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
+                      <span className="text-6xl font-cinzel font-bold text-amber-400">$4.95</span>
+                    </div>
+                    <p className="text-xl text-foreground">
+                      <span className="font-bold text-amber-400">92% OFF</span> - Limited Time Offer
+                    </p>
+                    <Button
+                      size="lg"
+                      variant="destructive"
+                      className="w-full shadow-2xl hover:shadow-amber-500/50 transition-all animate-pulse"
+                      onClick={handleCheckout}
+                      data-testid="button-showcase-cta"
+                    >
+                      <ButtonStar className="mr-2 h-6 w-6 flex-shrink-0" />
+                      <span className="whitespace-nowrap">Buy Now — $4.95</span>
+                    </Button>
+                    <p className="text-xs text-gray-300">
+                      ⏰ <span className="font-semibold">Join 45+ students</span> who've transformed their relationship with money and spirituality
+                    </p>
+                    <p className="text-xs text-gray-300 italic">
+                      100% of proceeds support building churches honoring King Jesus for global peace initiatives
+                    </p>
+                    <p className="text-xs text-gray-400/80">
+                      <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xl text-muted-foreground">
-                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
-                </p>
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="w-full text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse"
-                  onClick={handleCheckout}
-                  data-testid="button-get-started"
-                >
-                  <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  ⏰ <span className="font-semibold">Join 45+ students</span> who've transformed their relationship with money and spirituality
-                </p>
-                <p className="text-xs text-muted-foreground italic">
-                  100% of proceeds support building churches honoring King Jesus for global peace initiatives
-                </p>
-                <p className="text-xs text-muted-foreground/80 mt-2">
-                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
-                </p>
+
+                {/* Formula Section */}
+                <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl">
+                  <div className="font-chalk text-xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 flex-wrap">
+                    <span className="leading-tight">Ancient King Jesus meditation</span>
+                    <span className="text-3xl font-bold">+</span>
+                    <span className="leading-tight">Proven prosperity teachings</span>
+                    <span className="text-3xl font-bold">=</span>
+                    <span className="leading-tight">Your fastest path to abundance</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Jesus on Throne - Right side with divine glow */}
+              <div className="lg:col-span-5 relative">
+                {/* Radial divine glow effect behind Jesus */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="w-[120%] h-[120%] rounded-full blur-3xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
+                    }}
+                  />
+                  <div 
+                    className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)'
+                    }}
+                  />
+                </div>
+                
+                {/* Jesus Image */}
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    data-testid="img-jesus-throne"
+                  />
+                </div>
               </div>
             </div>
-            
-            {/* Formula Section */}
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl mt-3 max-w-2xl mx-auto">
-              {/* Mobile version - condensed text */}
-              <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-wrap">
-                <span className="leading-tight">King Jesus meditation</span>
-                <span className="text-sm font-bold">+</span>
-                <span className="leading-tight">Prosperity teachings</span>
-                <span className="text-sm font-bold">=</span>
-                <span className="leading-tight">Path to abundance</span>
+
+            {/* Mobile & Tablet Layout: Stacked with Jesus prominent */}
+            <div className="lg:hidden space-y-8">
+              {/* Jesus on Throne - Top, large and centered */}
+              <div className="relative max-w-md mx-auto">
+                {/* Radial divine glow effect */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="w-[110%] h-[110%] rounded-full blur-2xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
+                    }}
+                  />
+                  <div 
+                    className="absolute w-[90%] h-[90%] rounded-full blur-xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)'
+                    }}
+                  />
+                </div>
+                
+                {/* Jesus Image */}
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    data-testid="img-jesus-throne-mobile"
+                  />
+                </div>
               </div>
-              {/* Desktop version - full text */}
-              <div className="hidden sm:flex font-chalk text-base md:text-xl lg:text-2xl text-white/90 transform -rotate-1 items-center justify-center gap-2 md:gap-3 flex-wrap">
-                <span className="leading-tight">Ancient King Jesus meditation</span>
-                <span className="text-xl md:text-3xl lg:text-4xl font-bold">+</span>
-                <span className="leading-tight">Proven prosperity teachings</span>
-                <span className="text-xl md:text-3xl lg:text-4xl font-bold">=</span>
-                <span className="leading-tight">Your fastest path to abundance</span>
+
+              {/* Content below */}
+              <div className="space-y-4">
+                {/* Price and CTA */}
+                <div className="bg-gradient-to-br from-card/95 to-card/90 backdrop-blur-sm border-2 border-amber-500/30 rounded-lg p-5 shadow-2xl max-w-2xl mx-auto">
+                  <div className="space-y-3">
+                    <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
+                    <div className="flex items-baseline justify-center gap-3">
+                      <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
+                      <span className="text-5xl md:text-6xl font-cinzel font-bold text-amber-400">$4.95</span>
+                    </div>
+                    <p className="text-xl text-foreground">
+                      <span className="font-bold text-amber-400">92% OFF</span> - Limited Time Offer
+                    </p>
+                    <Button
+                      size="lg"
+                      variant="destructive"
+                      className="w-full shadow-2xl hover:shadow-amber-500/50 transition-all animate-pulse"
+                      onClick={handleCheckout}
+                      data-testid="button-showcase-cta-mobile"
+                    >
+                      <ButtonStar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="whitespace-nowrap">Buy Now — $4.95</span>
+                    </Button>
+                    <p className="text-xs text-gray-300">
+                      ⏰ <span className="font-semibold">Join 45+ students</span> who've transformed their relationship with money and spirituality
+                    </p>
+                    <p className="text-xs text-gray-300 italic">
+                      100% of proceeds support building churches honoring King Jesus for global peace initiatives
+                    </p>
+                    <p className="text-xs text-gray-400/80 mt-2">
+                      <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Formula Section */}
+                <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl max-w-2xl mx-auto">
+                  {/* Mobile version - condensed text */}
+                  <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-wrap">
+                    <span className="leading-tight">King Jesus meditation</span>
+                    <span className="text-sm font-bold">+</span>
+                    <span className="leading-tight">Prosperity teachings</span>
+                    <span className="text-sm font-bold">=</span>
+                    <span className="leading-tight">Path to abundance</span>
+                  </div>
+                  {/* Desktop version - full text */}
+                  <div className="hidden sm:flex font-chalk text-base md:text-xl lg:text-2xl text-white/90 transform -rotate-1 items-center justify-center gap-2 md:gap-3 flex-wrap">
+                    <span className="leading-tight">Ancient King Jesus meditation</span>
+                    <span className="text-xl md:text-3xl lg:text-4xl font-bold">+</span>
+                    <span className="leading-tight">Proven prosperity teachings</span>
+                    <span className="text-xl md:text-3xl lg:text-4xl font-bold">=</span>
+                    <span className="leading-tight">Your fastest path to abundance</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
