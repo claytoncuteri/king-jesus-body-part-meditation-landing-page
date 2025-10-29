@@ -12,13 +12,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### King Jesus Throne Showcase Section (Latest - Oct 28, 2025)
+### King Jesus Throne Showcase Section (Latest - Oct 29, 2025)
 - Added luxurious showcase section featuring King Jesus on throne image from attached_assets
 - Positioned immediately after main hero section with rich gradient background (purple-950 → blue-950 → purple-900)
-- Desktop layout: 12-column grid with Jesus image positioned elegantly on right side (col-span-5)
+- Desktop layout: 12-column grid with Jesus image positioned on LEFT side (col-span-5), content centered (col-span-6)
 - Mobile layout: Fully responsive with Jesus image large and prominent at top, content stacked below
 - Visual effects: Radial gradient glow/halo around Jesus image for divine aesthetic, sacred geometry SVG overlay at low opacity
 - Moved pricing card ($60.27 → $4.95) and formula section into showcase for better visual hierarchy
+- Formula section redesigned with multi-line layout: + and = symbols at the beginning of new lines (not inline)
 - Removed duplicate pricing content from original hero section for cleaner page structure
 - All CTA buttons follow Shadcn sizing guidelines (size="lg" variant without custom padding)
 - Fully tested on desktop and mobile - all checkout functionality preserved and working
