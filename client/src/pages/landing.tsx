@@ -341,13 +341,13 @@ export default function Landing() {
       </header>
 
       {/* Hero Section - Above the Fold */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-2 pb-6 md:pt-6 md:pb-10">
+      <section className="relative overflow-hidden bg-gradient-to-b from-white via-amber-50/40 to-purple-900 pt-16 pb-20 md:pt-24 md:pb-32">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
             <FivePointedStar
               key={i}
-              className={`absolute text-primary w-4 h-4`}
+              className={`absolute text-amber-400 w-4 h-4`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -358,15 +358,107 @@ export default function Landing() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
-              Stuck in Financial Struggle? Break Free with the Same Meditation That Took My Net Worth from{" "}
-              <span className="text-destructive">-$10K</span> to{" "}
-              <span className="text-green-600">$1.1M</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              In just 22 months, the King Jesus Body Part Meditation helped me transform scarcity into abundance. Now it's your turn.
-            </p>
+          {/* Desktop Layout: Content Left, Image Right */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <h1 className="text-5xl xl:text-6xl font-bold font-serif text-white leading-tight drop-shadow-lg">
+                King Jesus Meditation
+              </h1>
+              <h2 className="text-2xl xl:text-3xl font-semibold text-white drop-shadow-md">
+                Same Meditation That Made Me a Millionaire
+              </h2>
+              <p className="text-xl xl:text-2xl font-semibold text-amber-100 drop-shadow-md">
+                Get It Now For Just $4.95
+              </p>
+              <Button
+                size="lg"
+                variant="destructive"
+                className="w-full md:w-auto shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-hero-cta"
+              >
+                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+              </Button>
+            </div>
+
+            {/* Right Jesus Image with Glow */}
+            <div className="relative">
+              {/* Radial divine glow effect behind Jesus */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div 
+                  className="w-[120%] h-[120%] rounded-full blur-3xl"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
+                  }}
+                />
+                <div 
+                  className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)'
+                  }}
+                />
+              </div>
+              
+              {/* Jesus Image */}
+              <div className="relative z-10">
+                <img
+                  src={kingJesusThroneImage}
+                  alt="King Jesus on Throne"
+                  className="w-full h-auto object-contain drop-shadow-2xl"
+                  data-testid="img-hero-jesus"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Layout: Title + Image side-by-side at top, then content below */}
+          <div className="lg:hidden space-y-8">
+            {/* Top Row: Title next to Jesus Image */}
+            <div className="grid grid-cols-2 gap-4 items-center">
+              <h1 className="text-2xl sm:text-3xl font-bold font-serif text-white leading-tight drop-shadow-lg">
+                King Jesus Meditation
+              </h1>
+              
+              {/* Jesus Image with Glow (compact for mobile) */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="w-[110%] h-[110%] rounded-full blur-2xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
+                    }}
+                  />
+                </div>
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-xl"
+                    data-testid="img-hero-jesus-mobile"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Content Below */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white drop-shadow-md">
+                Same Meditation That Made Me a Millionaire
+              </h2>
+              <p className="text-lg sm:text-xl font-semibold text-amber-100 drop-shadow-md">
+                Get It Now For Just $4.95
+              </p>
+              <Button
+                size="lg"
+                variant="destructive"
+                className="w-full shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-hero-cta-mobile"
+              >
+                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
