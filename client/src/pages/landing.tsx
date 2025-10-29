@@ -395,10 +395,36 @@ export default function Landing() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-7xl mx-auto">
-            {/* Desktop Layout: Image on right, content in center */}
+            {/* Desktop Layout: Image on left, content in center */}
             <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-center">
-              {/* Left spacer */}
-              <div className="lg:col-span-1"></div>
+              {/* Jesus on Throne - Left side with divine glow */}
+              <div className="lg:col-span-5 relative">
+                {/* Radial divine glow effect behind Jesus */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="w-[120%] h-[120%] rounded-full blur-3xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
+                    }}
+                  />
+                  <div 
+                    className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)'
+                    }}
+                  />
+                </div>
+                
+                {/* Jesus Image */}
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    data-testid="img-jesus-throne"
+                  />
+                </div>
+              </div>
               
               {/* Center content */}
               <div className="lg:col-span-6 space-y-6">
@@ -437,44 +463,16 @@ export default function Landing() {
 
                 {/* Formula Section */}
                 <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl">
-                  <div className="font-chalk text-xl text-white/90 transform -rotate-1 flex items-center justify-center gap-3 flex-wrap">
-                    <span className="leading-tight">Ancient King Jesus meditation</span>
-                    <span className="text-3xl font-bold">+</span>
-                    <span className="leading-tight">Proven prosperity teachings</span>
-                    <span className="text-3xl font-bold">=</span>
-                    <span className="leading-tight">Your fastest path to abundance</span>
+                  <div className="font-chalk text-xl text-white/90 transform -rotate-1 space-y-2">
+                    <div className="leading-tight">Ancient King Jesus meditation</div>
+                    <div className="leading-tight"><span className="text-3xl font-bold mr-2">+</span>Proven prosperity teachings</div>
+                    <div className="leading-tight"><span className="text-3xl font-bold mr-2">=</span>Your fastest path to abundance</div>
                   </div>
                 </div>
               </div>
 
-              {/* Jesus on Throne - Right side with divine glow */}
-              <div className="lg:col-span-5 relative">
-                {/* Radial divine glow effect behind Jesus */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div 
-                    className="w-[120%] h-[120%] rounded-full blur-3xl"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)'
-                    }}
-                  />
-                  <div 
-                    className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)'
-                    }}
-                  />
-                </div>
-                
-                {/* Jesus Image */}
-                <div className="relative z-10">
-                  <img
-                    src={kingJesusThroneImage}
-                    alt="King Jesus on Throne"
-                    className="w-full h-auto object-contain drop-shadow-2xl"
-                    data-testid="img-jesus-throne"
-                  />
-                </div>
-              </div>
+              {/* Right spacer */}
+              <div className="lg:col-span-1"></div>
             </div>
 
             {/* Mobile & Tablet Layout: Stacked with Jesus prominent */}
@@ -546,20 +544,16 @@ export default function Landing() {
                 {/* Formula Section */}
                 <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl max-w-2xl mx-auto">
                   {/* Mobile version - condensed text */}
-                  <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-wrap">
-                    <span className="leading-tight">King Jesus meditation</span>
-                    <span className="text-sm font-bold">+</span>
-                    <span className="leading-tight">Prosperity teachings</span>
-                    <span className="text-sm font-bold">=</span>
-                    <span className="leading-tight">Path to abundance</span>
+                  <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 space-y-1">
+                    <div className="leading-tight">King Jesus meditation</div>
+                    <div className="leading-tight"><span className="text-sm font-bold mr-1">+</span>Prosperity teachings</div>
+                    <div className="leading-tight"><span className="text-sm font-bold mr-1">=</span>Path to abundance</div>
                   </div>
-                  {/* Desktop version - full text */}
-                  <div className="hidden sm:flex font-chalk text-base md:text-xl lg:text-2xl text-white/90 transform -rotate-1 items-center justify-center gap-2 md:gap-3 flex-wrap">
-                    <span className="leading-tight">Ancient King Jesus meditation</span>
-                    <span className="text-xl md:text-3xl lg:text-4xl font-bold">+</span>
-                    <span className="leading-tight">Proven prosperity teachings</span>
-                    <span className="text-xl md:text-3xl lg:text-4xl font-bold">=</span>
-                    <span className="leading-tight">Your fastest path to abundance</span>
+                  {/* Tablet+ version - full text */}
+                  <div className="hidden sm:block font-chalk text-base md:text-xl text-white/90 transform -rotate-1 space-y-2">
+                    <div className="leading-tight">Ancient King Jesus meditation</div>
+                    <div className="leading-tight"><span className="text-xl md:text-3xl font-bold mr-2">+</span>Proven prosperity teachings</div>
+                    <div className="leading-tight"><span className="text-xl md:text-3xl font-bold mr-2">=</span>Your fastest path to abundance</div>
                   </div>
                 </div>
               </div>
