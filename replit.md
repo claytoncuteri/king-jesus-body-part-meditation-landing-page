@@ -17,11 +17,15 @@ Preferred communication style: Simple, everyday language.
 - Gradient: `from-amber-400 to-blue-900` for striking visual impact
 - Desktop layout: 2-column grid with content on LEFT (title, subtitle, price, CTA), smaller Jesus throne image (max-w-md) with divine glow on RIGHT
 - Mobile layout: Unique side-by-side top row with "King Jesus Meditation" title NEXT TO compact Jesus image (max-w-[120px] sm:max-w-[150px]), then subtitle/price/button stacked below
-- Typography: "King Jesus Meditation" main title, "Same Meditation That Made Me a Millionaire" subtitle, "Get It Now For Just $4.95" price
+- **Enhanced Typography:**
+  - "King Jesus Meditation" main title: text-6xl xl:text-7xl with gold-to-white gradient effect
+  - "Same Meditation That Made Me a Millionaire" subtitle: softer white-to-amber gradient
+  - Both titles feature 45-degree offset drop shadows for depth
+- **Entrance Animations:** Smooth fade-in with scale effect (0.95 → 1.0), subtitle appears 0.3s after main title for staggered reveal
 - CTA button: "GET INSTANT ACCESS →" using destructive variant, connects to checkout flow
-- Text styling: White text with drop shadows for readability across gradient, amber-100 accent for price
+- Text styling: Gradient text with CSP-compliant shadow classes, amber-100 accent for price
 - Accessibility: All text maintains strong contrast against gradient background
-- Fully tested on desktop and mobile - all checkout functionality preserved
+- Fully tested on desktop and mobile - all visual effects and checkout functionality working
 
 ### King Jesus Throne Showcase Section (Oct 29, 2025)
 - Added luxurious showcase section featuring King Jesus on throne image from attached_assets
