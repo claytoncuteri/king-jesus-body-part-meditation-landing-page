@@ -492,7 +492,7 @@ export default function Landing() {
           <div className="lg:hidden space-y-8">
             {/* Top Row: Title next to Jesus Image */}
             <div className="grid grid-cols-2 gap-4 items-center">
-              <h1 className="text-3xl sm:text-4xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
+              <h1 className="font-bold font-serif leading-[1.1] bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title max-h-[120px] sm:max-h-[150px] flex items-center" style={{ fontSize: 'clamp(1.5rem, 8vw, 3rem)' }}>
                 King Jesus Meditation
               </h1>
 
