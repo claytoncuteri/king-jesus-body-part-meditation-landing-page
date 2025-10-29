@@ -583,7 +583,7 @@ export default function Landing() {
                     <span className="font-cinzel font-bold text-green-600">
                       $1.1M
                     </span>{" "}
-                    net worth across 4 businesses, a podcast, and 210K+
+                    net worth across 4 businesses, a podcast, and 126K+
                     followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
