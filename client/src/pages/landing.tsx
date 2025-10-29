@@ -48,12 +48,10 @@ function FivePointedStar({
 // 5-pointed star SVG component for buttons (customizable outline, no fill)
 function ButtonStar({
   className = "w-6 h-6",
-  stroke = "white",
-  fill = "none"
+  stroke = "white"
 }: {
   className?: string;
   stroke?: string;
-  fill?: string;
 }) {
   return (
     <svg
