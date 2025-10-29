@@ -1284,7 +1284,7 @@ export default function Landing() {
                 <Instagram className="w-12 h-12 text-secondary" />
                 <div className="text-left">
                   <p className="text-xl font-bold">@claytoncuteri</p>
-                  <p className="text-muted-foreground">126,000+ followers</p>
+                  <p className="text-muted-foreground">126k+ followers</p>
                 </div>
               </div>
               <p className="text-lg mb-6">
