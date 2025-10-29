@@ -325,4 +325,47 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Hero title entrance animations */
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in-scale-delay {
+    opacity: 0;
+    animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+
+  /* 45-degree offset shadows for hero titles */
+  .shadow-hero-title {
+    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.9));
+  }
+
+  .shadow-hero-subtitle {
+    filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.7));
+  }
+
+  .shadow-hero-subtitle-mobile {
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.7));
+  }
+
+  /* Blue glow effect for price text */
+  .shadow-price-glow {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6)) drop-shadow(0 0 16px rgba(59, 130, 246, 0.4)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+  }
+
+  .shadow-price-glow-mobile {
+    filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+  }
 }

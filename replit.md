@@ -12,7 +12,34 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### Production Deployment Fix (Latest - Oct 13, 2025)
+### New Hero Section Design (Latest - Oct 29, 2025)
+- Completely redesigned hero section with bold gold-to-blue gradient background (faster transition, no via stops)
+- Gradient: `from-amber-400 to-blue-900` for striking visual impact
+- Desktop layout: 2-column grid with content on LEFT (title, subtitle, price, CTA), smaller Jesus throne image (max-w-md) with divine glow on RIGHT
+- Mobile layout: Unique side-by-side top row with "King Jesus Meditation" title NEXT TO compact Jesus image (max-w-[120px] sm:max-w-[150px]), then subtitle/price/button stacked below
+- **Enhanced Typography:**
+  - "King Jesus Meditation" main title: text-6xl xl:text-7xl with gold-to-white gradient effect
+  - "Same Meditation That Made Me a Millionaire" subtitle: softer white-to-amber gradient
+  - Both titles feature 45-degree offset drop shadows for depth
+- **Entrance Animations:** Smooth fade-in with scale effect (0.95 → 1.0), subtitle appears 0.3s after main title for staggered reveal
+- CTA button: "GET INSTANT ACCESS →" using destructive variant, connects to checkout flow
+- Text styling: Gradient text with CSP-compliant shadow classes, amber-100 accent for price
+- Accessibility: All text maintains strong contrast against gradient background
+- Fully tested on desktop and mobile - all visual effects and checkout functionality working
+
+### King Jesus Throne Showcase Section (Oct 29, 2025)
+- Added luxurious showcase section featuring King Jesus on throne image from attached_assets
+- Positioned immediately after main hero section with rich gradient background (purple-950 → blue-950 → purple-900)
+- Desktop layout: 12-column grid with Jesus image positioned on LEFT side (col-span-5), content centered (col-span-6)
+- Mobile layout: Fully responsive with Jesus image large and prominent at top, content stacked below
+- Visual effects: Radial gradient glow/halo around Jesus image for divine aesthetic, sacred geometry SVG overlay at low opacity
+- Moved pricing card ($60.27 → $4.95) and formula section into showcase for better visual hierarchy
+- Formula section redesigned with multi-line layout: + and = symbols at the beginning of new lines (not inline)
+- Removed duplicate pricing content from original hero section for cleaner page structure
+- All CTA buttons follow Shadcn sizing guidelines (size="lg" variant without custom padding)
+- Fully tested on desktop and mobile - all checkout functionality preserved and working
+
+### Production Deployment Fix (Oct 13, 2025)
 - **FIXED 404 ERRORS** - Renamed conflicting route from `/assets/:filename` to `/attached-assets/:filename`
 - Route conflict was intercepting Vite build assets and causing ForbiddenError
 - Production server tested locally - all assets now serve correctly with HTTP 200

@@ -15,11 +15,18 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Star, Instagram, Check, Menu, X } from "lucide-react";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
+import kingJesusThroneImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
 import claytonProfileImage from "@assets/A3EAA35F-FDED-40A9-A1FD-04AF9F7150D6_1760146685893.jpeg";
 
 // 5-pointed star SVG component (gold fill with black border for images)
-function FivePointedStar({ className = "w-6 h-6", style }: { className?: string; style?: React.CSSProperties }) {
+function FivePointedStar({
+  className = "w-6 h-6",
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <svg
       className={className}
@@ -28,10 +35,10 @@ function FivePointedStar({ className = "w-6 h-6", style }: { className?: string;
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path 
-        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+      <path
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
         fill="currentColor"
-        stroke="black" 
+        stroke="black"
         strokeWidth="1.5"
       />
     </svg>
@@ -47,10 +54,10 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path 
-        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+      <path
+        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
         fill="none"
-        stroke="white" 
+        stroke="white"
         strokeWidth="2"
       />
     </svg>
@@ -146,10 +153,22 @@ export default function Landing() {
                 />
               </div>
               <div className="relative">
-                <FivePointedStar className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <FivePointedStar className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <FivePointedStar
+                  className="absolute -top-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <FivePointedStar
+                  className="absolute -top-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <FivePointedStar
+                  className="absolute -bottom-1 -left-1 text-primary w-4 h-4 z-10 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <FivePointedStar
+                  className="absolute -bottom-1 -right-1 text-primary w-4 h-4 z-10 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
                 <img
                   src={kingJesusImage}
                   alt="King Jesus"
@@ -162,7 +181,7 @@ export default function Landing() {
             {/* Center: Navigation */}
             <nav className="hidden md:flex items-center gap-6">
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 data-testid="nav-home"
               >
@@ -170,11 +189,14 @@ export default function Landing() {
               </button>
               <button
                 onClick={() => {
-                  const el = document.getElementById('story');
+                  const el = document.getElementById("story");
                   if (el) {
                     const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    const top =
+                      el.getBoundingClientRect().top +
+                      window.pageYOffset -
+                      offset;
+                    window.scrollTo({ top, behavior: "smooth" });
                   }
                 }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -184,11 +206,14 @@ export default function Landing() {
               </button>
               <button
                 onClick={() => {
-                  const el = document.getElementById('testimonials');
+                  const el = document.getElementById("testimonials");
                   if (el) {
                     const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    const top =
+                      el.getBoundingClientRect().top +
+                      window.pageYOffset -
+                      offset;
+                    window.scrollTo({ top, behavior: "smooth" });
                   }
                 }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -198,11 +223,14 @@ export default function Landing() {
               </button>
               <button
                 onClick={() => {
-                  const el = document.getElementById('value');
+                  const el = document.getElementById("value");
                   if (el) {
                     const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    const top =
+                      el.getBoundingClientRect().top +
+                      window.pageYOffset -
+                      offset;
+                    window.scrollTo({ top, behavior: "smooth" });
                   }
                 }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -212,11 +240,14 @@ export default function Landing() {
               </button>
               <button
                 onClick={() => {
-                  const el = document.getElementById('faq');
+                  const el = document.getElementById("faq");
                   if (el) {
                     const offset = 100;
-                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    const top =
+                      el.getBoundingClientRect().top +
+                      window.pageYOffset -
+                      offset;
+                    window.scrollTo({ top, behavior: "smooth" });
                   }
                 }}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -254,7 +285,11 @@ export default function Landing() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 data-testid="button-mobile-menu"
               >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {mobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
           </div>
@@ -265,7 +300,7 @@ export default function Landing() {
               <nav className="flex flex-col gap-3">
                 <button
                   onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                     setMobileMenuOpen(false);
                   }}
                   className="text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-md transition-colors"
@@ -275,11 +310,14 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    const el = document.getElementById('story');
+                    const el = document.getElementById("story");
                     if (el) {
                       const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
+                      const top =
+                        el.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        offset;
+                      window.scrollTo({ top, behavior: "smooth" });
                     }
                     setMobileMenuOpen(false);
                   }}
@@ -290,11 +328,14 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    const el = document.getElementById('testimonials');
+                    const el = document.getElementById("testimonials");
                     if (el) {
                       const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
+                      const top =
+                        el.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        offset;
+                      window.scrollTo({ top, behavior: "smooth" });
                     }
                     setMobileMenuOpen(false);
                   }}
@@ -305,11 +346,14 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    const el = document.getElementById('value');
+                    const el = document.getElementById("value");
                     if (el) {
                       const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
+                      const top =
+                        el.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        offset;
+                      window.scrollTo({ top, behavior: "smooth" });
                     }
                     setMobileMenuOpen(false);
                   }}
@@ -320,11 +364,14 @@ export default function Landing() {
                 </button>
                 <button
                   onClick={() => {
-                    const el = document.getElementById('faq');
+                    const el = document.getElementById("faq");
                     if (el) {
                       const offset = 100;
-                      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
+                      const top =
+                        el.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        offset;
+                      window.scrollTo({ top, behavior: "smooth" });
                     }
                     setMobileMenuOpen(false);
                   }}
@@ -340,13 +387,13 @@ export default function Landing() {
       </header>
 
       {/* Hero Section - Above the Fold */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/10 pt-2 pb-6 md:pt-6 md:pb-10">
+      <section className="relative overflow-hidden bg-gradient-to-b from-amber-400 to-blue-900 pt-16 pb-20 md:pt-24 md:pb-32">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
             <FivePointedStar
               key={i}
-              className={`absolute text-primary w-4 h-4`}
+              className={`absolute text-amber-400 w-4 h-4`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -357,64 +404,141 @@ export default function Landing() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-3">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-foreground leading-tight">
-              Stuck in Financial Struggle? Break Free with the Same Meditation That Took My Net Worth from{" "}
-              <span className="text-destructive">-$10K</span> to{" "}
-              <span className="text-green-600">$1.1M</span>
-            </h1>
-            
-            {/* Price and CTA */}
-            <div className="bg-card border-2 border-primary/20 rounded-lg p-5 shadow-2xl max-w-2xl mx-auto">
-              <div className="space-y-3">
-                <p className="text-lg font-semibold text-foreground">Complete Spiritual Prosperity Package</p>
-                <div className="flex items-baseline justify-center gap-3">
-                  <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">$60.27</span>
-                  <span className="text-5xl md:text-6xl font-cinzel font-bold text-primary">$4.95</span>
-                </div>
-                <p className="text-xl text-muted-foreground">
-                  <span className="font-bold text-primary">92% OFF</span> - Limited Time Offer
-                </p>
-                <Button
-                  size="lg"
-                  variant="destructive"
-                  className="w-full text-sm sm:text-base md:text-xl px-4 sm:px-6 md:px-12 py-5 sm:py-6 md:py-7 shadow-2xl hover:shadow-primary/50 transition-all animate-pulse"
-                  onClick={handleCheckout}
-                  data-testid="button-get-started"
-                >
-                  <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Buy Now — $4.95</span>
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  ⏰ <span className="font-semibold">Join 45+ students</span> who've transformed their relationship with money and spirituality
-                </p>
-                <p className="text-xs text-muted-foreground italic">
-                  100% of proceeds support building churches honoring King Jesus for global peace initiatives
-                </p>
-                <p className="text-xs text-muted-foreground/80 mt-2">
-                  <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not a financial guarantee.
-                </p>
+          {/* Desktop Layout: Content Left, Image Right */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <h1 className="text-6xl xl:text-7xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
+                King Jesus Meditation
+              </h1>
+              <h2 className="text-2xl xl:text-3xl font-extrabold leading-tight animate-fade-in-scale-delay shadow-hero-subtitle">
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  Same{" "}
+                </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
+                  Meditation
+                </span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  {" "}
+                  That Made Me a{" "}
+                </span>
+                <span className="text-3xl xl:text-4xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
+                  MILLIONAIRE
+                </span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  {" "}
+                  In 22 Months
+                </span>
+              </h2>
+              <p className="text-xl xl:text-2xl font-semibold text-white/90 drop-shadow-lg">
+                Get It Now For Just $4.95
+              </p>
+              <Button
+                size="lg"
+                variant="destructive"
+                className="w-full md:w-auto shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-hero-cta"
+              >
+                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+              </Button>
+            </div>
+
+            {/* Right Jesus Image with Glow */}
+            <div className="relative max-w-md mx-auto">
+              {/* Radial divine glow effect behind Jesus */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className="w-[120%] h-[120%] rounded-full blur-3xl"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)",
+                  }}
+                />
+                <div
+                  className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)",
+                  }}
+                />
+              </div>
+
+              {/* Jesus Image */}
+              <div className="relative z-10">
+                <img
+                  src={kingJesusThroneImage}
+                  alt="King Jesus on Throne"
+                  className="w-full h-auto object-contain drop-shadow-2xl"
+                  data-testid="img-hero-jesus"
+                />
               </div>
             </div>
-            
-            {/* Formula Section */}
-            <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl mt-3 max-w-2xl mx-auto">
-              {/* Mobile version - condensed text */}
-              <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 flex items-center justify-center gap-1 flex-wrap">
-                <span className="leading-tight">King Jesus meditation</span>
-                <span className="text-sm font-bold">+</span>
-                <span className="leading-tight">Prosperity teachings</span>
-                <span className="text-sm font-bold">=</span>
-                <span className="leading-tight">Path to abundance</span>
+          </div>
+
+          {/* Mobile Layout: Title + Image side-by-side at top, then content below */}
+          <div className="lg:hidden space-y-8">
+            {/* Top Row: Title next to Jesus Image */}
+            <div className="grid grid-cols-2 gap-4 items-center">
+              <h1 className="text-3xl sm:text-4xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
+                King Jesus Meditation
+              </h1>
+
+              {/* Jesus Image with Glow (compact for mobile) */}
+              <div className="relative max-w-[120px] sm:max-w-[150px]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-[110%] h-[110%] rounded-full blur-2xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)",
+                    }}
+                  />
+                </div>
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-xl"
+                    data-testid="img-hero-jesus-mobile"
+                  />
+                </div>
               </div>
-              {/* Desktop version - full text */}
-              <div className="hidden sm:flex font-chalk text-base md:text-xl lg:text-2xl text-white/90 transform -rotate-1 items-center justify-center gap-2 md:gap-3 flex-wrap">
-                <span className="leading-tight">Ancient King Jesus meditation</span>
-                <span className="text-xl md:text-3xl lg:text-4xl font-bold">+</span>
-                <span className="leading-tight">Proven prosperity teachings</span>
-                <span className="text-xl md:text-3xl lg:text-4xl font-bold">=</span>
-                <span className="leading-tight">Your fastest path to abundance</span>
-              </div>
+            </div>
+
+            {/* Content Below */}
+            <div className="space-y-4 text-center">
+              <h2 className="text-xl sm:text-2xl font-extrabold leading-tight animate-fade-in-scale-delay shadow-hero-subtitle-mobile">
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  Same{" "}
+                </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
+                  Meditation
+                </span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  {" "}
+                  That Made Me a{" "}
+                </span>
+                <span className="text-2xl sm:text-3xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
+                  MILLIONAIRE
+                </span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">
+                  {" "}
+                  In 22 Months
+                </span>
+              </h2>
+              <p className="text-lg sm:text-xl font-semibold text-white/90 drop-shadow-lg">
+                Get It Now For Just $4.95
+              </p>
+              <Button
+                size="lg"
+                variant="destructive"
+                className="w-full shadow-2xl hover:shadow-primary/50 transition-all"
+                onClick={handleCheckout}
+                data-testid="button-hero-cta-mobile"
+              >
+                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+              </Button>
             </div>
           </div>
         </div>
@@ -429,33 +553,51 @@ export default function Landing() {
                 <div className="text-6xl text-primary">"</div>
                 <div className="flex-1">
                   <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-card-foreground">
-                    I'm <span className="font-bold text-primary">Clayton Cuteri</span>. In just 22 months, this meditation helped me go from{" "}
-                    <span className="font-cinzel font-bold text-destructive">-$10,000</span> in debt to a{" "}
-                    <span className="font-cinzel font-bold text-green-600">$1.1M</span> net worth across 4 businesses, a podcast, and 210K+ followers.
+                    I'm{" "}
+                    <span className="font-bold text-primary">
+                      Clayton Cuteri
+                    </span>
+                    . In just 22 months, this meditation helped me go from{" "}
+                    <span className="font-cinzel font-bold text-destructive">
+                      -$10,000
+                    </span>{" "}
+                    in debt to a{" "}
+                    <span className="font-cinzel font-bold text-green-600">
+                      $1.1M
+                    </span>{" "}
+                    net worth across 4 businesses, a podcast, and 210K+
+                    followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
-                    But here's what most don't know: Before I made my first dollar, I had to transform my relationship with money at the cellular level. This meditation rewired my prosperity consciousness, dissolved financial blocks, and aligned me with divine abundance.
+                    But here's what most don't know: Before I made my first
+                    dollar, I had to transform my relationship with money at the
+                    cellular level. This meditation rewired my prosperity
+                    consciousness, dissolved financial blocks, and aligned me
+                    with divine abundance.
                   </p>
                   <p className="text-lg md:text-xl mt-4 text-muted-foreground leading-relaxed">
-                    The same ancient technique that guided me from scarcity to overflow is now available to you for less than a coffee.
+                    The same ancient technique that guided me from scarcity to
+                    overflow is now available to you for less than a coffee.
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-4 pt-4 border-t border-primary/20">
-                <img 
-                  src={claytonProfileImage} 
-                  alt="Clayton Cuteri" 
+                <img
+                  src={claytonProfileImage}
+                  alt="Clayton Cuteri"
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary"
                   data-testid="img-clayton-profile"
                 />
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
-                  <p className="text-muted-foreground">Influencer, Politician, Entrepreneur, and Spiritual Guide</p>
+                  <p className="text-muted-foreground">
+                    Influencer, Politician, Entrepreneur, and Spiritual Guide
+                  </p>
                 </div>
               </div>
             </div>
           </Card>
-          
+
           {/* CTA after Story */}
           <div className="mt-12 text-center">
             <Button
@@ -466,7 +608,9 @@ export default function Landing() {
               data-testid="button-story-cta"
             >
               <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-              <span className="whitespace-nowrap">Begin Transformation — $4.95</span>
+              <span className="whitespace-nowrap">
+                Begin Transformation — $4.95
+              </span>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
               The same meditation that changed my life can change yours
@@ -486,7 +630,7 @@ export default function Landing() {
               <p className="text-xl text-center text-muted-foreground mb-8">
                 See what others are experiencing with #KingJesusMeditation
               </p>
-              
+
               {/* Rating Display */}
               <div className="flex flex-col items-center gap-3 py-4 mb-8">
                 <div className="flex items-center gap-2">
@@ -499,10 +643,10 @@ export default function Landing() {
                       {/* Background star (empty) */}
                       <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
                       {/* Filled star with partial fill */}
-                      <div 
+                      <div
                         className="absolute inset-0 overflow-hidden"
-                        style={{ 
-                          width: star <= 4 ? '100%' : star === 5 ? '98%' : '0%' 
+                        style={{
+                          width: star <= 4 ? "100%" : star === 5 ? "98%" : "0%",
                         }}
                       >
                         <Star className="w-6 h-6 text-primary fill-primary" />
@@ -511,7 +655,10 @@ export default function Landing() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Rated by <span className="font-semibold text-foreground">45+ students</span>
+                  Rated by{" "}
+                  <span className="font-semibold text-foreground">
+                    45+ students
+                  </span>
                 </p>
               </div>
 
@@ -519,36 +666,50 @@ export default function Landing() {
                 {testimonials.map((testimonial: any, idx: number) => {
                   const rating = idx === 2 ? 4 : 5;
                   return (
-                    <Card key={testimonial.id} className="p-6 hover-elevate transition-all" data-testid={`testimonial-${testimonial.id}`}>
+                    <Card
+                      key={testimonial.id}
+                      className="p-6 hover-elevate transition-all"
+                      data-testid={`testimonial-${testimonial.id}`}
+                    >
                       <div className="mb-3">
                         <p className="font-semibold">{testimonial.name}</p>
                         <p className="text-xs text-muted-foreground">
-                          {testimonial.gender && testimonial.age ? `${testimonial.gender}, ${testimonial.age}` : 
-                           testimonial.gender ? testimonial.gender : 
-                           testimonial.age ? `Age ${testimonial.age}` : ''}
+                          {testimonial.gender && testimonial.age
+                            ? `${testimonial.gender}, ${testimonial.age}`
+                            : testimonial.gender
+                              ? testimonial.gender
+                              : testimonial.age
+                                ? `Age ${testimonial.age}`
+                                : ""}
                         </p>
                       </div>
-                      <p className="text-sm leading-relaxed mb-3">{testimonial.content}</p>
-                      
+                      <p className="text-sm leading-relaxed mb-3">
+                        {testimonial.content}
+                      </p>
+
                       {/* Individual Rating */}
                       <div className="flex items-center gap-2 mb-2">
                         <div className="flex items-center gap-0.5">
                           {[1, 2, 3, 4, 5].map((star) => (
-                            <Star 
-                              key={star} 
-                              className={`w-4 h-4 ${star <= rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
+                            <Star
+                              key={star}
+                              className={`w-4 h-4 ${star <= rating ? "text-primary fill-primary" : "text-muted-foreground/30"}`}
                             />
                           ))}
                         </div>
-                        <span className="text-xs font-semibold text-foreground">{rating}/5</span>
+                        <span className="text-xs font-semibold text-foreground">
+                          {rating}/5
+                        </span>
                       </div>
-                      
-                      <p className="text-xs text-secondary font-semibold">#KingJesusMeditation</p>
+
+                      <p className="text-xs text-secondary font-semibold">
+                        #KingJesusMeditation
+                      </p>
                     </Card>
                   );
                 })}
               </div>
-              
+
               {/* CTA after Testimonials */}
               <div className="mt-12 text-center">
                 <Button
@@ -559,10 +720,13 @@ export default function Landing() {
                   data-testid="button-testimonials-cta"
                 >
                   <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                  <span className="whitespace-nowrap">Join 45+ Students — $4.95</span>
+                  <span className="whitespace-nowrap">
+                    Join 45+ Students — $4.95
+                  </span>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  Experience the same transformation as our 4.91/5 rated community
+                  Experience the same transformation as our 4.91/5 rated
+                  community
                 </p>
               </div>
             </div>
@@ -583,33 +747,42 @@ export default function Landing() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {[
-                { 
-                  name: "King Jesus Body Part Meditation Video", 
+                {
+                  name: "King Jesus Body Part Meditation Video",
                   value: 19.99,
-                  description: "Sacred meditation technique to activate divine energies within your body and manifest abundance."
+                  description:
+                    "Sacred meditation technique to activate divine energies within your body and manifest abundance.",
                 },
-                { 
-                  name: "Money-Related Podcast Episodes", 
+                {
+                  name: "Money-Related Podcast Episodes",
                   value: 14.99,
-                  description: "Cellular-level understanding of wealth consciousness and prosperity mindset transformation."
+                  description:
+                    "Cellular-level understanding of wealth consciousness and prosperity mindset transformation.",
                 },
-                { 
-                  name: "Revealing The Secret Teachings of Jesus: Gospel of Thomas - Volume I, Verses 1-10", 
+                {
+                  name: "Revealing The Secret Teachings of Jesus: Gospel of Thomas - Volume I, Verses 1-10",
                   value: 9.99,
-                  description: "Ancient wisdom unlocking hidden teachings for spiritual enlightenment and divine connection."
+                  description:
+                    "Ancient wisdom unlocking hidden teachings for spiritual enlightenment and divine connection.",
                 },
-                { 
-                  name: "Reader's Notebook for Gospel of Thomas - Volume I, Verses 1-10", 
+                {
+                  name: "Reader's Notebook for Gospel of Thomas - Volume I, Verses 1-10",
                   value: 5.31,
-                  description: "Guided reflection tool to deepen your understanding and integrate sacred teachings into daily life."
+                  description:
+                    "Guided reflection tool to deepen your understanding and integrate sacred teachings into daily life.",
                 },
-                { 
-                  name: "Meditation Journal Template", 
+                {
+                  name: "Meditation Journal Template",
                   value: 9.99,
-                  description: "Track your spiritual journey, manifestations, and divine insights for accelerated growth."
+                  description:
+                    "Track your spiritual journey, manifestations, and divine insights for accelerated growth.",
                 },
               ].map((item, idx) => (
-                <Card key={idx} className="p-6 hover-elevate transition-all" data-testid={`card-product-${idx}`}>
+                <Card
+                  key={idx}
+                  className="p-6 hover-elevate transition-all"
+                  data-testid={`card-product-${idx}`}
+                >
                   <div className="flex items-start gap-3">
                     <Check className="text-primary mt-1 flex-shrink-0" />
                     <div className="flex-1">
@@ -629,18 +802,25 @@ export default function Landing() {
                   </div>
                 </Card>
               ))}
-              
+
               {/* Secret Bonus Gift Card */}
-              <Card className="p-6 hover-elevate transition-all border-2 border-secondary/50 bg-gradient-to-br from-secondary/5 to-primary/5" data-testid="card-bonus-gift">
+              <Card
+                className="p-6 hover-elevate transition-all border-2 border-secondary/50 bg-gradient-to-br from-secondary/5 to-primary/5"
+                data-testid="card-bonus-gift"
+              >
                 <div className="flex items-start gap-3">
                   <Check className="text-secondary mt-1 flex-shrink-0" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h3 className="font-semibold">Secret Bonus Gift</h3>
-                      <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">🎁 SURPRISE</span>
+                      <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">
+                        🎁 SURPRISE
+                      </span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">
-                      A special sacred gift will be revealed after your purchase. This exclusive bonus enhances your spiritual journey.
+                      A special sacred gift will be revealed after your
+                      purchase. This exclusive bonus enhances your spiritual
+                      journey.
                     </p>
                     <div className="flex items-center gap-3">
                       <p className="text-xl font-bold text-foreground font-chalk">
@@ -658,7 +838,9 @@ export default function Landing() {
             {/* Total Value Card */}
             <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary shadow-2xl">
               <div className="text-center space-y-4">
-                <p className="text-2xl font-semibold text-foreground">Total Value</p>
+                <p className="text-2xl font-semibold text-foreground">
+                  Total Value
+                </p>
                 <p className="text-4xl md:text-5xl font-cinzel font-bold text-foreground line-through decoration-4 decoration-muted-foreground/60">
                   $60.27
                 </p>
@@ -667,7 +849,8 @@ export default function Landing() {
                   $4.95
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  That's <span className="font-bold text-primary">92% OFF</span> the regular price!
+                  That's <span className="font-bold text-primary">92% OFF</span>{" "}
+                  the regular price!
                 </p>
                 <p className="text-sm text-secondary italic mt-4">
                   + Secret bonus gift included with your purchase 🎁
@@ -698,25 +881,46 @@ export default function Landing() {
             <div className="space-y-6 mb-10">
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">Every day you wait</span> is another day stuck in the same financial patterns. Another day watching opportunities pass by. Another day wondering why abundance seems to flow to others but not to you.
-                </p>
-              </Card>
-              
-              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
-                <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">While you hesitate,</span> 45+ students are already experiencing the transformation. They're manifesting abundance, connecting with divine energies, and building the prosperity consciousness you're searching for.
-                </p>
-              </Card>
-
-              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
-                <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">Staying where you are</span> means more financial stress, more sleepless nights, more feeling like you're missing out on the life you deserve. The same struggles, month after month, year after year.
+                  <span className="font-bold text-destructive">
+                    Every day you wait
+                  </span>{" "}
+                  is another day stuck in the same financial patterns. Another
+                  day watching opportunities pass by. Another day wondering why
+                  abundance seems to flow to others but not to you.
                 </p>
               </Card>
 
               <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
                 <p className="text-lg leading-relaxed text-foreground">
-                  <span className="font-bold text-destructive">This $4.95 investment</span> is less than your morning coffee, but the transformation it unlocks could change your entire financial trajectory. What's the real cost of NOT taking this step today?
+                  <span className="font-bold text-destructive">
+                    While you hesitate,
+                  </span>{" "}
+                  45+ students are already experiencing the transformation.
+                  They're manifesting abundance, connecting with divine
+                  energies, and building the prosperity consciousness you're
+                  searching for.
+                </p>
+              </Card>
+
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">
+                    Staying where you are
+                  </span>{" "}
+                  means more financial stress, more sleepless nights, more
+                  feeling like you're missing out on the life you deserve. The
+                  same struggles, month after month, year after year.
+                </p>
+              </Card>
+
+              <Card className="p-6 border-destructive/30 bg-card/50 backdrop-blur-sm">
+                <p className="text-lg leading-relaxed text-foreground">
+                  <span className="font-bold text-destructive">
+                    This $4.95 investment
+                  </span>{" "}
+                  is less than your morning coffee, but the transformation it
+                  unlocks could change your entire financial trajectory. What's
+                  the real cost of NOT taking this step today?
                 </p>
               </Card>
             </div>
@@ -730,7 +934,9 @@ export default function Landing() {
                 data-testid="button-cost-waiting-cta"
               >
                 <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Break Free Now — $4.95</span>
+                <span className="whitespace-nowrap">
+                  Break Free Now — $4.95
+                </span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Don't let another day pass stuck in the same patterns
@@ -755,11 +961,258 @@ export default function Landing() {
               <span className="font-bold text-primary border-b-2 border-primary">
                 100% of proceeds
               </span>{" "}
-              support building churches honoring King Jesus for global peace initiatives.
+              support building churches honoring King Jesus for global peace
+              initiatives.
             </p>
             <p className="text-lg text-muted-foreground">
-              Join us in creating a more peaceful world through spiritual awakening and divine connection.
+              Join us in creating a more peaceful world through spiritual
+              awakening and divine connection.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* King Jesus Throne Showcase - Luxurious Display Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-950 via-blue-950 to-purple-900 py-16 md:py-24">
+        {/* Layered gradient overlays for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-purple-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/30 to-amber-900/20" />
+
+        {/* Sacred geometry pattern overlay */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L2c+PC9zdmc+')] bg-repeat" />
+          {[...Array(15)].map((_, i) => (
+            <FivePointedStar
+              key={i}
+              className="absolute text-amber-400/30 w-3 h-3"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                transform: `rotate(${Math.random() * 360}deg)`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Desktop Layout: Image on left, content in center */}
+            <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-center">
+              {/* Jesus on Throne - Left side with divine glow */}
+              <div className="lg:col-span-5 relative">
+                {/* Radial divine glow effect behind Jesus */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-[120%] h-[120%] rounded-full blur-3xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-[100%] h-[100%] rounded-full blur-2xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Jesus Image */}
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    data-testid="img-jesus-throne"
+                  />
+                </div>
+              </div>
+
+              {/* Center content */}
+              <div className="lg:col-span-6 space-y-6">
+                {/* Price and CTA */}
+                <div className="bg-gradient-to-br from-card/95 to-card/90 backdrop-blur-sm border-2 border-amber-500/30 rounded-lg p-6 shadow-2xl">
+                  <div className="space-y-4">
+                    <p className="text-xl font-semibold text-foreground">
+                      Complete Spiritual Prosperity Package
+                    </p>
+                    <div className="flex items-baseline justify-center gap-3">
+                      <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">
+                        $60.27
+                      </span>
+                      <span className="text-6xl font-cinzel font-bold text-amber-400">
+                        $4.95
+                      </span>
+                    </div>
+                    <p className="text-xl text-foreground">
+                      <span className="font-bold text-amber-400">92% OFF</span>{" "}
+                      - Limited Time Offer
+                    </p>
+                    <Button
+                      size="lg"
+                      variant="destructive"
+                      className="w-full shadow-2xl hover:shadow-amber-500/50 transition-all animate-pulse"
+                      onClick={handleCheckout}
+                      data-testid="button-showcase-cta"
+                    >
+                      <ButtonStar className="mr-2 h-6 w-6 flex-shrink-0" />
+                      <span className="whitespace-nowrap">Buy Now — $4.95</span>
+                    </Button>
+                    <p className="text-xs text-gray-300">
+                      ⏰{" "}
+                      <span className="font-semibold">Join 45+ students</span>{" "}
+                      who've transformed their relationship with money and
+                      spirituality
+                    </p>
+                    <p className="text-xs text-gray-300 italic">
+                      100% of proceeds support building churches honoring King
+                      Jesus for global peace initiatives
+                    </p>
+                    <p className="text-xs text-gray-400/80">
+                      <strong>Disclaimer:</strong> Results vary. This is a
+                      spiritual practice, not a financial guarantee.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Formula Section */}
+                <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-6 shadow-xl">
+                  <div className="font-chalk text-xl text-white/90 transform -rotate-1 space-y-2">
+                    <div className="leading-tight">
+                      Ancient King Jesus meditation
+                    </div>
+                    <div className="leading-tight">
+                      <span className="text-3xl font-bold mr-2">+</span>Proven
+                      prosperity teachings
+                    </div>
+                    <div className="leading-tight">
+                      <span className="text-3xl font-bold mr-2">=</span>Your
+                      fastest path to abundance
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right spacer */}
+              <div className="lg:col-span-1"></div>
+            </div>
+
+            {/* Mobile & Tablet Layout: Stacked with Jesus prominent */}
+            <div className="lg:hidden space-y-8">
+              {/* Jesus on Throne - Top, large and centered */}
+              <div className="relative max-w-md mx-auto">
+                {/* Radial divine glow effect */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-[110%] h-[110%] rounded-full blur-2xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(245, 158, 11, 0.2) 50%, transparent 100%)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-[90%] h-[90%] rounded-full blur-xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(252, 211, 77, 0.1) 50%, transparent 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Jesus Image */}
+                <div className="relative z-10">
+                  <img
+                    src={kingJesusThroneImage}
+                    alt="King Jesus on Throne"
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    data-testid="img-jesus-throne-mobile"
+                  />
+                </div>
+              </div>
+
+              {/* Content below */}
+              <div className="space-y-4">
+                {/* Price and CTA */}
+                <div className="bg-gradient-to-br from-card/95 to-card/90 backdrop-blur-sm border-2 border-amber-500/30 rounded-lg p-5 shadow-2xl max-w-2xl mx-auto">
+                  <div className="space-y-3">
+                    <p className="text-lg font-semibold text-foreground">
+                      Complete Spiritual Prosperity Package
+                    </p>
+                    <div className="flex items-baseline justify-center gap-3">
+                      <span className="text-3xl font-cinzel font-bold text-muted-foreground line-through">
+                        $60.27
+                      </span>
+                      <span className="text-5xl md:text-6xl font-cinzel font-bold text-amber-400">
+                        $4.95
+                      </span>
+                    </div>
+                    <p className="text-xl text-foreground">
+                      <span className="font-bold text-amber-400">92% OFF</span>{" "}
+                      - Limited Time Offer
+                    </p>
+                    <Button
+                      size="lg"
+                      variant="destructive"
+                      className="w-full shadow-2xl hover:shadow-amber-500/50 transition-all animate-pulse"
+                      onClick={handleCheckout}
+                      data-testid="button-showcase-cta-mobile"
+                    >
+                      <ButtonStar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="whitespace-nowrap">Buy Now — $4.95</span>
+                    </Button>
+                    <p className="text-xs text-gray-300">
+                      ⏰{" "}
+                      <span className="font-semibold">Join 45+ students</span>{" "}
+                      who've transformed their relationship with money and
+                      spirituality
+                    </p>
+                    <p className="text-xs text-gray-300 italic">
+                      100% of proceeds support building churches honoring King
+                      Jesus for global peace initiatives
+                    </p>
+                    <p className="text-xs text-gray-400/80 mt-2">
+                      <strong>Disclaimer:</strong> Results vary. This is a
+                      spiritual practice, not a financial guarantee.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Formula Section */}
+                <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl max-w-2xl mx-auto">
+                  {/* Mobile version - condensed text */}
+                  <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 space-y-1">
+                    <div className="leading-tight">King Jesus meditation</div>
+                    <div className="leading-tight">
+                      <span className="text-sm font-bold mr-1">+</span>
+                      Prosperity teachings
+                    </div>
+                    <div className="leading-tight">
+                      <span className="text-sm font-bold mr-1">=</span>Path to
+                      abundance
+                    </div>
+                  </div>
+                  {/* Tablet+ version - full text */}
+                  <div className="hidden sm:block font-chalk text-base md:text-xl text-white/90 transform -rotate-1 space-y-2">
+                    <div className="leading-tight">
+                      Ancient King Jesus meditation
+                    </div>
+                    <div className="leading-tight">
+                      <span className="text-xl md:text-3xl font-bold mr-2">
+                        +
+                      </span>
+                      Proven prosperity teachings
+                    </div>
+                    <div className="leading-tight">
+                      <span className="text-xl md:text-3xl font-bold mr-2">
+                        =
+                      </span>
+                      Your fastest path to abundance
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -776,25 +1229,36 @@ export default function Landing() {
                 {
                   step: 1,
                   title: "Meditate in Peace",
-                  description: "Do the meditation in a quiet space (e.g., a comfortable chair or bed). Allow divine energies to flow through you.",
+                  description:
+                    "Do the meditation in a quiet space (e.g., a comfortable chair or bed). Allow divine energies to flow through you.",
                 },
                 {
                   step: 2,
                   title: "Listen & Learn",
-                  description: "Listen to a money podcast for deeper cellular understanding. Absorb the wisdom at a profound level.",
+                  description:
+                    "Listen to a money podcast for deeper cellular understanding. Absorb the wisdom at a profound level.",
                 },
                 {
                   step: 3,
                   title: "Reflect & Journal",
-                  description: "Reflect on the Gospel of Thomas materials and journal your insights. Document your spiritual journey.",
+                  description:
+                    "Reflect on the Gospel of Thomas materials and journal your insights. Document your spiritual journey.",
                 },
               ].map((item) => (
-                <Card key={item.step} className="p-8 text-center hover-elevate transition-all" data-testid={`card-step-${item.step}`}>
+                <Card
+                  key={item.step}
+                  className="p-8 text-center hover-elevate transition-all"
+                  data-testid={`card-step-${item.step}`}
+                >
                   <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl font-cinzel font-bold text-primary">{item.step}</span>
+                    <span className="text-3xl font-cinzel font-bold text-primary">
+                      {item.step}
+                    </span>
                   </div>
                   <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
                 </Card>
               ))}
             </div>
@@ -811,14 +1275,16 @@ export default function Landing() {
             </h2>
             <p className="text-xl text-muted-foreground">
               Post your meditation experience on Instagram with{" "}
-              <span className="font-bold text-secondary">#KingJesusMeditation</span>
+              <span className="font-bold text-secondary">
+                #KingJesusMeditation
+              </span>
             </p>
             <Card className="p-8 bg-card/80 backdrop-blur-sm">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <Instagram className="w-12 h-12 text-secondary" />
                 <div className="text-left">
                   <p className="text-xl font-bold">@claytoncuteri</p>
-                  <p className="text-muted-foreground">210,000+ followers</p>
+                  <p className="text-muted-foreground">126k+ followers</p>
                 </div>
               </div>
               <p className="text-lg mb-6">
@@ -856,57 +1322,106 @@ export default function Landing() {
               Everything you need to know before starting your transformation
             </p>
             <Accordion type="single" collapsible className="w-full space-y-4">
-              <AccordionItem value="item-1" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-1">
+              <AccordionItem
+                value="item-1"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-1"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   How is this different from regular meditation?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  King Jesus Body Part Meditation is a specific ancient technique that activates divine energies in each part of your physical body. Unlike general mindfulness, this practice combines spiritual wisdom with practical prosperity principles - the same method that helped me go from <span className="text-red-600 font-bold">-$10K</span> in debt to <span className="text-green-600 font-bold">$1.1M</span> in net worth.
+                  King Jesus Body Part Meditation is a specific ancient
+                  technique that activates divine energies in each part of your
+                  physical body. Unlike general mindfulness, this practice
+                  combines spiritual wisdom with practical prosperity principles
+                  - the same method that helped me go from{" "}
+                  <span className="text-red-600 font-bold">-$10K</span> in debt
+                  to <span className="text-green-600 font-bold">$1.1M</span> in
+                  net worth.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-2" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-2">
+              <AccordionItem
+                value="item-2"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-2"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   Do I need any prior meditation experience?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  No! This package is designed for complete beginners and experienced students alike. The step-by-step video guides you through every detail, and the journal helps you track your progress from day one.
+                  No! This package is designed for complete beginners and
+                  experienced students alike. The step-by-step video guides you
+                  through every detail, and the journal helps you track your
+                  progress from day one.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-3" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-3">
+              <AccordionItem
+                value="item-3"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-3"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   What if this doesn't work for me?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  Yes! While we cannot promise specific outcomes, your success with this practice is proportionate to your effort. With any level of sincere effort, you will experience spiritual growth and success. The way this manifests on the physical layer is different for everyone - some experience immediate peace, others see gradual prosperity shifts, and many notice both.
+                  Yes! While we cannot promise specific outcomes, your success
+                  with this practice is proportionate to your effort. With any
+                  level of sincere effort, you will experience spiritual growth
+                  and success. The way this manifests on the physical layer is
+                  different for everyone - some experience immediate peace,
+                  others see gradual prosperity shifts, and many notice both.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-4" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-4">
+              <AccordionItem
+                value="item-4"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-4"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   How quickly will I see results?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  Many students report feeling a deeper sense of peace within the first session. Financial manifestations vary by individual commitment and practice, but the spiritual connection begins immediately. The included journal helps you track both subtle and significant shifts in your journey.
+                  Many students report feeling a deeper sense of peace within
+                  the first session. Financial manifestations vary by individual
+                  commitment and practice, but the spiritual connection begins
+                  immediately. The included journal helps you track both subtle
+                  and significant shifts in your journey.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-5" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-5">
+              <AccordionItem
+                value="item-5"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-5"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   Is this compatible with my current faith tradition?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  This meditation honors the universal divine presence. Many students from various spiritual backgrounds find it enriches their existing practice. It's about connecting to the divine energy within you, regardless of your religious path.
+                  This meditation honors the universal divine presence. Many
+                  students from various spiritual backgrounds find it enriches
+                  their existing practice. It's about connecting to the divine
+                  energy within you, regardless of your religious path.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-6" className="border border-border rounded-lg px-6 bg-background" data-testid="faq-item-6">
+              <AccordionItem
+                value="item-6"
+                className="border border-border rounded-lg px-6 bg-background"
+                data-testid="faq-item-6"
+              >
                 <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">
                   Why is it only $4.95 instead of $60.27?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-4">
-                  My mission is to make this life-changing practice accessible to everyone, especially those in financial struggle who need it most. The special introductory price removes all barriers so you can start your transformation today.
+                  My mission is to make this life-changing practice accessible
+                  to everyone, especially those in financial struggle who need
+                  it most. The special introductory price removes all barriers
+                  so you can start your transformation today.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -921,7 +1436,9 @@ export default function Landing() {
                 data-testid="button-faq-cta"
               >
                 <ButtonStar className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap">Start Transformation — $4.95</span>
+                <span className="whitespace-nowrap">
+                  Start Transformation — $4.95
+                </span>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Join the community of students experiencing divine abundance
@@ -966,7 +1483,9 @@ export default function Landing() {
                 disabled={emailCaptureMutation.isPending}
                 data-testid="button-subscribe"
               >
-                {emailCaptureMutation.isPending ? "Subscribing..." : "Join Our Community"}
+                {emailCaptureMutation.isPending
+                  ? "Subscribing..."
+                  : "Join Our Community"}
               </Button>
             </form>
           </Card>
@@ -981,10 +1500,18 @@ export default function Landing() {
               <div>
                 <h3 className="font-bold text-lg mb-4 text-primary">Legal</h3>
                 <div className="space-y-2">
-                  <Link href="/privacy" className="block text-sm hover:text-primary transition-colors" data-testid="link-privacy">
+                  <Link
+                    href="/privacy"
+                    className="block text-sm hover:text-primary transition-colors"
+                    data-testid="link-privacy"
+                  >
                     Privacy Policy
                   </Link>
-                  <Link href="/terms" className="block text-sm hover:text-primary transition-colors" data-testid="link-terms">
+                  <Link
+                    href="/terms"
+                    className="block text-sm hover:text-primary transition-colors"
+                    data-testid="link-terms"
+                  >
                     Terms & Conditions
                   </Link>
                 </div>
@@ -1005,10 +1532,13 @@ export default function Landing() {
             </div>
             <div className="border-t border-primary/20 pt-8 text-center text-sm text-muted-foreground">
               <p className="mb-2">
-                <strong>Disclaimer:</strong> Results vary. This is a spiritual practice, not financial advice.
+                <strong>Disclaimer:</strong> Results vary. This is a spiritual
+                practice, not financial advice.
               </p>
               <p>
-                © {new Date().getFullYear()} King Jesus Meditation. 100% of proceeds support building churches honoring King Jesus for global peace initiatives.
+                © {new Date().getFullYear()} King Jesus Meditation. 100% of
+                proceeds support building churches honoring King Jesus for
+                global peace initiatives.
               </p>
             </div>
           </div>
