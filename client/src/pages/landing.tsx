@@ -46,12 +46,14 @@ function FivePointedStar({
 }
 
 // 5-pointed star SVG component for buttons (customizable outline, no fill)
-function ButtonStar({ 
-  className = "w-6 h-6", 
-  stroke = "white" 
-}: { 
+function ButtonStar({
+  className = "w-6 h-6",
+  stroke = "white",
+  fill = "none"
+}: {
   className?: string;
   stroke?: string;
+  fill?: string;
 }) {
   return (
     <svg
@@ -446,8 +448,13 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" stroke="black" />
-                <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
+                <ButtonStar
+                  className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0"
+                  stroke="black"
+                />
+                <span className="whitespace-nowrap text-sm sm:text-base">
+                  GET INSTANT ACCESS →
+                </span>
               </Button>
             </div>
 
@@ -544,8 +551,13 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta-mobile"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" stroke="black" />
-                <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
+                <ButtonStar
+                  className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0"
+                  stroke="black"
+                />
+                <span className="whitespace-nowrap text-sm sm:text-base">
+                  GET INSTANT ACCESS →
+                </span>
               </Button>
             </div>
           </div>
