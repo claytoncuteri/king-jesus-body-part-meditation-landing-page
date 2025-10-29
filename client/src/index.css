@@ -372,27 +372,28 @@
   /* Very subtle shine sweep animation for hero button */
   @keyframes subtleShine {
     0% {
-      left: -150%;
+      transform: translateX(-200%);
     }
     100% {
-      left: 150%;
+      transform: translateX(200%);
     }
   }
 
   .shine-effect {
     position: relative;
-    overflow: hidden;
   }
 
   .shine-effect::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -150%;
-    width: 50%;
+    left: 0;
+    width: 30%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-    animation: subtleShine 6s infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    animation: subtleShine 8s ease-in-out infinite;
     pointer-events: none;
+    transform: translateX(-200%);
+    z-index: 1;
   }
 }
