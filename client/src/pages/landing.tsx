@@ -365,8 +365,11 @@ export default function Landing() {
               <h1 className="text-6xl xl:text-7xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
                 King Jesus Meditation
               </h1>
-              <h2 className="text-2xl xl:text-3xl font-semibold leading-tight bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent animate-fade-in-scale-delay shadow-hero-subtitle">
-                Same Meditation That Made Me a Millionaire
+              <h2 className="text-2xl xl:text-3xl font-extrabold leading-tight animate-fade-in-scale-delay shadow-hero-subtitle">
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">Same </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">Meditation</span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent"> That Made Me a </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">Millionaire</span>
               </h2>
               <p className="text-xl xl:text-2xl font-semibold text-amber-100 drop-shadow-md">
                 Get It Now For Just $4.95
@@ -416,7 +419,7 @@ export default function Landing() {
           <div className="lg:hidden space-y-8">
             {/* Top Row: Title next to Jesus Image */}
             <div className="grid grid-cols-2 gap-4 items-center">
-              <h1 className="text-2xl sm:text-3xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
+              <h1 className="text-3xl sm:text-4xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
                 King Jesus Meditation
               </h1>
               
@@ -443,8 +446,11 @@ export default function Landing() {
 
             {/* Content Below */}
             <div className="space-y-4 text-center">
-              <h2 className="text-xl sm:text-2xl font-semibold leading-tight bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent animate-fade-in-scale-delay shadow-hero-subtitle-mobile">
-                Same Meditation That Made Me a Millionaire
+              <h2 className="text-xl sm:text-2xl font-extrabold leading-tight animate-fade-in-scale-delay shadow-hero-subtitle-mobile">
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent">Same </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">Meditation</span>
+                <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent"> That Made Me a </span>
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">Millionaire</span>
               </h2>
               <p className="text-lg sm:text-xl font-semibold text-amber-100 drop-shadow-md">
                 Get It Now For Just $4.95
