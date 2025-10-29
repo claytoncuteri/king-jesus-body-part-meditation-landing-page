@@ -473,7 +473,6 @@ export default function Landing() {
       <section className="relative overflow-hidden bg-gradient-to-br from-purple-950 via-blue-950 to-purple-900 py-16 md:py-24">
         {/* Layered gradient overlays for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-purple-950/40" />
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/30 to-amber-900/20" />
         
         {/* Sacred geometry pattern overlay */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -990,6 +989,7 @@ export default function Landing() {
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-foreground">
               Our Sacred Mission
             </h2>
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/30 to-amber-900/20" />
             <p className="text-xl md:text-2xl leading-relaxed text-foreground">
               Connect to divine energies upon purchase.{" "}
               <span className="font-bold text-primary border-b-2 border-primary">
