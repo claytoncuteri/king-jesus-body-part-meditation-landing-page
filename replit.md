@@ -13,9 +13,10 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### New Hero Section Design (Latest - Oct 29, 2025)
-- Completely redesigned hero section with spiritual gradient background (white/light gold → deep purple)
-- Desktop layout: 2-column grid with content on LEFT (title, subtitle, price, CTA), Jesus throne image with divine glow on RIGHT
-- Mobile layout: Unique side-by-side top row with "King Jesus Meditation" title NEXT TO Jesus image (grid-cols-2), then subtitle/price/button stacked below
+- Completely redesigned hero section with bold gold-to-blue gradient background (faster transition, no via stops)
+- Gradient: `from-amber-400 to-blue-900` for striking visual impact
+- Desktop layout: 2-column grid with content on LEFT (title, subtitle, price, CTA), smaller Jesus throne image (max-w-md) with divine glow on RIGHT
+- Mobile layout: Unique side-by-side top row with "King Jesus Meditation" title NEXT TO compact Jesus image (max-w-[120px] sm:max-w-[150px]), then subtitle/price/button stacked below
 - Typography: "King Jesus Meditation" main title, "Same Meditation That Made Me a Millionaire" subtitle, "Get It Now For Just $4.95" price
 - CTA button: "GET INSTANT ACCESS →" using destructive variant, connects to checkout flow
 - Text styling: White text with drop shadows for readability across gradient, amber-100 accent for price

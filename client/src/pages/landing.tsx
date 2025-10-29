@@ -341,7 +341,7 @@ export default function Landing() {
       </header>
 
       {/* Hero Section - Above the Fold */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white via-amber-50/40 to-purple-900 pt-16 pb-20 md:pt-24 md:pb-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-amber-400 to-blue-900 pt-16 pb-20 md:pt-24 md:pb-32">
         {/* Decorative stars background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
           {[...Array(20)].map((_, i) => (
@@ -383,7 +383,7 @@ export default function Landing() {
             </div>
 
             {/* Right Jesus Image with Glow */}
-            <div className="relative">
+            <div className="relative max-w-md mx-auto">
               {/* Radial divine glow effect behind Jesus */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div 
@@ -421,7 +421,7 @@ export default function Landing() {
               </h1>
               
               {/* Jesus Image with Glow (compact for mobile) */}
-              <div className="relative">
+              <div className="relative max-w-[120px] sm:max-w-[150px]">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div 
                     className="w-[110%] h-[110%] rounded-full blur-2xl"
