@@ -588,8 +588,8 @@ export default function Landing() {
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
                     But here's what most don't know: Before I made my first
-                    dollar, I had to transform my relationship with money at the
-                    cellular level. This meditation rewired my prosperity
+                    dollar, I had to transform my relationship with money. 
+                    This meditation rewired my 
                     consciousness, dissolved financial blocks, and aligned me
                     with divine abundance.
                   </p>
