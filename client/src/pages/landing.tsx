@@ -372,7 +372,7 @@ export default function Landing() {
                 <span className="text-3xl xl:text-4xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">MILLIONAIRE</span>
               </h2>
               <div className="space-y-2">
-                <p className="text-base xl:text-lg font-medium text-white/80">
+                <p className="text-xl xl:text-2xl font-semibold text-white/90">
                   Get It Now For Just
                 </p>
                 <p className="text-4xl xl:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent shadow-price-glow">
@@ -458,7 +458,7 @@ export default function Landing() {
                 <span className="text-2xl sm:text-3xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">MILLIONAIRE</span>
               </h2>
               <div className="space-y-2">
-                <p className="text-sm sm:text-base font-medium text-white/80">
+                <p className="text-lg sm:text-xl font-semibold text-white/90">
                   Get It Now For Just
                 </p>
                 <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent shadow-price-glow-mobile">
