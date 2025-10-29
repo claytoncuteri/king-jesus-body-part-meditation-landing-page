@@ -45,8 +45,14 @@ function FivePointedStar({
   );
 }
 
-// 5-pointed star SVG component for buttons (white outline, no fill)
-function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
+// 5-pointed star SVG component for buttons (customizable outline, no fill)
+function ButtonStar({ 
+  className = "w-6 h-6", 
+  stroke = "white" 
+}: { 
+  className?: string;
+  stroke?: string;
+}) {
   return (
     <svg
       className={className}
@@ -57,7 +63,7 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
       <path
         d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
         fill="none"
-        stroke="white"
+        stroke={stroke}
         strokeWidth="2"
       />
     </svg>
@@ -440,7 +446,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 fill-black" />
+                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" stroke="black" />
                 <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
               </Button>
             </div>
@@ -538,7 +544,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta-mobile"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 fill-black" />
+                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" stroke="black" />
                 <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
               </Button>
             </div>
