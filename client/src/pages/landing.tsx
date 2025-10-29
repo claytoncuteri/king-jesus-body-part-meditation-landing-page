@@ -371,9 +371,8 @@ export default function Landing() {
                 <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent"> That Made Me a </span>
                 <span className="text-3xl xl:text-4xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">MILLIONAIRE</span>
               </h2>
-              <p className="text-xl xl:text-2xl font-semibold drop-shadow-lg">
-                <span className="text-white/90">Get It Now For Just </span>
-                <span className="text-4xl xl:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent shadow-price-glow">$4.95</span>
+              <p className="text-xl xl:text-2xl font-semibold text-white/90 drop-shadow-lg">
+                Get It Now For Just $4.95
               </p>
               <Button
                 size="lg"
@@ -453,9 +452,8 @@ export default function Landing() {
                 <span className="bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent"> That Made Me a </span>
                 <span className="text-2xl sm:text-3xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">MILLIONAIRE</span>
               </h2>
-              <p className="text-lg sm:text-xl font-semibold drop-shadow-lg">
-                <span className="text-white/90">Get It Now For Just </span>
-                <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent shadow-price-glow-mobile">$4.95</span>
+              <p className="text-lg sm:text-xl font-semibold text-white/90 drop-shadow-lg">
+                Get It Now For Just $4.95
               </p>
               <Button
                 size="lg"
