@@ -12,7 +12,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### King Jesus Throne Showcase Section (Latest - Oct 29, 2025)
+### New Hero Section Design (Latest - Oct 29, 2025)
+- Completely redesigned hero section with spiritual gradient background (white/light gold → deep purple)
+- Desktop layout: 2-column grid with content on LEFT (title, subtitle, price, CTA), Jesus throne image with divine glow on RIGHT
+- Mobile layout: Unique side-by-side top row with "King Jesus Meditation" title NEXT TO Jesus image (grid-cols-2), then subtitle/price/button stacked below
+- Typography: "King Jesus Meditation" main title, "Same Meditation That Made Me a Millionaire" subtitle, "Get It Now For Just $4.95" price
+- CTA button: "GET INSTANT ACCESS →" using destructive variant, connects to checkout flow
+- Text styling: White text with drop shadows for readability across gradient, amber-100 accent for price
+- Accessibility: All text maintains strong contrast against gradient background
+- Fully tested on desktop and mobile - all checkout functionality preserved
+
+### King Jesus Throne Showcase Section (Oct 29, 2025)
 - Added luxurious showcase section featuring King Jesus on throne image from attached_assets
 - Positioned immediately after main hero section with rich gradient background (purple-950 → blue-950 → purple-900)
 - Desktop layout: 12-column grid with Jesus image positioned on LEFT side (col-span-5), content centered (col-span-6)
