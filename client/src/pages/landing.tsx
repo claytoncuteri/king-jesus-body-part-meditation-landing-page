@@ -537,8 +537,8 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta-mobile"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
-                <span className="whitespace-nowrap text-lg sm:text-xl">GET INSTANT ACCESS →</span>
+                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 text-black" />
+                <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
               </Button>
             </div>
           </div>
