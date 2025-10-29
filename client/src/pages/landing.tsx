@@ -416,7 +416,7 @@ export default function Landing() {
           <div className="lg:hidden space-y-8">
             {/* Top Row: Title next to Jesus Image */}
             <div className="grid grid-cols-2 gap-4 items-center">
-              <h1 className="text-2xl sm:text-3xl font-bold font-serif text-white leading-tight drop-shadow-lg">
+              <h1 className="text-2xl sm:text-3xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale" style={{ filter: 'drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.9))' }}>
                 King Jesus Meditation
               </h1>
               
@@ -443,7 +443,7 @@ export default function Landing() {
 
             {/* Content Below */}
             <div className="space-y-4 text-center">
-              <h2 className="text-xl sm:text-2xl font-semibold text-white drop-shadow-md">
+              <h2 className="text-xl sm:text-2xl font-semibold leading-tight bg-gradient-to-r from-white via-amber-50 to-white bg-clip-text text-transparent animate-fade-in-scale-delay" style={{ filter: 'drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.7))' }}>
                 Same Meditation That Made Me a Millionaire
               </h2>
               <p className="text-lg sm:text-xl font-semibold text-amber-100 drop-shadow-md">
