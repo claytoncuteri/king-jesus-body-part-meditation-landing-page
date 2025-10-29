@@ -45,8 +45,14 @@ function FivePointedStar({
   );
 }
 
-// 5-pointed star SVG component for buttons (white outline, no fill)
-function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
+// 5-pointed star SVG component for buttons (customizable outline, no fill)
+function ButtonStar({
+  className = "w-6 h-6",
+  stroke = "white",
+}: {
+  className?: string;
+  stroke?: string;
+}) {
   return (
     <svg
       className={className}
@@ -57,7 +63,7 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
       <path
         d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
         fill="none"
-        stroke="white"
+        stroke={stroke}
         strokeWidth="2"
       />
     </svg>
@@ -436,11 +442,17 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="w-full md:w-auto shadow-2xl hover:shadow-primary/50 transition-all"
+                className="w-full md:w-auto shadow-2xl hover:shadow-amber-500/50 transition-all shine-effect border border-amber-400/20 text-black font-bold"
                 onClick={handleCheckout}
                 data-testid="button-hero-cta"
               >
-                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+                <ButtonStar
+                  className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0"
+                  stroke="black"
+                />
+                <span className="whitespace-nowrap text-sm sm:text-base">
+                  GET INSTANT ACCESS →
+                </span>
               </Button>
             </div>
 
@@ -480,7 +492,10 @@ export default function Landing() {
           <div className="lg:hidden space-y-8">
             {/* Top Row: Title next to Jesus Image */}
             <div className="grid grid-cols-2 gap-4 items-center">
-              <h1 className="text-3xl sm:text-4xl font-bold font-serif leading-tight bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title">
+              <h1
+                className="font-bold font-serif leading-[1.1] bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title max-h-[120px] sm:max-h-[150px] flex items-center"
+                style={{ fontSize: "clamp(1.5rem, 8vw, 3rem)" }}
+              >
                 King Jesus Meditation
               </h1>
 
@@ -533,11 +548,17 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="w-full shadow-2xl hover:shadow-primary/50 transition-all"
+                className="w-full shadow-2xl hover:shadow-amber-500/50 transition-all shine-effect border border-amber-400/20 text-black font-bold"
                 onClick={handleCheckout}
                 data-testid="button-hero-cta-mobile"
               >
-                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+                <ButtonStar
+                  className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0"
+                  stroke="black"
+                />
+                <span className="whitespace-nowrap text-sm sm:text-base">
+                  GET INSTANT ACCESS →
+                </span>
               </Button>
             </div>
           </div>
@@ -565,19 +586,18 @@ export default function Landing() {
                     <span className="font-cinzel font-bold text-green-600">
                       $1.1M
                     </span>{" "}
-                    net worth across 4 businesses, a podcast, and 210K+
+                    net worth across 4 businesses, a podcast, and 126K+
                     followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
-                    But here's what most don't know: Before I made my first
-                    dollar, I had to transform my relationship with money at the
-                    cellular level. This meditation rewired my prosperity
-                    consciousness, dissolved financial blocks, and aligned me
-                    with divine abundance.
+                    But here's what most don't know. Before I made my first
+                    dollar, I had to transform my relationship with money. This
+                    meditation rewired my consciousness, dissolved financial
+                    blocks, and aligned me with divine abundance.
                   </p>
                   <p className="text-lg md:text-xl mt-4 text-muted-foreground leading-relaxed">
                     The same ancient technique that guided me from scarcity to
-                    overflow is now available to you for less than a coffee.
+                    abundance is now available to you for less than a coffee.
                   </p>
                 </div>
               </div>
@@ -591,7 +611,7 @@ export default function Landing() {
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
                   <p className="text-muted-foreground">
-                    Influencer, Politician, Entrepreneur, and Spiritual Guide
+                    Spiritual Guide, Politician, Entrepreneur, and Influencers
                   </p>
                 </div>
               </div>

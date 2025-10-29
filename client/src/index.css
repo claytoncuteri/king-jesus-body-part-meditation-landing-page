@@ -368,4 +368,32 @@
   .shadow-price-glow-mobile {
     filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
   }
+
+  /* Very subtle shine sweep animation for hero button */
+  @keyframes subtleShine {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  .shine-effect {
+    position: relative;
+  }
+
+  .shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    animation: subtleShine 8s ease-in-out infinite;
+    pointer-events: none;
+    transform: translateX(-200%);
+    z-index: 1;
+  }
 }
