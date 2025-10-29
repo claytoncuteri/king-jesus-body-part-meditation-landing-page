@@ -1201,30 +1201,30 @@ export default function Landing() {
                 {/* Formula Section */}
                 <div className="bg-[#1a3a1a] border-4 border-[#2d4a2d] rounded-lg p-2 sm:p-4 md:p-6 shadow-xl max-w-2xl mx-auto">
                   {/* Mobile version - condensed text */}
-                  <div className="sm:hidden font-chalk text-xs text-white/90 transform -rotate-1 space-y-1">
+                  <div className="sm:hidden font-chalk text-base text-white/90 transform -rotate-1 space-y-2">
                     <div className="leading-tight">King Jesus meditation</div>
                     <div className="leading-tight">
-                      <span className="text-sm font-bold mr-1">+</span>
+                      <span className="text-xl font-bold mr-1">+</span>
                       Prosperity teachings
                     </div>
                     <div className="leading-tight">
-                      <span className="text-sm font-bold mr-1">=</span>Path to
+                      <span className="text-xl font-bold mr-1">=</span>Path to
                       abundance
                     </div>
                   </div>
                   {/* Tablet+ version - full text */}
-                  <div className="hidden sm:block font-chalk text-base md:text-xl text-white/90 transform -rotate-1 space-y-2">
+                  <div className="hidden sm:block font-chalk text-xl md:text-3xl text-white/90 transform -rotate-1 space-y-3">
                     <div className="leading-tight">
                       Ancient King Jesus meditation
                     </div>
                     <div className="leading-tight">
-                      <span className="text-xl md:text-3xl font-bold mr-2">
+                      <span className="text-2xl md:text-4xl font-bold mr-2">
                         +
                       </span>
                       Proven prosperity teachings
                     </div>
                     <div className="leading-tight">
-                      <span className="text-xl md:text-3xl font-bold mr-2">
+                      <span className="text-2xl md:text-4xl font-bold mr-2">
                         =
                       </span>
                       Your fastest path to abundance
