@@ -48,7 +48,7 @@ function FivePointedStar({
 // 5-pointed star SVG component for buttons (customizable outline, no fill)
 function ButtonStar({
   className = "w-6 h-6",
-  stroke = "white"
+  stroke = "white",
 }: {
   className?: string;
   stroke?: string;
@@ -492,7 +492,10 @@ export default function Landing() {
           <div className="lg:hidden space-y-8">
             {/* Top Row: Title next to Jesus Image */}
             <div className="grid grid-cols-2 gap-4 items-center">
-              <h1 className="font-bold font-serif leading-[1.1] bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title max-h-[120px] sm:max-h-[150px] flex items-center" style={{ fontSize: 'clamp(1.5rem, 8vw, 3rem)' }}>
+              <h1
+                className="font-bold font-serif leading-[1.1] bg-gradient-to-r from-amber-300 via-amber-100 to-white bg-clip-text text-transparent animate-fade-in-scale shadow-hero-title max-h-[120px] sm:max-h-[150px] flex items-center"
+                style={{ fontSize: "clamp(1.5rem, 8vw, 3rem)" }}
+              >
                 King Jesus Meditation
               </h1>
 
@@ -587,15 +590,14 @@ export default function Landing() {
                     followers.
                   </p>
                   <p className="text-lg md:text-xl mt-6 text-muted-foreground leading-relaxed">
-                    But here's what most don't know: Before I made my first
-                    dollar, I had to transform my relationship with money. 
-                    This meditation rewired my 
-                    consciousness, dissolved financial blocks, and aligned me
-                    with divine abundance.
+                    But here's what most don't know. Before I made my first
+                    dollar, I had to transform my relationship with money. This
+                    meditation rewired my consciousness, dissolved financial
+                    blocks, and aligned me with divine abundance.
                   </p>
                   <p className="text-lg md:text-xl mt-4 text-muted-foreground leading-relaxed">
                     The same ancient technique that guided me from scarcity to
-                    overflow is now available to you for less than a coffee.
+                    abundance is now available to you for less than a coffee.
                   </p>
                 </div>
               </div>
@@ -609,7 +611,7 @@ export default function Landing() {
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
                   <p className="text-muted-foreground">
-                    Influencer, Politician, Entrepreneur, and Spiritual Guide
+                    Spiritual Guide, Politician, Entrepreneur, and Influencers
                   </p>
                 </div>
               </div>
