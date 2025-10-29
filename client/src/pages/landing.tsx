@@ -436,11 +436,12 @@ export default function Landing() {
               <Button
                 size="lg"
                 variant="destructive"
-                className="w-full md:w-auto shadow-2xl hover:shadow-primary/50 transition-all"
+                className="w-full md:w-auto shadow-2xl hover:shadow-amber-500/50 transition-all shine-effect border border-amber-400/20 text-black font-bold"
                 onClick={handleCheckout}
                 data-testid="button-hero-cta"
               >
-                <span className="whitespace-nowrap">GET INSTANT ACCESS →</span>
+                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 fill-black" />
+                <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
               </Button>
             </div>
 
@@ -537,7 +538,7 @@ export default function Landing() {
                 onClick={handleCheckout}
                 data-testid="button-hero-cta-mobile"
               >
-                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 text-black" />
+                <ButtonStar className="mr-2 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 fill-black" />
                 <span className="whitespace-nowrap text-sm sm:text-base">GET INSTANT ACCESS →</span>
               </Button>
             </div>
