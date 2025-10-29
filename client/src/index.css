@@ -359,4 +359,13 @@
   .shadow-hero-subtitle-mobile {
     filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.7));
   }
+
+  /* Blue glow effect for price text */
+  .shadow-price-glow {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6)) drop-shadow(0 0 16px rgba(59, 130, 246, 0.4)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+  }
+
+  .shadow-price-glow-mobile {
+    filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+  }
 }
