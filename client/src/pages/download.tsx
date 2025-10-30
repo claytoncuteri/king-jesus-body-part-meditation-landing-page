@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRoute, Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, CheckCircle, Home, Lock } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 import type { Purchase, PackageItem } from "@shared/schema";
 
 // 5-pointed star SVG component
@@ -28,6 +29,8 @@ function ButtonStar({ className = "w-6 h-6" }: { className?: string }) {
 export default function DownloadPage() {
   const [match, params] = useRoute("/download/:token");
   const token = params?.token;
+  const { toast } = useToast();
+  const [isDownloadingAll, setIsDownloadingAll] = useState(false);
 
   const { data, isLoading, error } = useQuery<{
     purchase: Purchase;
@@ -107,6 +110,49 @@ export default function DownloadPage() {
 
   const { purchase, packageItems } = data;
 
+  const handleDownloadAll = async () => {
+    const itemsWithUrls = packageItems.filter(item => item.contentUrl);
+    
+    if (itemsWithUrls.length === 0) {
+      toast({
+        title: "No Downloads Available",
+        description: "There are no items available for download yet.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsDownloadingAll(true);
+    
+    try {
+      // Download each item with a small delay to avoid browser blocking
+      for (let i = 0; i < itemsWithUrls.length; i++) {
+        const item = itemsWithUrls[i];
+        
+        // Open in new tab/download
+        window.open(item.contentUrl || '#', '_blank');
+        
+        // Small delay between downloads (except for the last one)
+        if (i < itemsWithUrls.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+      }
+      
+      toast({
+        title: "Downloads Started",
+        description: `Started downloading ${itemsWithUrls.length} item${itemsWithUrls.length > 1 ? 's' : ''}. Check your downloads folder.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download Error",
+        description: "There was an error starting the downloads. Please try downloading items individually.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDownloadingAll(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 p-4 py-12">
       <div className="max-w-4xl mx-auto">
@@ -132,9 +178,24 @@ export default function DownloadPage() {
 
         {/* Package Items */}
         <Card className="p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Download className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-bold">Download Your Content</h2>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <Download className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-bold">Download Your Content</h2>
+            </div>
+            
+            {packageItems.length > 0 && packageItems.some(item => item.contentUrl) && (
+              <Button
+                size="lg"
+                variant="default"
+                onClick={handleDownloadAll}
+                disabled={isDownloadingAll}
+                data-testid="button-download-all"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                {isDownloadingAll ? "Downloading..." : "Download All"}
+              </Button>
+            )}
           </div>
 
           {packageItems.length === 0 ? (
