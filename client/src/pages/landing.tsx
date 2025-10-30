@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Accordion,
   AccordionContent,
@@ -14,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Star, Instagram, Check, Menu, X } from "lucide-react";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import kingJesusImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import kingJesusThroneImage from "@assets/kingjesusthrone_1759948082173.jpg";
 import mahavatarImage from "@assets/mahavatarbabaji_1759948082174.jpg";
@@ -75,6 +77,7 @@ export default function Landing() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Track page view analytics
   useQuery({
@@ -88,10 +91,18 @@ export default function Landing() {
     },
   });
 
-  // Get testimonials
-  const { data: testimonials = [] } = useQuery<any[]>({
+  // Get testimonials with loading state
+  const { data: testimonials = [], isLoading: testimonialsLoading } = useQuery<any[]>({
     queryKey: ["/api/testimonials"],
   });
+
+  // Hide loading spinner after initial data loads
+  useEffect(() => {
+    if (!testimonialsLoading && isInitialLoad) {
+      // Small delay to ensure smooth transition
+      setTimeout(() => setIsInitialLoad(false), 300);
+    }
+  }, [testimonialsLoading, isInitialLoad]);
 
   // Email capture mutation
   const emailCaptureMutation = useMutation({
@@ -138,6 +149,11 @@ export default function Landing() {
     window.location.href = "/checkout";
   };
 
+  // Show loading spinner on initial page load
+  if (isInitialLoad) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header with Images */}
@@ -156,6 +172,7 @@ export default function Landing() {
                   alt="Mahavatar Babaji"
                   className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
                   data-testid="img-mahavatar-header"
+                  loading="eager"
                 />
               </div>
               <div className="relative">
@@ -180,6 +197,7 @@ export default function Landing() {
                   alt="King Jesus"
                   className="h-16 md:h-20 w-16 md:w-20 object-contain rounded-md border-2 border-primary p-1"
                   data-testid="img-king-jesus-header"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -483,6 +501,7 @@ export default function Landing() {
                   alt="King Jesus on Throne"
                   className="w-full h-auto object-contain drop-shadow-2xl"
                   data-testid="img-hero-jesus"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -516,6 +535,7 @@ export default function Landing() {
                     alt="King Jesus on Throne"
                     className="w-full h-auto object-contain drop-shadow-xl"
                     data-testid="img-hero-jesus-mobile"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -607,6 +627,7 @@ export default function Landing() {
                   alt="Clayton Cuteri"
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary"
                   data-testid="img-clayton-profile"
+                  loading="lazy"
                 />
                 <div>
                   <p className="font-semibold text-lg">Clayton Cuteri</p>
@@ -640,57 +661,72 @@ export default function Landing() {
       </section>
 
       {/* Testimonials Section */}
-      {testimonials.length > 0 && (
-        <section id="testimonials" className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
-                Transformation Stories
-              </h2>
-              <p className="text-xl text-center text-muted-foreground mb-8">
-                See what others are experiencing with #KingJesusMeditation
-              </p>
+      <section id="testimonials" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center mb-4">
+              Transformation Stories
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-8">
+              See what others are experiencing with #KingJesusMeditation
+            </p>
 
-              {/* Rating Display */}
-              <div className="flex flex-col items-center gap-3 py-4 mb-8">
-                <div className="flex items-center gap-2">
-                  <span className="text-3xl font-bold text-primary">4.91</span>
-                  <span className="text-xl text-muted-foreground">/5</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <div key={star} className="relative w-6 h-6">
-                      {/* Background star (empty) */}
-                      <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
-                      {/* Filled star with partial fill */}
-                      <div
-                        className="absolute inset-0 overflow-hidden"
-                        style={{
-                          width: star <= 4 ? "100%" : star === 5 ? "98%" : "0%",
-                        }}
-                      >
-                        <Star className="w-6 h-6 text-primary fill-primary" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Rated by{" "}
-                  <span className="font-semibold text-foreground">
-                    45+ students
-                  </span>
-                </p>
+            {/* Rating Display */}
+            <div className="flex flex-col items-center gap-3 py-4 mb-8">
+              <div className="flex items-center gap-2">
+                <span className="text-3xl font-bold text-primary">4.91</span>
+                <span className="text-xl text-muted-foreground">/5</span>
               </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((testimonial: any, idx: number) => {
-                  const rating = idx === 2 ? 4 : 5;
-                  return (
-                    <Card
-                      key={testimonial.id}
-                      className="p-6 hover-elevate transition-all"
-                      data-testid={`testimonial-${testimonial.id}`}
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <div key={star} className="relative w-6 h-6">
+                    {/* Background star (empty) */}
+                    <Star className="absolute inset-0 w-6 h-6 text-muted-foreground/30" />
+                    {/* Filled star with partial fill */}
+                    <div
+                      className="absolute inset-0 overflow-hidden"
+                      style={{
+                        width: star <= 4 ? "100%" : star === 5 ? "98%" : "0%",
+                      }}
                     >
+                      <Star className="w-6 h-6 text-primary fill-primary" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Rated by{" "}
+                <span className="font-semibold text-foreground">
+                  45+ students
+                </span>
+              </p>
+            </div>
+
+            {/* Testimonial Cards with Loading State */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {testimonialsLoading
+                ? // Skeleton loading state
+                  Array(3)
+                    .fill(0)
+                    .map((_, idx) => (
+                      <Card key={idx} className="p-6">
+                        <div className="space-y-3">
+                          <Skeleton className="h-5 w-32" />
+                          <Skeleton className="h-3 w-20" />
+                          <Skeleton className="h-20 w-full" />
+                          <Skeleton className="h-4 w-24" />
+                          <Skeleton className="h-3 w-40" />
+                        </div>
+                      </Card>
+                    ))
+                : testimonials.map((testimonial: any, idx: number) => {
+                    const rating = idx === 2 ? 4 : 5;
+                    return (
+                      <Card
+                        key={testimonial.id}
+                        className="p-6 hover-elevate transition-all"
+                        data-testid={`testimonial-${testimonial.id}`}
+                      >
                       <div className="mb-3">
                         <p className="font-semibold">{testimonial.name}</p>
                         <p className="text-xs text-muted-foreground">
@@ -728,9 +764,10 @@ export default function Landing() {
                     </Card>
                   );
                 })}
-              </div>
+            </div>
 
-              {/* CTA after Testimonials */}
+            {/* CTA after Testimonials */}
+            {testimonials.length > 0 && (
               <div className="mt-12 text-center">
                 <Button
                   size="lg"
@@ -749,10 +786,10 @@ export default function Landing() {
                   community
                 </p>
               </div>
-            </div>
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Value Breakdown Section */}
       <section id="value" className="py-20 bg-card">
