@@ -34,12 +34,9 @@ export default function Success() {
   // Confirm payment mutation
   const confirmPayment = useMutation({
     mutationFn: async (paymentIntentId: string) => {
-      const response = await apiRequest<{ success: boolean; purchase: Purchase }>('/api/checkout/confirm-payment', {
-        method: 'POST',
-        body: JSON.stringify({ paymentIntentId }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      return response;
+      const response = await apiRequest('POST', '/api/checkout/confirm-payment', { paymentIntentId });
+      const data = await response.json() as { success: boolean; purchase: Purchase };
+      return data;
     },
   });
 
