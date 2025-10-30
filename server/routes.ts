@@ -10,9 +10,9 @@ import { db } from "./db";
 import { ObjectStorageService } from "./objectStorage";
 
 // Stripe setup with automatic tax
-// ✅ PRODUCTION MODE: Using LIVE Stripe keys
-// To test with test cards, switch back to TESTING_STRIPE_SECRET_KEY
-const stripeKey = process.env.STRIPE_SECRET_KEY || process.env.TESTING_STRIPE_SECRET_KEY;
+// 🟡 TEST MODE: Using TEST Stripe keys for safe testing with card 4242424242424242
+// To go LIVE and process real payments, switch to: process.env.STRIPE_SECRET_KEY || process.env.TESTING_STRIPE_SECRET_KEY
+const stripeKey = process.env.TESTING_STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
 if (!stripeKey) {
   throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY or TESTING_STRIPE_SECRET_KEY');
 }
