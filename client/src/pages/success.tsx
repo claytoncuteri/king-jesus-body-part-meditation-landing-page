@@ -166,6 +166,24 @@ export default function Success() {
             </div>
           ) : (
             <div className="space-y-3">
+              {/* Customer Information */}
+              {(purchase?.name || purchase?.email) && (
+                <div className="pb-3 mb-3 border-b border-border">
+                  {purchase?.name && (
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm text-muted-foreground">Name:</span>
+                      <span className="text-sm font-medium" data-testid="receipt-customer-name">{purchase.name}</span>
+                    </div>
+                  )}
+                  {purchase?.email && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-muted-foreground">Email:</span>
+                      <span className="text-sm font-medium" data-testid="receipt-customer-email">{purchase.email}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="flex justify-between items-center py-2 border-b border-border" data-testid="receipt-line-package">
                 <div>
                   <p className="font-medium">King Jesus Meditation Package</p>
