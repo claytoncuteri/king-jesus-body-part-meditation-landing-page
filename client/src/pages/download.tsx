@@ -179,7 +179,7 @@ export default function DownloadPage() {
               Bookmark this page or save the link from your email. You can access your downloads anytime.
             </p>
             <p className="text-sm text-muted-foreground">
-              Need help? Contact us at support@travelingtoconciousness.com
+              Need help? Contact us at academyofindigoeducation@gmail.com
             </p>
           </div>
         </Card>

@@ -239,7 +239,7 @@ export default function Success() {
         </div>
 
         <p className="text-sm text-muted-foreground mt-8 text-center">
-          Didn't receive the email? Check your spam folder or contact us at support@travelingtoconciousness.com
+          Didn't receive the email? Check your spam folder or contact us at academyofindigoeducation@gmail.com
         </p>
       </Card>
     </div>
