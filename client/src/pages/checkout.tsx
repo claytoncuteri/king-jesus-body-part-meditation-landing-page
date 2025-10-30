@@ -167,8 +167,10 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
 
     setHasConfirmedPayment(true);
 
-    const { error } = await stripe.confirmPayment({
+    // Confirm payment without automatic redirect to avoid iframe security issues
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
+      redirect: 'if_required',
       confirmParams: {
         return_url: `${window.location.origin}/success`,
       },
@@ -183,6 +185,9 @@ const CheckoutForm = ({ email, confirmEmail, name, paymentIntentId }: { email: s
       setIsProcessing(false);
       setIsDonationProcessing(false);
       setHasConfirmedPayment(false);
+    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      // Payment succeeded - manually redirect to success page
+      window.location.href = `${window.location.origin}/success?payment_intent=${paymentIntent.id}`;
     }
   };
 
