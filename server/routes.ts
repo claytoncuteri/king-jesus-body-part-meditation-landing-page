@@ -10,9 +10,9 @@ import { db } from "./db";
 import { ObjectStorageService } from "./objectStorage";
 
 // Stripe setup with automatic tax
-// 🟡 TEMPORARY TEST MODE: Backend uses test key, frontend uses live key (will be fixed)
-// The frontend can't access TESTING_VITE_STRIPE_PUBLIC_KEY because Vite only exposes vars starting with VITE_
-// Solution: Temporarily using test secret key on backend for testing
+// 🟡 TEST MODE: Using TESTING_STRIPE_SECRET_KEY for safe testing with card 4242424242424242
+// Frontend uses VITE_TESTING_STRIPE_PUBLIC_KEY (Vite requires env vars to start with VITE_)
+// To go LIVE: Switch to process.env.STRIPE_SECRET_KEY || process.env.TESTING_STRIPE_SECRET_KEY
 const stripeKey = process.env.TESTING_STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
 if (!stripeKey) {
   throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY or TESTING_STRIPE_SECRET_KEY');
